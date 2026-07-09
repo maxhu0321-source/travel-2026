@@ -436,6 +436,10 @@ body {
       <span class="time-badge">中午/下午</span>
       <h4>🚶 中央大街</h4>
       <p>哈尔滨标志性步行街</p>
+      <div class="action-btns">
+        <button class="action-btn" onclick="copyAddr('中央大街')">📋 复制地址</button>
+        <button class="action-btn" onclick="openMap('中央大街')">🗺️ 地图</button>
+      </div>
     </div>
 
     <div class="timeline-item train">
@@ -478,6 +482,10 @@ body {
       <span class="time-badge">上午</span>
       <h4>🦢 扎龙自然保护区</h4>
       <p>打车前往 · 丹顶鹤栖息地<br>门票65元/人 · 摆渡车10元/人</p>
+      <div class="action-btns">
+        <button class="action-btn" onclick="copyAddr('扎龙自然保护区')">📋 复制地址</button>
+        <button class="action-btn" onclick="openMap('扎龙自然保护区')">🗺️ 地图</button>
+      </div>
     </div>
 
     <div class="timeline-item food">
@@ -525,6 +533,10 @@ body {
       <span class="time-badge">早上</span>
       <h4>🥟 红专街早市</h4>
       <p>哈尔滨特色早市</p>
+      <div class="action-btns">
+        <button class="action-btn" onclick="copyAddr('红专街早市')">📋 复制地址</button>
+        <button class="action-btn" onclick="openMap('红专街早市')">🗺️ 地图</button>
+      </div>
     </div>
 
     <div class="timeline-item train">
@@ -682,6 +694,10 @@ body {
       <span class="time-badge">08:00-10:00</span>
       <h4>🎫 九寨沟景区入园</h4>
       <p>刷身份证入园 · 全价套票×2</p>
+      <div class="action-btns">
+        <button class="action-btn" onclick="copyAddr('九寨沟风景区')">📋 复制地址</button>
+        <button class="action-btn" onclick="openMap('九寨沟风景区')">🗺️ 地图</button>
+      </div>
     </div>
 
     <div class="timeline-item activity">
@@ -783,6 +799,37 @@ function showTab(tabId) {
   const idx = tabNames.indexOf(tabId);
   if (idx >= 0) tabs[idx].classList.add('active');
   window.scrollTo(0, 0);
+}
+
+// Copy address
+function copyAddr(text) {
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(() => showToast('✅ 已复制')).catch(() => fallbackCopy(text));
+  } else {
+    fallbackCopy(text);
+  }
+}
+
+function fallbackCopy(text) {
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.select();
+  try {
+    document.execCommand('copy');
+    showToast('✅ 已复制');
+  } catch(e) {
+    showToast('❌ 复制失败');
+  }
+  document.body.removeChild(ta);
+}
+
+// Open Apple Maps
+function openMap(query) {
+  const url = 'maps://?q=' + encodeURIComponent(query);
+  window.location.href = url;
 }
 
 // Toast notification
