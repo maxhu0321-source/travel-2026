@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="东北+成都九寨沟攻略">
+<title>东北+成都九寨沟攻略</title>
+<style>
+:root {
+  --ice-blue: #5B9BD5;
+  --warm-orange: #E67E22;
+  --forest-green: #2E7D32;
+  --light-bg: #F5F7FA;
+  --card-bg: #FFFFFF;
+  --text-primary: #2c2c2c;
+  --text-secondary: #666;
+  --warning-red: #dc3545;
+  --timeline-line: #d4d4d4;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
+  background: var(--light-bg);
+  color: var(--text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  padding-bottom: 80px;
+}
+.hero {
+  background: linear-gradient(135deg, var(--ice-blue) 0%, #7BB3E8 50%, var(--forest-green) 100%);
+  color: white;
+  padding: 48px 20px 32px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(ellipse, rgba(255,255,255,0.08) 0%, transparent 70%);
+  animation: shimmer 8s infinite linear;
+}
+@keyframes shimmer { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+.hero-eyebrow {
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  opacity: 0.85;
+  margin-bottom: 8px;
+}
+.hero h1 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  position: relative;
+}
+.hero-flights {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 13px;
+  opacity: 0.92;
+  position: relative;
+}
+.hero-flight {
+  background: rgba(255,255,255,0.12);
+  border-radius: 8px;
+  padding: 8px 12px;
+  backdrop-filter: blur(4px);
+}
+
+/* Sticky Tabs */
+.tabs {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--card-bg);
+  display: flex;
+  overflow-x: auto;
+  border-bottom: 2px solid #eee;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  -webkit-overflow-scrolling: touch;
+}
+.tabs::-webkit-scrollbar { display: none; }
+.tab-btn {
+  flex: 0 0 auto;
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  border: none;
+  background: none;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+.tab-btn.active {
+  color: var(--ice-blue);
+  border-bottom-color: var(--warm-orange);
+  font-weight: 600;
+}
+
+/* Sections */
+.section { display: none; padding: 16px; }
+.section.active { display: block; }
+
+/* Weather Card */
+.weather-card {
+  background: linear-gradient(135deg, #4a90d9, #5ba3ec);
+  color: white;
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 4px 12px rgba(74,144,217,0.3);
+}
+.weather-icon { font-size: 28px; }
+.weather-info h3 { font-size: 14px; font-weight: 600; }
+.weather-info p { font-size: 12px; opacity: 0.9; }
+
+/* Timeline */
+.timeline { position: relative; padding-left: 28px; }
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 10px;
+  top: 16px;
+  bottom: 16px;
+  width: 2px;
+  background: var(--timeline-line);
+}
+.timeline-item {
+  position: relative;
+  margin-bottom: 20px;
+  padding: 14px 16px;
+  background: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -22px;
+  top: 20px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--warm-orange);
+  border: 2px solid var(--card-bg);
+  box-shadow: 0 0 0 2px var(--warm-orange);
+}
+.timeline-item.food::before { background: var(--forest-green); box-shadow: 0 0 0 2px var(--forest-green); }
+.timeline-item.activity::before { background: #4ecdc4; box-shadow: 0 0 0 2px #4ecdc4; }
+.timeline-item.warning::before { background: var(--warning-red); box-shadow: 0 0 0 2px var(--warning-red); }
+.timeline-item.flight::before { background: var(--ice-blue); box-shadow: 0 0 0 2px var(--ice-blue); }
+.timeline-item.train::before { background: #9b59b6; box-shadow: 0 0 0 2px #9b59b6; }
+
+.time-badge {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ice-blue);
+  background: #e8f5e9;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-bottom: 6px;
+}
+.timeline-item h4 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+.timeline-item p { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+.timeline-item .note {
+  font-size: 12px;
+  color: var(--warning-red);
+  margin-top: 6px;
+  font-weight: 500;
+}
+
+/* Action Buttons */
+.action-btns {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+.action-btn {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1.5px solid #ddd;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  background: white;
+  color: var(--text-primary);
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+.action-btn:active {
+  transform: scale(0.96);
+  background: #f0f0f0;
+}
+
+/* Overview Cards */
+.info-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.info-card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.info-card .num { font-size: 24px; font-weight: 700; color: var(--ice-blue); }
+.info-card .label { font-size: 12px; color: var(--text-secondary); margin-top: 4px; }
+
+/* Warning Box */
+.warning-box {
+  background: #fff5f5;
+  border-left: 4px solid var(--warning-red);
+  border-radius: 8px;
+  padding: 12px 14px;
+  margin-bottom: 16px;
+}
+.warning-box h4 { color: var(--warning-red); font-size: 14px; margin-bottom: 6px; }
+.warning-box ul { font-size: 13px; padding-left: 16px; color: #555; }
+.warning-box li { margin-bottom: 4px; }
+
+/* Cost Card */
+.cost-card {
+  background: linear-gradient(135deg, #fdf6e3, #fff8e8);
+  border: 1px solid var(--warm-orange);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 16px;
+}
+.cost-card h4 { color: #8b6914; font-size: 14px; margin-bottom: 8px; }
+.cost-card ul { font-size: 13px; padding-left: 16px; color: #555; }
+.cost-card li { margin-bottom: 4px; }
+
+/* Checklist */
+.checklist-group {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 14px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.checklist-group h4 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: var(--ice-blue);
+}
+.check-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 14px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.check-item:last-child { border-bottom: none; }
+.check-item input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--ice-blue);
+  cursor: pointer;
+}
+.check-item.checked label {
+  text-decoration: line-through;
+  color: #aaa;
+}
+.check-item label { cursor: pointer; flex: 1; }
+
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: rgba(0,0,0,0.8);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 13px;
+  opacity: 0;
+  transition: all 0.3s;
+  z-index: 1000;
+  pointer-events: none;
+}
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Date Header */
+.date-header {
+  background: linear-gradient(135deg, var(--ice-blue), #7BB3E8);
+  color: white;
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  font-size: 14px;
+  font-weight: 600;
+}
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-eyebrow">东北 · 成都九寨沟 · 14天</div>
+  <h1>🏔️ 东北+成都九寨沟攻略</h1>
+  <div class="hero-flights">
+    <div class="hero-flight">✈️ 东北段 7/10-7/18 · 哈尔滨·齐齐哈尔·佳木斯</div>
+    <div class="hero-flight">🏔️ 成都段 7/21-7/25 · 黄龙九寨·九寨沟景区</div>
+  </div>
+</div>
+
+<!-- Tabs -->
+<div class="tabs">
+  <button class="tab-btn active" onclick="showTab('northeast-overview')">东北总览</button>
+  <button class="tab-btn" onclick="showTab('northeast-d1')">7/10</button>
+  <button class="tab-btn" onclick="showTab('northeast-d2')">7/11</button>
+  <button class="tab-btn" onclick="showTab('northeast-d3')">7/12</button>
+  <button class="tab-btn" onclick="showTab('northeast-d4')">7/13</button>
+  <button class="tab-btn" onclick="showTab('northeast-d9')">7/18</button>
+  <button class="tab-btn" onclick="showTab('chengdu-overview')">成都总览</button>
+  <button class="tab-btn" onclick="showTab('chengdu-d1')">7/21</button>
+  <button class="tab-btn" onclick="showTab('chengdu-d2')">7/22</button>
+  <button class="tab-btn" onclick="showTab('chengdu-d3')">7/23</button>
+  <button class="tab-btn" onclick="showTab('chengdu-d5')">7/25</button>
+  <button class="tab-btn" onclick="showTab('checklist')">清单</button>
+</div>
+
+<!-- Northeast Overview -->
+<div class="section active" id="northeast-overview">
+  <div class="info-cards">
+    <div class="info-card"><div class="num">9天</div><div class="label">东北行程</div></div>
+    <div class="info-card"><div class="num">3城</div><div class="label">哈尔滨·齐齐哈尔·佳木斯</div></div>
+    <div class="info-card"><div class="num">2段</div><div class="label">火车+飞机</div></div>
+    <div class="info-card"><div class="num">1处</div><div class="label">扎龙自然保护区</div></div>
+  </div>
+
+  <div class="warning-box">
+    <h4>🔴 关键提醒</h4>
+    <ul>
+      <li><strong>扎龙自然保护区</strong>：7月中旬雨季，有雷阵雨风险，临近出发前二次确认天气</li>
+      <li><strong>扎龙门票</strong>：旺季65元/人，摆渡车10元/人</li>
+      <li><strong>7/13分头行动</strong>：胡锦然9:17火车去佳木斯，张15:00飞机回深圳</li>
+      <li><strong>7/18中转</strong>：佳木斯→上海→深圳，中转停留2小时45分</li>
+    </ul>
+  </div>
+
+  <div class="cost-card">
+    <h4>💰 花费预估（东北段）</h4>
+    <ul>
+      <li>交通：GJ8630（深圳→哈尔滨）+ D6937/D7982（哈尔滨↔齐齐哈尔）+ D7833（哈尔滨→佳木斯）+ MU6292+MU5359（佳木斯→上海→深圳）</li>
+      <li>门票：扎龙自然保护区 65元/人 × 2 = 130元</li>
+      <li>餐饮：老仁义烧麦、徐包铺、老厨家、赵家雪花牛肉、鹤鹤有鸣、付胖子大串、奋斗副食、红专街早市</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Northeast Day 1 (7/10) -->
+<div class="section" id="northeast-d1">
+  <div class="date-header">7月10日 周五 · 抵达哈尔滨</div>
+
+  <div class="weather-card">
+    <div class="weather-icon">✈️</div>
+    <div class="weather-info">
+      <h3>深圳→哈尔滨</h3>
+      <p>16:50-22:35 · 长龙航空 GJ8630 · 已值机</p>
+    </div>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item flight">
+      <span class="time-badge">16:50</span>
+      <h4>✈️ 起飞 深圳宝安T3→哈尔滨太平T2</h4>
+      <p>航班 GJ8630 · 飞行约5小时45分</p>
+    </div>
+
+    <div class="timeline-item flight">
+      <span class="time-badge">22:35</span>
+      <h4>🛬 落地哈尔滨</h4>
+      <p>哈尔滨太平国际机场T2</p>
+    </div>
+  </div>
+</div>
+
+<!-- Northeast Day 2 (7/11) -->
+<div class="section" id="northeast-d2">
+  <div class="date-header">7月11日 周六 · 哈尔滨→齐齐哈尔</div>
+
+  <div class="weather-card">
+    <div class="weather-icon">🌤️</div>
+    <div class="weather-info">
+      <h3>哈尔滨·齐齐哈尔</h3>
+      <p>中央大街 + 赵家雪花牛肉</p>
+    </div>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item food">
+      <span class="time-badge">上午</span>
+      <h4>🥟 老仁义烧麦</h4>
+      <p>哈尔滨特色烧麦</p>
+    </div>
+
+    <div class="timeline-item food">
+      <span class="time-badge">上午</span>
+      <h4>🥟 徐包铺 / 老厨家</h4>
+      <p>哈尔滨特色包子/锅包肉</p>
+    </div>
+
+    <div class="timeline-item activity">
+      <span class="time-badge">中午/下午</span>
+      <h4>🚶 中央大街</h4>
+      <p>哈尔滨标志性步行街</p>
+    </div>
+
+    <div class="timeline-item train">
+      <span class="time-badge">17:38-19:21</span>
+      <h4>🚄 哈尔滨→齐齐哈尔</h4>
+      <p>车次 D6937 · 1小时43分 · 改签票，二等座</p>
+    </div>
+
+    <div class="timeline-item food">
+      <span class="time-badge">晚上</span>
+      <h4>🥩 赵家雪花牛肉</h4>
+      <p>齐齐哈尔特色 · 已预约</p>
+    </div>
+  </div>
+</div>
+
+<!-- Northeast Day 3 (7/12) -->
+<div class="section" id="northeast-d3">
+  <div class="date-header">7月12日 周日 · 扎龙自然保护区</div>
+
+  <div class="weather-card">
+    <div class="weather-icon">🌦️</div>
+    <div class="weather-info">
+      <h3>齐齐哈尔·扎龙</h3>
+      <p>雨季预警 · 雷阵雨风险</p>
+    </div>
+  </div>
+
+  <div class="warning-box">
+    <h4>🔴 天气提醒</h4>
+    <ul>
+      <li>7月中旬齐齐哈尔处雨季，有雷阵雨风险</li>
+      <li>临近出发前二次确认天气预报</li>
+      <li>建议准备雨具</li>
+    </ul>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item activity">
+      <span class="time-badge">上午</span>
+      <h4>🦢 扎龙自然保护区</h4>
+      <p>打车前往 · 丹顶鹤栖息地<br>门票65元/人 · 摆渡车10元/人</p>
+    </div>
+
+    <div class="timeline-item food">
+      <span class="time-badge">中午</span>
+      <h4>🥟 鹤鹤有鸣 / 付胖子大串</h4>
+      <p>齐齐哈尔特色包子/烧烤</p>
+    </div>
+
+    <div class="timeline-item train">
+      <span class="time-badge">15:19-16:54</span>
+      <h4>🚄 齐齐哈尔→哈尔滨</h4>
+      <p>车次 D7982 · 1小时35分 · 二等座</p>
+    </div>
+
+    <div class="timeline-item food">
+      <span class="time-badge">晚上</span>
+      <h4>🛒 奋斗副食</h4>
+      <p>哈尔滨特色副食品市场</p>
+    </div>
+  </div>
+</div>
+
+<!-- Northeast Day 4 (7/13) -->
+<div class="section" id="northeast-d4">
+  <div class="date-header">7月13日 周一 · 分头行动</div>
+
+  <div class="weather-card">
+    <div class="weather-icon">🌤️</div>
+    <div class="weather-info">
+      <h3>哈尔滨分头行动</h3>
+      <p>胡锦然去佳木斯 · 张回深圳</p>
+    </div>
+  </div>
+
+  <div class="warning-box">
+    <h4>🔴 今日行程</h4>
+    <ul>
+      <li><strong>胡锦然</strong>：9:17火车去佳木斯</li>
+      <li><strong>张</strong>：15:00飞机回深圳</li>
+    </ul>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item food">
+      <span class="time-badge">早上</span>
+      <h4>🥟 红专街早市</h4>
+      <p>哈尔滨特色早市</p>
+    </div>
+
+    <div class="timeline-item train">
+      <span class="time-badge">09:17-11:22</span>
+      <h4>🚄 胡锦然 哈尔滨→佳木斯</h4>
+      <p>车次 D7833 · 2小时5分 · 一等座</p>
+    </div>
+
+    <div class="timeline-item flight">
+      <span class="time-badge">15:00-18:15</span>
+      <h4>✈️ 张 哈尔滨→深圳</h4>
+      <p>航班 CZ6256 · 3小时15分 · 南方航空</p>
+    </div>
+  </div>
+</div>
+
+<!-- Northeast Day 9 (7/18) -->
+<div class="section" id="northeast-d9">
+  <div class="date-header">7月18日 周六 · 佳木斯返程</div>
+
+  <div class="weather-card">
+    <div class="weather-icon">✈️</div>
+    <div class="weather-info">
+      <h3>佳木斯→上海→深圳</h3>
+      <p>中转停留2小时45分</p>
+    </div>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item flight">
+      <span class="time-badge">15:45-19:00</span>
+      <h4>✈️ 佳木斯松江国际→上海浦东T1</h4>
+      <p>航班 MU6292 · 东方航空</p>
+    </div>
+
+    <div class="timeline-item warning">
+      <span class="time-badge">19:00-21:45</span>
+      <h4>🔄 上海浦东中转</h4>
+      <p>中转停留2小时45分</p>
+    </div>
+
+    <div class="timeline-item flight">
+      <span class="time-badge">21:45-00:10+1</span>
+      <h4>✈️ 上海浦东T1→深圳宝安T3</h4>
+      <p>航班 MU5359 · 东方航空</p>
+    </div>
+  </div>
+</div>
+
+<!-- Chengdu Overview -->
+<div class="section" id="chengdu-overview">
+  <div class="info-cards">
+    <div class="info-card"><div class="num">5天</div><div class="label">成都行程</div></div>
+    <div class="info-card"><div class="num">2城</div><div class="label">成都·九寨沟</div></div>
+    <div class="info-card"><div class="num">1处</div><div class="label">九寨沟景区</div></div>
+    <div class="info-card"><div class="num">待确认</div><div class="label">门票价格</div></div>
+  </div>
+
+  <div class="warning-box">
+    <h4>🔴 关键提醒</h4>
+    <ul>
+      <li><strong>九寨沟门票</strong>：全价套票已购2张，刷身份证入园</li>
+      <li><strong>入园时间</strong>：7/23 08:00-10:00入园时段</li>
+      <li><strong>黄龙九寨站</strong>：C6366成都东→黄龙九寨，静音车厢</li>
+    </ul>
+  </div>
+
+  <div class="cost-card">
+    <h4>💰 花费预估（成都段）</h4>
+    <ul>
+      <li>交通：MF8481（深圳→成都）+ C6366（成都→黄龙九寨）+ MU6371（成都→深圳）</li>
+      <li>门票：九寨沟全价套票×2（已购）</li>
+      <li>餐饮：成都火锅、串串、小吃</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Chengdu Day 1 (7/21) -->
+<div class="section" id="chengdu-d1">
+  <div class="date-header">7月21日 周二 · 深圳→成都</div>
+
+  <div class="weather-card">
+    <div class="weather-icon">✈️</div>
+    <div class="weather-info">
+      <h3>深圳→成都</h3>
+      <p>10:35-12:55 · 厦门航空 MF8481</p>
+    </div>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item flight">
+      <span class="time-badge">10:35-12:55</span>
+      <h4>✈️ 深圳宝安T3→成都天府T2</h4>
+      <p>航班 MF8481 · 2小时20分</p>
+    </div>
+
+    <div class="timeline-item food">
+      <span class="time-badge">晚上</span>
+      <h4>🍲 成都火锅/串串</h4>
+      <p>抵达成都后享用美食</p>
+    </div>
+  </div>
+</div>
+
+<!-- Chengdu Day 2 (7/22) -->
+<div class="section" id="chengdu-d2">
+  <div class="date-header">7月22日 周三 · 成都→黄龙九寨</div>
+
+  <div class="weather-card">
+    <div class="weather-icon">🚄</div>
+    <div class="weather-info">
+      <h3>成都东→黄龙九寨</h3>
+      <p>13:55-15:52 · 静音车厢</p>
+    </div>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item train">
+      <span class="time-badge">13:55-15:52</span>
+      <h4>🚄 成都东→黄龙九寨</h4>
+      <p>车次 C6366 · 1小时57分 · 二等座 · 静音车厢标识</p>
+    </div>
+
+    <div class="timeline-item">
+      <span class="time-badge">晚上</span>
+      <h4>🏨 入住九寨沟附近酒店</h4>
+      <p>为次日景区游览做准备</p>
+    </div>
+  </div>
+</div>
+
+<!-- Chengdu Day 3 (7/23) -->
+<div class="section" id="chengdu-d3">
+  <div class="date-header">7月23日 周四 · 九寨沟景区</div>
+
+  <div class="weather-card">
+    <div class="weather-icon">🏔️</div>
+    <div class="weather-info">
+      <h3>九寨沟风景区</h3>
+      <p>08:00-10:00入园时段</p>
+    </div>
+  </div>
+
+  <div class="warning-box">
+    <h4>🔴 入园提醒</h4>
+    <ul>
+      <li>入园时段：08:00-10:00</li>
+      <li>全价套票×2，刷身份证入园</li>
+      <li>建议早到，避开人流高峰</li>
+    </ul>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item activity">
+      <span class="time-badge">08:00-10:00</span>
+      <h4>🎫 九寨沟景区入园</h4>
+      <p>刷身份证入园 · 全价套票×2</p>
+    </div>
+
+    <div class="timeline-item activity">
+      <span class="time-badge">全天</span>
+      <h4>🏔️ 九寨沟游览</h4>
+      <p>五彩池、长海、诺日朗瀑布等</p>
+    </div>
+  </div>
+</div>
+
+<!-- Chengdu Day 5 (7/25) -->
+<div class="section" id="chengdu-d5">
+  <div class="date-header">7月25日 周六 · 成都→深圳</div>
+
+  <div class="weather-card">
+    <div class="weather-icon">✈️</div>
+    <div class="weather-info">
+      <h3>成都→深圳</h3>
+      <p>15:30-18:00 · 东方航空 MU6371</p>
+    </div>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item food">
+      <span class="time-badge">中午</span>
+      <h4>🍲 成都美食</h4>
+      <p>返程前最后一顿</p>
+    </div>
+
+    <div class="timeline-item flight">
+      <span class="time-badge">15:30-18:00</span>
+      <h4>✈️ 成都天府T2→深圳宝安T3</h4>
+      <p>航班 MU6371 · 2小时30分</p>
+    </div>
+  </div>
+</div>
+
+<!-- Checklist -->
+<div class="section" id="checklist">
+  <div class="checklist-group">
+    <h4>📄 证件文件</h4>
+    <div class="check-item" data-key="doc1"><input type="checkbox" id="c_doc1"><label for="c_doc1">身份证</label></div>
+    <div class="check-item" data-key="doc2"><input type="checkbox" id="c_doc2"><label for="c_doc2">机票订单截图</label></div>
+    <div class="check-item" data-key="doc3"><input type="checkbox" id="c_doc3"><label for="c_doc3">火车票订单截图</label></div>
+    <div class="check-item" data-key="doc4"><input type="checkbox" id="c_doc4"><label for="c_doc4">九寨沟门票（已购）</label></div>
+  </div>
+
+  <div class="checklist-group">
+    <h4>🌧️ 雨季必备</h4>
+    <div class="check-item" data-key="rain1"><input type="checkbox" id="c_rain1"><label for="c_rain1">折叠伞</label></div>
+    <div class="check-item" data-key="rain2"><input type="checkbox" id="c_rain2"><label for="c_rain2">一次性雨衣</label></div>
+    <div class="check-item" data-key="rain3"><input type="checkbox" id="c_rain3"><label for="c_rain3">防水手机袋</label></div>
+    <div class="check-item" data-key="rain4"><input type="checkbox" id="c_rain4"><label for="c_rain4">速干毛巾</label></div>
+  </div>
+
+  <div class="checklist-group">
+    <h4>🧥 东北保暖</h4>
+    <div class="check-item" data-key="cold1"><input type="checkbox" id="c_cold1"><label for="c_cold1">薄外套/冲锋衣</label></div>
+    <div class="check-item" data-key="cold2"><input type="checkbox" id="c_cold2"><label for="c_cold2">长裤</label></div>
+    <div class="check-item" data-key="cold3"><input type="checkbox" id="c_cold3"><label for="c_cold3">舒适步行鞋</label></div>
+  </div>
+
+  <div class="checklist-group">
+    <h4>🏔️ 九寨沟准备</h4>
+    <div class="check-item" data-key="jzg1"><input type="checkbox" id="c_jzg1"><label for="c_jzg1">防晒霜</label></div>
+    <div class="check-item" data-key="jzg2"><input type="checkbox" id="c_jzg2"><label for="c_jzg2">墨镜</label></div>
+    <div class="check-item" data-key="jzg3"><input type="checkbox" id="c_jzg3"><label for="c_jzg3">充电宝</label></div>
+    <div class="check-item" data-key="jzg4"><input type="checkbox" id="c_jzg4"><label for="c_jzg4">高原反应药物（如需）</label></div>
+  </div>
+
+  <div class="checklist-group">
+    <h4>📱 App 准备</h4>
+    <div class="check-item" data-key="app1"><input type="checkbox" id="c_app1"><label for="c_app1">航旅纵横（航班信息）</label></div>
+    <div class="check-item" data-key="app2"><input type="checkbox" id="c_app2"><label for="c_app2">12306（火车票）</label></div>
+    <div class="check-item" data-key="app3"><input type="checkbox" id="c_app3"><label for="c_app3">高德/百度地图</label></div>
+    <div class="check-item" data-key="app4"><input type="checkbox" id="c_app4"><label for="c_app4">大众点评（美食）</label></div>
+  </div>
+
+  <div class="checklist-group">
+    <h4>✅ 出发前必做</h4>
+    <div class="check-item" data-key="pre1"><input type="checkbox" id="c_pre1"><label for="c_pre1">确认航班值机（GJ8630已值机）</label></div>
+    <div class="check-item" data-key="pre2"><input type="checkbox" id="c_pre2"><label for="c_pre2">确认火车票座位</label></div>
+    <div class="check-item" data-key="pre3"><input type="checkbox" id="c_pre3"><label for="c_pre3">确认赵家雪花牛肉预约</label></div>
+    <div class="check-item" data-key="pre4"><input type="checkbox" id="c_pre4"><label for="c_pre4">临近出发前确认扎龙天气</label></div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+// Tab switching
+function showTab(tabId) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(tabId).classList.add('active');
+  const tabs = document.querySelectorAll('.tab-btn');
+  const tabNames = ['northeast-overview','northeast-d1','northeast-d2','northeast-d3','northeast-d4','northeast-d9','chengdu-overview','chengdu-d1','chengdu-d2','chengdu-d3','chengdu-d5','checklist'];
+  const idx = tabNames.indexOf(tabId);
+  if (idx >= 0) tabs[idx].classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+// Toast notification
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 2000);
+}
+
+// Checklist with localStorage
+function initChecklist() {
+  const items = document.querySelectorAll('.check-item');
+  items.forEach(item => {
+    const key = 'trip_2026_' + item.dataset.key;
+    const cb = item.querySelector('input[type="checkbox"]');
+    const saved = localStorage.getItem(key);
+    if (saved === 'true') {
+      cb.checked = true;
+      item.classList.add('checked');
+    }
+    cb.addEventListener('change', function() {
+      localStorage.setItem(key, this.checked);
+      if (this.checked) {
+        item.classList.add('checked');
+      } else {
+        item.classList.remove('checked');
+      }
+    });
+    item.addEventListener('click', function(e) {
+      if (e.target !== cb) {
+        cb.checked = !cb.checked;
+        cb.dispatchEvent(new Event('change'));
+      }
+    });
+  });
+}
+
+// Init
+document.addEventListener('DOMContentLoaded', initChecklist);
+</script>
+</body>
+</html>
