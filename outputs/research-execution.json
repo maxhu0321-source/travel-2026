@@ -1,0 +1,875 @@
+{
+  "meta": {
+    "trip": "UK 2026 — London · Cambridge · Seven Sisters",
+    "dates": "2026-10-01 (Thu) to 2026-10-07 (Wed)",
+    "party": 3,
+    "day_of_week": {
+      "day1_1001": "Thursday",
+      "day2_1002": "Friday",
+      "day3_1003": "Saturday",
+      "day4_1004": "Sunday (Cambridge)",
+      "day5_1005": "Monday (hotel change + Harrods)",
+      "day6_1006": "Tuesday (Seven Sisters — weekday buses 12/12A/12X, NOT Sunday 13)",
+      "day7_1007": "Wednesday"
+    },
+    "general_payment_rule": "伦敦市内所有 Tube / 巴士 / DLR / 地上铁 / Elizabeth line 均可直接刷 contactless 银行卡或 Apple/Google Pay 进站，按次扣费并自动封顶（zone 1-2 每日封顶 £8.90；巴士单次 £1.75、日封顶 £5.25，巴士不收现金）。国家铁路去 Cambridge / Eastbourne 超出 TfL 区域，contactless 不通用，需在车站或 App 单独购票。",
+    "sources_common": {
+      "tfl_fares": "https://tfl.gov.uk/fares/find-fares/bus-and-tram-fares",
+      "tfl_capping": "https://tfl.gov.uk/fares/find-fares/capping",
+      "tfl_adult_fares_pdf": "https://content.tfl.gov.uk/adult-fares.pdf",
+      "heathrow_elizabeth_line": "https://www.london.gov.uk/mayor-announces-plans-2026-tfl-fares-package-including-further-freeze-seventh-time-bus-and-tram",
+      "national_rail": "https://www.nationalrail.co.uk"
+    }
+  },
+  "transport": {
+    "day1": [
+      {
+        "from": "Heathrow T2 (Heathrow Terminals 2&3)",
+        "to": "Hilton London Angel Islington (53-57 Islington High St)",
+        "mode": "火车(Elizabeth line)+步行/短途出租",
+        "route": "Elizabeth line (东南方向, 往 Abbey Wood/Shenfield) Heathrow Terminals 2&3 → Farringdon；出站后步行约12分钟或短途网约车约£7到酒店",
+        "duration": "Elizabeth line 约35分钟到 Farringdon + 12分钟步行",
+        "cost": "£15.50/人（contactless 统一价，全天任意时段同价，无峰谷）",
+        "payment": "contactless 银行卡 / Apple Pay（直接拍卡进出站，无单独票）",
+        "source": "https://www.london.gov.uk/mayor-announces-plans-2026-tfl-fares-package-including-further-freeze-seventh-time-bus-and-tram"
+      },
+      {
+        "from": "Hilton Angel",
+        "to": "Ottolenghi (287 Upper St)",
+        "mode": "步行",
+        "route": "沿 Islington High St / Upper St 南行约5分钟",
+        "duration": "约5分钟",
+        "cost": "£0",
+        "payment": "—",
+        "source": "https://www.hardens.com/restaurants/islington/"
+      },
+      {
+        "from": "Ottolenghi Upper St",
+        "to": "Burberry Outlet, Chatham Place (Hackney, E9)",
+        "mode": "网约车/出租（首选，带购物袋最省事）",
+        "route": "Upper St → A10 / Kingsland Rd 方向 → Hackney Chatham Place",
+        "duration": "约15分钟",
+        "cost": "约£9-12/车（3人摊）",
+        "payment": "App/信用卡",
+        "alt": "公交替代：Angel 站乘 Overground 方向到 Hackney Central 后步行约12分钟；需现场确认班次",
+        "source": "需现场确认"
+      },
+      {
+        "from": "Burberry Outlet Chatham Pl",
+        "to": "Big Ben / Westminster",
+        "mode": "地铁/Overground",
+        "route": "Hackney Central 步行至 Hackney Central Overground → Highbury & Islington 换 Victoria line 南向 → Westminster 站",
+        "duration": "约30-35分钟",
+        "cost": "约£2.80/人（contactless，计入当日封顶）",
+        "payment": "contactless / Apple Pay",
+        "source": "https://tfl.gov.uk/fares/find-fares/capping"
+      },
+      {
+        "from": "Big Ben (Westminster)",
+        "to": "Trullo (300-302 St Paul's Rd, Highbury/Islington)",
+        "mode": "地铁",
+        "route": "Westminster 乘 Circle/District 线 → King's Cross St Pancras，换 Northern line 北行1站 → Angel；出站步行约8分钟到 St Paul's Rd",
+        "duration": "约30分钟",
+        "cost": "约£2.80/人",
+        "payment": "contactless / Apple Pay",
+        "source": "https://content.tfl.gov.uk/adult-fares.pdf"
+      }
+    ],
+    "day2": [
+      {
+        "from": "Hilton Angel",
+        "to": "Cutty Sark / Greenwich",
+        "mode": "地铁",
+        "route": "Angel (Northern line, Bank branch 南向) → Bank 站换 DLR (往 Lewisham) → Cutty Sark 站",
+        "duration": "约25分钟",
+        "cost": "约£2.80/人",
+        "payment": "contactless / Apple Pay",
+        "source": "https://tfl.gov.uk/fares/find-fares/capping"
+      },
+      {
+        "from": "Cutty Sark",
+        "to": "Royal Observatory Greenwich",
+        "mode": "步行（上坡）",
+        "route": "从 King William Walk / Greenwich Church St 沿 Greenwich Park 上坡至 Royal Observatory，约15-20分钟缓坡",
+        "duration": "约15-20分钟",
+        "cost": "£0",
+        "payment": "—",
+        "source": "https://www.rmg.co.uk/royal-observatory"
+      },
+      {
+        "from": "Royal Observatory",
+        "to": "Goddards (22 King William Walk)",
+        "mode": "步行（下坡）",
+        "route": "沿 Greenwich Park 下坡回到 King William Walk",
+        "duration": "约12分钟",
+        "cost": "£0",
+        "payment": "—",
+        "source": "https://www.visitlondon.com/things-to-do/place/27250578-goddards-at-greenwich"
+      },
+      {
+        "from": "Goddards / Greenwich Pier",
+        "to": "Tower Pier (乘船)",
+        "mode": "Uber Boat by Thames Clippers (RB1/RB1X)",
+        "route": "Greenwich Pier 登船 → 西行直达 Tower Pier（途中经 Canary Wharf 等）；Central&East 跨区票",
+        "duration": "约23分钟",
+        "cost": "App/Oyster/contactless 约£13.50/人；码头现场买£17.70",
+        "payment": "码头拍 Oyster/contactless，或提前在 Uber/Thames Clippers App 买票（更便宜）",
+        "frequency": "日间约每15-20分钟一班",
+        "source": "https://www.thamesclippers.com/plan-your-journey/ticket-information"
+      },
+      {
+        "from": "Tower Pier",
+        "to": "Tower Bridge",
+        "mode": "步行",
+        "route": "Tower Pier 上岸即 Tower of London，步行约8分钟过 Tower Bridge 北边步道",
+        "duration": "约8-10分钟",
+        "cost": "£0",
+        "payment": "—",
+        "source": "https://www.thamesclippers.com/plan-your-journey/find-your-pier"
+      },
+      {
+        "from": "Tower Bridge",
+        "to": "Sky Garden (1 Sky Garden Walk, EC3)",
+        "mode": "步行",
+        "route": "沿 Thames Path 北行约10-12分钟到 20 Fenchurch St (Walkie Talkie)",
+        "duration": "约10-12分钟",
+        "cost": "£0",
+        "payment": "—",
+        "note": "已订16:15时段，15:45前到安检口"
+      },
+      {
+        "from": "Sky Garden",
+        "to": "Leadenhall Market",
+        "mode": "步行",
+        "route": "经 Fenchurch St / Gracechurch St 步行约6分钟",
+        "duration": "约6分钟",
+        "cost": "£0",
+        "payment": "—",
+        "source": "需现场确认"
+      },
+      {
+        "from": "Leadenhall Market",
+        "to": "Hilton Angel",
+        "mode": "地铁",
+        "route": "Monument (District/Circle) 或 Bank (Northern) → Angel 站",
+        "duration": "约20分钟",
+        "cost": "约£2.80/人",
+        "payment": "contactless / Apple Pay",
+        "source": "https://content.tfl.gov.uk/adult-fares.pdf"
+      }
+    ],
+    "day3": [
+      {
+        "from": "Hilton Angel",
+        "to": "Abuelo (26 Southampton St, Covent Garden)",
+        "mode": "地铁",
+        "route": "Angel (Northern) → King's Cross St Pancras 换 Piccadilly line 南向 → Covent Garden 站；出站步行约5分钟",
+        "duration": "约22分钟",
+        "cost": "约£2.80/人",
+        "payment": "contactless / Apple Pay",
+        "source": "https://www.designmynight.com/london/brunch-covent-garden"
+      },
+      {
+        "from": "Abuelo Covent Garden",
+        "to": "British Museum (Great Russell St)",
+        "mode": "步行",
+        "route": "经 Southampton St → Aldwych → Kingsway → Great Russell St 步行约15分钟",
+        "duration": "约15分钟",
+        "cost": "£0",
+        "payment": "—",
+        "source": "https://www.britishmuseum.org"
+      },
+      {
+        "from": "British Museum",
+        "to": "Rock & Sole Plaice (47 Endell St)",
+        "mode": "步行",
+        "route": "沿 New Oxford St → Shaftesbury Ave → Endell St 步行约10-12分钟",
+        "duration": "约12分钟",
+        "cost": "£0",
+        "payment": "—",
+        "source": "https://www.rockandsoleplaice.com/menu"
+      },
+      {
+        "from": "Rock & Sole Plaice",
+        "to": "Neal's Yard",
+        "mode": "步行",
+        "route": "Endell St 步行约5分钟到 Neal's Yard ( Shorts Gardens 口)",
+        "duration": "约5分钟",
+        "cost": "£0",
+        "payment": "—",
+        "source": "需现场确认"
+      },
+      {
+        "from": "Neal's Yard",
+        "to": "Bancone (8-10 Lower James St, Golden Sq)",
+        "mode": "步行",
+        "route": "经 Monmouth St → Mercer St → Golden Square 步行约8-10分钟",
+        "duration": "约10分钟",
+        "cost": "£0",
+        "payment": "—",
+        "source": "https://www.bancone.co.uk"
+      },
+      {
+        "from": "Bancone Golden Sq",
+        "to": "Hilton Angel",
+        "mode": "地铁",
+        "route": "Leicester Square / Covent Garden 站 (Northern 北行) → Angel",
+        "duration": "约18分钟",
+        "cost": "约£2.80/人",
+        "payment": "contactless / Apple Pay",
+        "source": "https://content.tfl.gov.uk/adult-fares.pdf"
+      }
+    ],
+    "day4": [
+      {
+        "from": "Hilton Angel",
+        "to": "King's Cross",
+        "mode": "地铁",
+        "route": "Angel (Northern 北行) 1站 → King's Cross St Pancras",
+        "duration": "约4分钟",
+        "cost": "约£2.80/人",
+        "payment": "contactless / Apple Pay",
+        "source": "https://content.tfl.gov.uk/adult-fares.pdf"
+      },
+      {
+        "from": "King's Cross (KGX)",
+        "to": "Cambridge Station (CBG)",
+        "mode": "National Rail — Great Northern 直达",
+        "route": "Great Northern 直达 Cambridge（多数车次经停 Cambridge South 后终到 Cambridge）",
+        "duration": "约49-55分钟",
+        "cost": "Off-Peak Day Return 约£33.30/人（周日全天按 off-peak；Super Off-Peak 或 advance 可低至约£24.10）",
+        "payment": "不在 TfL 区域，contactless 不通用；车站窗口/检票口或 Great Northern / Trainline App 购票",
+        "note": "周日 off-peak 全天适用，可当天在车站买 off-peak day return",
+        "source": "https://www.greatnorthernrail.com/travel-information/cambridge-south ; https://railsmartr.co.uk/whats-the-best-london-to-cambridge-train-price/"
+      },
+      {
+        "from": "Cambridge Station",
+        "to": "King's College (King's Parade)",
+        "mode": "步行",
+        "route": "Station Rd → Bene't St → King's Parade 步行约15-18分钟",
+        "duration": "约15分钟",
+        "cost": "£0",
+        "payment": "—",
+        "source": "https://www.kings.cam.ac.uk/opening-times-and-tickets"
+      },
+      {
+        "from": "King's College",
+        "to": "The Eagle (Bene't St)",
+        "mode": "步行",
+        "route": "King's Parade 转 Bene't St 步行约3分钟",
+        "duration": "约3分钟",
+        "cost": "£0",
+        "payment": "—",
+        "source": "https://www.cktravels.com/best-pubs-bars-cambridge/"
+      },
+      {
+        "from": "The Eagle",
+        "to": "Fitzbillies (Trumpington St)",
+        "mode": "步行",
+        "route": "Bene't St → Trumpington St 步行约5分钟",
+        "duration": "约5分钟",
+        "cost": "£0",
+        "payment": "—",
+        "source": "https://www.fitzbillies.com"
+      },
+      {
+        "from": "Fitzbillies",
+        "to": "Scudamore's Punting (Mill Lane)",
+        "mode": "步行",
+        "route": "Trumpington St → Mill Lane 步行约8分钟",
+        "duration": "约8分钟",
+        "cost": "£0",
+        "payment": "—",
+        "source": "https://www.anchorcambridge.com"
+      },
+      {
+        "from": "Scudamore's Punting",
+        "to": "The Anchor (Silver St / Mill Lane)",
+        "mode": "步行",
+        "route": "沿 Mill Lane 步行约3分钟即到河边 The Anchor",
+        "duration": "约3分钟",
+        "cost": "£0",
+        "payment": "—",
+        "source": "https://www.anchorcambridge.com"
+      },
+      {
+        "from": "The Anchor",
+        "to": "Cambridge Station",
+        "mode": "步行",
+        "route": "经 Silver St → Emmanuel Rd → Station Rd 步行约18-20分钟",
+        "duration": "约18分钟",
+        "cost": "£0",
+        "payment": "—",
+        "source": "需现场确认"
+      },
+      {
+        "from": "Cambridge Station",
+        "to": "King's Cross",
+        "mode": "National Rail — Great Northern 直达",
+        "route": "Great Northern 直达 London King's Cross（周日末班较晚，约23点后）",
+        "duration": "约50分钟",
+        "cost": "已含在 Day Return 内",
+        "payment": "用同一 day return 票",
+        "source": "https://www.thetrainline.com/train-times/london-kings-cross-to-cambridge"
+      },
+      {
+        "from": "King's Cross",
+        "to": "Hilton Angel",
+        "mode": "地铁",
+        "route": "King's Cross St Pancras (Northern 南行) 1站 → Angel",
+        "duration": "约4分钟",
+        "cost": "约£2.80/人",
+        "payment": "contactless / Apple Pay",
+        "source": "https://content.tfl.gov.uk/adult-fares.pdf"
+      }
+    ],
+    "day5": [
+      {
+        "from": "Hilton Angel (退房)",
+        "to": "The BoTree (Marylebone, 30 Marylebone Lane W1U)",
+        "mode": "地铁 + 步行（带行李）",
+        "route": "Angel (Northern 北行) 1站 → King's Cross St Pancras，换 Circle/Hammersmith&City 线 2站 → Baker Street，出站步行约8分钟到 The BoTree",
+        "duration": "约25分钟",
+        "cost": "约£2.80/人",
+        "payment": "contactless / Apple Pay",
+        "alt": "带行李也可网约车约£12-16/车，20分钟",
+        "source": "https://content.tfl.gov.uk/adult-fares.pdf"
+      },
+      {
+        "from": "The BoTree",
+        "to": "Granger & Co (105 Marylebone High St)",
+        "mode": "步行",
+        "route": "沿 Marylebone Lane 北行到 High St 约6分钟",
+        "duration": "约6分钟",
+        "cost": "£0",
+        "payment": "—",
+        "source": "https://www.grangerandco.com/locations/marylebone"
+      },
+      {
+        "from": "Granger & Co",
+        "to": "Harrods (Knightsbridge)",
+        "mode": "地铁",
+        "route": "Bond Street 站 (Jubilee/Piccadilly) → Knightsbridge 站",
+        "duration": "约12分钟",
+        "cost": "约£2.80/人",
+        "payment": "contactless / Apple Pay",
+        "alt": "沿 Marylebone/Oxford 方向步行约25分钟也可",
+        "source": "https://content.tfl.gov.uk/adult-fares.pdf"
+      },
+      {
+        "from": "Harrods",
+        "to": "ALBA (下午茶/开心果提拉米苏)",
+        "mode": "步行/短途",
+        "route": "Harrods 周边（Knightsbridge/Mayfair 方向）步行或一站 tube；具体门店地址需现场确认",
+        "duration": "约10-15分钟步行",
+        "cost": "£0-£2.80",
+        "payment": "contactless",
+        "note": "ALBA 具体门店位置与是否需订位需现场/官网确认",
+        "source": "需现场确认"
+      },
+      {
+        "from": "ALBA",
+        "to": "The Hart (Marylebone)",
+        "mode": "地铁/步行",
+        "route": "从 Knightsbridge 方向回 Marylebone：Knightsbridge (Piccadilly) → Bond Street，步行回 Marylebone",
+        "duration": "约15分钟",
+        "cost": "约£2.80/人",
+        "payment": "contactless / Apple Pay",
+        "source": "https://thew1london.com/best-restaurants-marylebone"
+      },
+      {
+        "from": "The Hart",
+        "to": "The BoTree",
+        "mode": "步行",
+        "route": "Marylebone 区内步行约8-10分钟",
+        "duration": "约10分钟",
+        "cost": "£0",
+        "payment": "—",
+        "source": "需现场确认"
+      }
+    ],
+    "day6": [
+      {
+        "from": "The BoTree (Marylebone)",
+        "to": "London Victoria",
+        "mode": "地铁",
+        "route": "Baker Street (Circle/District) 或 Bond Street (Jubilee) → Victoria 站",
+        "duration": "约15-20分钟",
+        "cost": "约£2.80/人",
+        "payment": "contactless / Apple Pay",
+        "source": "https://content.tfl.gov.uk/adult-fares.pdf"
+      },
+      {
+        "from": "London Victoria",
+        "to": "Eastbourne Station",
+        "mode": "National Rail — Southern / Gatwick Express 直达",
+        "route": "Victoria 出发 Southern/Gatwick Express 经 Gatwick、Lewes 直达 Eastbourne",
+        "duration": "约1小时25分-1小时35分",
+        "cost": "Off-Peak Day Return 现场买约£33（区间£20-42；提前 advance 单程可低至£8）",
+        "payment": "不在 TfL 区域，contactless 不通用；车站或 App 购票；建议订 09:30 后出发的 off-peak 班次",
+        "note": "周二工作日 off-peak 以 09:30 后为界；返程票当日任意 off-peak 可用",
+        "source": "https://www.southernrailway.com ; https://sevensisters.co.uk/from-london"
+      },
+      {
+        "from": "Eastbourne Station",
+        "to": "Seven Sisters Country Park (Exceat)",
+        "mode": "巴士 — Brighton & Hove Coaster 12 / 12A / 12X",
+        "route": "从 Eastbourne Terminus Road / 镇中心上车，西行(往 Brighton 方向)经 Beachy Head、Birling Gap、East Dean，在 Exceat / Seven Sisters Country Park 站下车",
+        "duration": "约35-45分钟",
+        "cost": "买 Brighton & Hove NetworkSaver 日票 £7.50（车上买）/ £7.30（App），当天随上随下",
+        "payment": "上车拍 contactless / App 买 NetworkSaver；车上也收现金",
+        "note": "周二工作日 12/12A/12X 正常运行；周日才改走 13 路，本次不用",
+        "source": "https://www.eastsussex.gov.uk/roads-transport/public/flexibus/fares-and-tickets ; https://passenger-line-assets.s3.eu-west-1.amazonaws.com/brightonhove/BH/12-fares-20260330-d719c012.pdf"
+      },
+      {
+        "from": "Seven Sisters Country Park (Exceat)",
+        "to": "Cuckmere Inn (Litlington, 午餐)",
+        "mode": "步行",
+        "route": "从 Exceat 沿 Cuckmere 河谷步行约15-20分钟到 Litlington 的 The Cuckmere Inn",
+        "duration": "约15-20分钟",
+        "cost": "£0",
+        "payment": "—",
+        "source": "https://sevensisters.co.uk/eastbourne"
+      },
+      {
+        "from": "Cuckmere Inn",
+        "to": "Birling Gap (悬崖步道终点)",
+        "mode": "步行（悬崖山脊徒步）",
+        "route": "从 Cuckmere 河谷翻越 Seven Sisters 山脊东行到 Birling Gap，约5-6英里 / 3-4小时",
+        "duration": "约3-4小时",
+        "cost": "£0",
+        "payment": "—",
+        "note": "全程暴露在海风里；风力/降雨决策见 prep_cards.day6",
+        "source": "https://sevensisters.co.uk/eastbourne"
+      },
+      {
+        "from": "Birling Gap",
+        "to": "Eastbourne",
+        "mode": "巴士（首选）或出租",
+        "route": "巴士：在 Birling Gap 站乘 12/12A/12X 东行(往 Eastbourne) 经 Beachy Head 回 Eastbourne；出租：Birling Gap 无稳定手机信号，需提前电话预约回程",
+        "duration": "巴士约20-25分钟；出租约8分钟",
+        "cost": "巴士已含在 NetworkSaver 日票内；出租约£15-20/车",
+        "payment": "巴士 contactless；出租请用电话预约（720 Taxis 01323 720720 / Call-a-Cab 01323 746746 / Sussex Cars 01323 726726）",
+        "source": "https://www.rome2rio.com/s/Birling-Gap-Sea/Eastbourne ; https://assets.nationalrail.co.uk/e8xgegruud3g/ebnOnwardTravelMap/d53cf0108b71ba988e0335379ff0b3dc/Eastbourne__EBN__OTI.pdf"
+      },
+      {
+        "from": "Eastbourne",
+        "to": "London Victoria",
+        "mode": "National Rail — Southern",
+        "route": "Eastbourne → Victoria 直达",
+        "duration": "约1小时30分",
+        "cost": "已含在 off-peak day return 内",
+        "payment": "用同一 day return；注意末班车约23点",
+        "source": "https://www.thetrainline.com/train-times/london-victoria-to-eastbourne"
+      },
+      {
+        "from": "London Victoria",
+        "to": "The BoTree",
+        "mode": "地铁",
+        "route": "Victoria (Circle/District) → Baker Street，步行回酒店",
+        "duration": "约15分钟",
+        "cost": "约£2.80/人",
+        "payment": "contactless / Apple Pay",
+        "source": "https://content.tfl.gov.uk/adult-fares.pdf"
+      }
+    ],
+    "day7": [
+      {
+        "from": "The BoTree",
+        "to": "Regent's Park",
+        "mode": "步行",
+        "route": "从 Marylebone 北行约15-20分钟到 Regent's Park 南缘",
+        "duration": "约15-20分钟",
+        "cost": "£0",
+        "payment": "—",
+        "source": "需现场确认"
+      },
+      {
+        "from": "Regent's Park",
+        "to": "Fischer's (50 Marylebone High St)",
+        "mode": "步行",
+        "route": "从 Regent's Park 南缘步行回 Marylebone High St 约12分钟",
+        "duration": "约12分钟",
+        "cost": "£0",
+        "payment": "—",
+        "source": "https://thew1london.com/best-restaurants-marylebone"
+      },
+      {
+        "from": "Fischer's",
+        "to": "The BoTree 取行李",
+        "mode": "步行",
+        "route": "Marylebone High St 步行约6分钟",
+        "duration": "约6分钟",
+        "cost": "£0",
+        "payment": "—",
+        "source": "需现场确认"
+      },
+      {
+        "from": "The BoTree",
+        "to": "Heathrow T2",
+        "mode": "Elizabeth line",
+        "route": "步行到 Bond Street Elizabeth line 站，乘 Elizabeth line 西行(往 Heathrow Reading 方向) → Heathrow Terminals 2&3",
+        "duration": "约35-40分钟",
+        "cost": "£15.50/人（contactless 统一价）",
+        "payment": "contactless / Apple Pay 直接拍卡",
+        "note": "建议起飞前预留至少2.5-3小时；T2 即 Terminals 2&3 站下车",
+        "source": "https://www.london.gov.uk/mayor-announces-plans-2026-tfl-fares-package-including-further-freeze-seventh-time-bus-and-tram"
+      }
+    ]
+  },
+  "restaurants": {
+    "day1": {
+      "brunch": {
+        "time": "11:00 Islington",
+        "primary": "Ottolenghi Islington (287 Upper St)",
+        "dishes": ["招牌切碎沙拉拼盘(chopped salad)", "海绵蛋糕/巧克力babka", "单份手冲咖啡"],
+        "avg_cost": "£15-20/人（柜台点单，按重量/件计价）",
+        "booking": " deli 柜台形式，无需订位，walk-in",
+        "transit": "酒店步行约5分钟",
+        "backup": "Caravan Islington / The Good Egg",
+        "backup_trigger": "Ottolenghi 柜台排队超过20分钟或卖完招牌沙拉",
+        "source": "https://www.hardens.com/restaurants/islington/"
+      },
+      "dinner": {
+        "time": "19:30 Islington",
+        "primary": "Trullo (300-302 St Paul's Rd)",
+        "dishes": ["手擀意面(每日换)", "炭烤牛排/烤鸡", "意式奶冻/提拉米苏"],
+        "avg_cost": "约£50-60/人",
+        "booking": "需提前数周在 SevenRooms 订位（热门店）",
+        "transit": "Big Ben 后地铁约30分钟到 Angel 再步行8分钟",
+        "backup": "The 10 Cases (Upper St) 葡萄酒吧小份菜",
+        "backup_trigger": "Trullo 订不到位或到店需等位超40分钟",
+        "source": "https://joinpearl.co/restaurants/london-united-kingdom/trullo"
+      }
+    },
+    "day2": {
+      "lunch": {
+        "time": "12:00 Greenwich",
+        "primary": "Goddards at Greenwich (22 King William Walk)",
+        "dishes": ["steak & kidney / minced beef pie", "mash 土豆泥", "liquor 欧芹汁(可选加水鳗鱼)"],
+        "avg_cost": "£10-13/人",
+        "booking": "walk-in，无需订位",
+        "transit": "Royal Observatory 下坡步行约12分钟",
+        "backup": "Greenwich Market 内其他小吃摊",
+        "backup_trigger": "Goddards 满座排队超30分钟",
+        "source": "https://www.visitlondon.com/things-to-do/place/27250578-goddards-at-greenwich"
+      },
+      "light_dinner": {
+        "time": "17:40 City",
+        "primary": "The Lamb Tavern (Leadenhall Market 内)",
+        "dishes": ["牛排/派(steak & ale pie)", "炸鱼薯条", "本地麦芽酒"],
+        "avg_cost": "£18-24/人",
+        "booking": "walk-in",
+        "transit": "Sky Garden 步行约6分钟",
+        "backup": "Leadenhall Market 内 Paxton & Whitfield 奶酪店热烤奶酪三明治",
+        "backup_trigger": "Lamb Tavern 排队超30分钟",
+        "source": "需现场确认"
+      }
+    },
+    "day3": {
+      "breakfast": {
+        "time": "08:30 Abuelo（已锁定）",
+        "primary": "Abuelo (26 Southampton St, Covent Garden)",
+        "dishes": ["huevos divorciados / poached eggs labneh + avocado salsa", "fig & honey mascarpone 酸面包", "单品手冲咖啡"],
+        "avg_cost": "£18-22/人",
+        "booking": "空间小，建议官网提前订位；注意官网称周末9:00开门，08:30 需电话确认是否可早入",
+        "transit": "Angel 地铁约22分钟到 Covent Garden 再步行5分钟",
+        "backup": "The Wolseley / Monmouth Coffee",
+        "backup_trigger": "Abuelo 周六08:30 不营业或订位被改期",
+        "source": "https://www.designmynight.com/london/brunch-covent-garden"
+      },
+      "lunch": {
+        "time": "13:15 Rock & Sole（已锁定）",
+        "primary": "Rock & Sole Plaice (47 Endell St)",
+        "dishes": ["cod loin / haddock & chips", "mushy peas", "腌黄瓜 gherkin"],
+        "avg_cost": "£22-26/人（鱼£22-27 + 配菜）",
+        "booking": "walk-in，不接受订位",
+        "transit": "British Museum 步行约12分钟",
+        "backup": "Golden Chippy / 其他 Covent Garden 炸鱼薯条",
+        "backup_trigger": "排队超40分钟",
+        "source": "https://www.rockandsoleplaice.com/menu"
+      },
+      "dinner": {
+        "time": "17:30 Bancone（已锁定）",
+        "primary": "Bancone Golden Square (8-10 Lower James St)",
+        "dishes": ["silk handkerchiefs, walnut butter, confit egg yolk (£13.5)", "bucatini cacio e pepe (£13.5)", "nduja mafalde"],
+        "avg_cost": "£32-38/人",
+        "booking": "需提前在 SevenRooms 订位；店内 cashless（只刷卡/手机）",
+        "transit": "Neal's Yard 步行约10分钟",
+        "backup": "Padella (Borough/Shoreditch)",
+        "backup_trigger": "订位变动或满座",
+        "source": "https://www.happymenu.co/bancone-golden-square/menu"
+      }
+    },
+    "day4": {
+      "lunch": {
+        "time": "12:30 Cambridge",
+        "primary": "The Eagle (Bene't St)",
+        "dishes": ["周日烤肉/英式 pub 经典", "real ale", "牛排薯条"],
+        "avg_cost": "£18-24/人",
+        "booking": "walk-in（DNA 名店，周日较热闹）",
+        "transit": "King's College 步行约3分钟",
+        "backup": "The Augsburg / Pint Shop",
+        "backup_trigger": "Eagle 无座排队超30分钟",
+        "source": "https://www.cktravels.com/best-pubs-bars-cambridge/"
+      },
+      "afternoon_tea": {
+        "time": "14:00 Fitzbillies",
+        "primary": "Fitzbillies (Trumpington St)",
+        "dishes": ["经典 Chelsea bun (£3.5-4)", "lobster roll", "咖啡/茶"],
+        "avg_cost": "£8-12/人",
+        "booking": "walk-in 柜台",
+        "transit": "The Eagle 步行约5分钟",
+        "backup": "原店门口排队过长则去另一分店",
+        "backup_trigger": "排长队",
+        "source": "https://www.fitzbillies.com"
+      },
+      "riverside_pub": {
+        "time": "16:30",
+        "primary": "The Anchor (Silver St / Mill Lane)",
+        "dishes": ["河景露台啤酒", "炸鱼薯条", "苹果酒"],
+        "avg_cost": "£12-18/人（饮品+小食）",
+        "booking": "walk-in",
+        "transit": "Scudamore's 步行约3分钟",
+        "backup": "The Granta (Mill Pond)",
+        "backup_trigger": "露台满座/天气差",
+        "source": "https://www.anchorcambridge.com"
+      },
+      "london_dinner": {
+        "time": "19:30 Angel 附近",
+        "primary": "The 10 Cases (Upper St, Islington)",
+        "dishes": ["按杯卖葡萄酒", "法式小份菜/奶酪拼盘"],
+        "avg_cost": "£30-38/人",
+        "booking": "建议提前订位",
+        "transit": "King's Cross 地铁1站到 Angel 步行",
+        "backup": "Trullo（如Day1未去成）/ The Albion",
+        "backup_trigger": "The 10 Cases 满座",
+        "source": "需现场确认"
+      }
+    },
+    "day5": {
+      "lunch": {
+        "time": "12:00 Marylebone",
+        "primary": "Granger & Co (105 Marylebone High St)",
+        "dishes": ["ricotta hotcakes", "scrambled eggs + smoked salmon", "smashed avocado"],
+        "avg_cost": "£25-32/人",
+        "booking": "日间 walk-in，17:00 后才可订位；周末/午市建议早到",
+        "transit": "The BoTree 步行约6分钟",
+        "backup": "Fischer's（提前到则改早午餐）",
+        "backup_trigger": "Granger 排队超30分钟",
+        "source": "https://www.grangerandco.com/locations/marylebone"
+      },
+      "afternoon_tea": {
+        "time": "15:45 ALBA（已锁定）",
+        "primary": "ALBA",
+        "dishes": ["开心果提拉米苏(pistachio tiramisu)", "意式浓缩/卡布奇诺"],
+        "avg_cost": "£10-14/人",
+        "booking": "甜品店，walk-in；具体门店地址与营业时间需官网确认",
+        "transit": "Harrods 周边步行/一站 tube",
+        "backup": "Harrods 自营甜品台 / Maitre Choux",
+        "backup_trigger": "ALBA 当天临时休息",
+        "source": "需现场确认"
+      },
+      "dinner": {
+        "time": "19:00 Marylebone",
+        "primary": "The Hart (Marylebone)",
+        "dishes": ["英式/欧陆主菜", "时令配菜", "甜点"],
+        "avg_cost": "£45-60/人",
+        "booking": "建议提前订位",
+        "transit": "ALBA 后地铁/步行约15-20分钟回 Marylebone",
+        "backup": "Fischer's（维也纳菜）",
+        "backup_trigger": "The Hart 订不到位",
+        "source": "https://thew1london.com/best-restaurants-marylebone"
+      }
+    },
+    "day6": {
+      "lunch": {
+        "time": "13:00 Cuckmere Inn",
+        "primary": "The Cuckmere Inn (Litlington, 近 Seven Sisters Country Park)",
+        "dishes": ["pub 经典(馅饼/鱼薯)", "本地啤酒", "时令素菜"],
+        "avg_cost": "£16-22/人",
+        "booking": "乡村 pub，周末/旺季午餐建议提前订位",
+        "transit": "从 Exceat 河谷步行约15-20分钟",
+        "backup": "Seven Sisters Country Park 游客中心咖啡馆",
+        "backup_trigger": "Cuckmere Inn 客满且无位",
+        "source": "https://sevensisters.co.uk/eastbourne"
+      }
+    },
+    "day7": {
+      "lunch": {
+        "time": "13:30 Marylebone",
+        "primary": "Fischer's (50 Marylebone High St)",
+        "dishes": ["Wiener schnitzel 维也纳炸肉排", "牛肉汤 goulash", "Sachertorte"],
+        "avg_cost": "£35-45/人",
+        "booking": "建议提前订位",
+        "transit": "Regent's Park 步行回 Marylebone High St 约12分钟",
+        "backup": "Granger & Co（午餐时段）",
+        "backup_trigger": "Fischer's 满座",
+        "source": "https://thew1london.com/best-restaurants-marylebone"
+      }
+    }
+  },
+  "prep_cards": {
+    "day1": {
+      "date": "2026-10-01 Thursday",
+      "tickets": [
+        "Sky Garden 是 Day2 的票，本日无需另购门票",
+        "Big Ben / 大本钟外观免费，无需票"
+      ],
+      "transit_passes": [
+        "Heathrow 到市区 Elizabeth line 直接刷 contactless，无需提前买票，£15.50 统一价",
+        "市内地铁/巴士 contactless 直接拍卡即可，自动日封顶"
+      ],
+      "hours": {
+        "Burberry Chatham Place Outlet (Hackney)": "通常 Mon-Sat 10:00-19:00，周日 11:00-17:00；周四正常营业，建议出门前官网复核",
+        "Big Ben": "外观免费，日落约18:40（10月初伦敦）"
+      },
+      "cash_notes": "伦敦全程刷卡/手机支付即可；巴士不收现金。机场到市区段无现金需求。",
+      "decision_points": [
+        "若航班到达延误，Farringdon 出站后直接网约车去酒店比再换地铁更省心",
+        "大本钟日落18:40，注意从 Hackney 到 Westminster 预留30-35分钟"
+      ],
+      "sources": ["https://www.london.gov.uk/mayor-announces-plans-2026-tfl-fares-package-including-further-freeze-seventh-time-bus-and-tram", "https://tfl.gov.uk/fares/find-fares/bus-and-tram-fares"]
+    },
+    "day2": {
+      "date": "2026-10-02 Friday",
+      "tickets": [
+        "Sky Garden 已购 16:15 时段，15:45 前到安检（带护照/预订确认信）",
+        "Royal Observatory Greenwich：成人£24，10月起冬季时间 10:00-17:00（最后入场16:15），建议官网提前定时票",
+        "Cutty Sark：成人£22，10:00-17:00（最后入场约16:00）",
+        "Royal Observatory + Cutty Sark 联票(Guaranteed entry) 成人£38"
+      ],
+      "transit_passes": [
+        "Greenwich → Tower Pier Uber Boat：App/Oyster £13.50（Central&East），码头买£17.70；建议提前 App 买好",
+        "其余地铁 contactless 拍卡"
+      ],
+      "hours": {
+        "Royal Observatory": "10:00-17:00（10月起冬季，最后入场16:15）",
+        "Cutty Sark": "10:00-17:00",
+        "Sky Garden": "已订16:15，安检15:45",
+        "Uber Boat 班次": "日间约每15-20分钟一班，末班较早，注意返程时间"
+      },
+      "cash_notes": "Greenwich 山上纪念品店/茶室可刷卡；Uber Boat 支持 contactless，无需现金。",
+      "decision_points": [
+        "上午先 Cutty Sark 再上 Royal Observatory，注意 Royal Observatory 16:15 最后入场，别错过",
+        "坐船班次有限，Goddards 午餐后预留约20分钟走到 Greenwich Pier",
+        "若雨大，Greenwich 到 Tower 段可改 DLR/Central line 替代，但游船体验是本日重点，优先乘船"
+      ],
+      "sources": ["https://www.rmg.co.uk/royal-observatory", "https://www.rmg.co.uk/plan-your-visit/tickets-prices", "https://www.thamesclippers.com/plan-your-journey/ticket-information"]
+    },
+    "day3": {
+      "date": "2026-10-03 Saturday",
+      "tickets": [
+        "British Museum 免费，无需订票（周六 10:00-17:00）",
+        "Abuelo / Rock & Sole / Bancone 均已锁定；Bancone 须 SevenRooms 订位"
+      ],
+      "transit_passes": ["市内全程 contactless 拍卡，日封顶£8.90"],
+      "hours": {
+        "British Museum": "周六 10:00-17:00（免费）",
+        "Abuelo 周六": "周末约9:00开门——08:30 订位需电话确认",
+        "Rock & Sole Plaice": "Mon-Sat 约12:00-22:00，walk-in",
+        "Bancone Golden Sq": "周六晚正常营业，cashless"
+      },
+      "cash_notes": "Bancone 只刷卡/手机(cashless)；Rock & Sole 可刷卡。",
+      "decision_points": [
+        "Abuelo 周六08:30可能未开门，提前电话确认；否则顺延到9:00",
+        "Bancone 17:30 订位，从 Rock & Sole 步行经 Neal's Yard 约15分钟，时间充裕"
+      ],
+      "sources": ["https://www.britishmuseum.org", "https://www.rockandsoleplaice.com/menu", "https://www.happymenu.co/bancone-golden-square/menu"]
+    },
+    "day4": {
+      "date": "2026-10-04 Sunday (Cambridge)",
+      "tickets": [
+        "Great Northern King's Cross→Cambridge Off-Peak Day Return 约£33.30，周日全天 off-peak，车站/App 当天买即可",
+        "King's College 参观：成人约£18（官网早鸟£16.75）；周日开放时间受学期影响极大——Michaelmas 学期约10月初开始，学期中周日仅约13:15-14:30开放，假期才全天9:30-16:30，务必出发前查 kings.cam.ac.uk 日历",
+        "Scudamore's Punting (Mill Lane)：约£22-25/人撑篙船，可现场排队或 App 预订"
+      ],
+      "transit_passes": [
+        "火车不在 TfL 区域，contactless 不能刷进 Cambridge，必须单独买票",
+        "周日去程建议选 09:00-10:00 之间直达车次，约50分钟",
+        "返程注意周日末班约23点"
+      ],
+      "hours": {
+        "King's College": "周日开放时间高度依赖是否学期中——需现场/官网确认（学期中周日仅午后短开放）",
+        "The Eagle": "周日营业，午餐热门",
+        "Fitzbillies": "周日营业约8:00-18:00"
+      },
+      "cash_notes": "剑桥城内景点/餐厅均可刷卡；punting 现场可 card。",
+      "decision_points": [
+        "【关键】出发前必查 King's College 周日开放时间——若学期中周日只开13:15-14:30，则把 King's College 排在 The Eagle 午餐之后",
+        "周日火车无峰谷限制，但热门时段建议提前 App 订好往返",
+        "punting 傍晚风大/下雨会冷，备外套"
+      ],
+      "sources": ["https://www.greatnorthernrail.com/travel-information/cambridge-south", "https://www.kings.cam.ac.uk/opening-times-and-tickets", "https://railsmartr.co.uk/whats-the-best-london-to-cambridge-train-price/"]
+    },
+    "day5": {
+      "date": "2026-10-05 Monday (换酒店+Harrods)",
+      "tickets": [
+        "Harrods 免费进入，无需票",
+        "ALBA 下午茶已锁定"
+      ],
+      "transit_passes": [
+        "退房搬去 The BoTree：地铁 contactless；行李多可网约车£12-16",
+        "Harrods(Knightsbridge) 往返 contactless"
+      ],
+      "hours": {
+        "Harrods": "周一至周六 10:00-20:00（周日11:30-18:00，本日周一正常10-20）",
+        "Granger & Co Marylebone": "周一至周五7:00开门，日间walk-in",
+        "The BoTree 入住": "通常15:00后入住，可先寄存行李"
+      },
+      "cash_notes": "Harrods 全刷卡；Marylebone 餐厅普遍刷卡。",
+      "decision_points": [
+        "上午先到 The BoTree 寄存行李再去 Granger & Co",
+        "Harrods 周一可逛到20:00，时间宽裕；ALBA 15:45 下午茶别错过"
+      ],
+      "sources": ["https://www.grangerandco.com/locations/marylebone", "https://thew1london.com/best-restaurants-marylebone"]
+    },
+    "day6": {
+      "date": "2026-10-06 Tuesday (Seven Sisters)",
+      "tickets": [
+        "London Victoria→Eastbourne Southern/Gatwick Express：Off-Peak Day Return 现场约£33（区间£20-42），提前 advance 单程低至£8；建议选 09:30 后出发的 off-peak 班次",
+        "Brighton & Hove NetworkSaver 日票 £7.50（车上）/£7.30（App），覆盖 12/12A/12X 随上随下",
+        "Cuckmere Inn 午餐建议提前电话订位"
+      ],
+      "transit_passes": [
+        "火车 contactless 不通用，车站或 App 买票",
+        "Eastbourne 到白崖段用 Brighton & Hove 12/12A/12X（周二工作日运行；周日才是13路，本日不用）",
+        "Birling Gap 回程出租需提前电话预约：720 Taxis 01323 720720 / Call-a-Cab 01323 746746 / Sussex Cars 01323 726726，出租约£15-20/8分钟"
+      ],
+      "hours": {
+        "Victoria→Eastbourne 直达": "约1小时30分，全天班次密",
+        "巴士12/12A/12X": "约日间20-30分钟一班，10月初仍运营（季节性游览巴士通常运营到11月初）",
+        "Cuckmere Inn": "午餐时段营业，建议预订"
+      },
+      "cash_notes": "Brighton & Hove 巴士车上可 contactless 也收现金；Birling Gap 手机信号弱，上车前先把回程出租约好，备少量现金兜底；National Trust Birling Gap 咖啡厅刷卡为主。",
+      "decision_points": [
+        "【天气决策点】出发前一晚查 Eastbourne / Birling Gap 预报：若持续风力≥30mph（阵风≥40mph/约6级以上）或降雨明显、能见度<1km，放弃悬崖山脊徒步，改为 Cuckmere 河谷平地+海滩路线，不要靠近崖边",
+        "悬崖边缘土层松软，全程远离边缘至少3米；带防风防水外套与水",
+        "Birling Gap 无信号，务必在 Eastbourne 上车前就电话约好 Birling Gap→Eastbourne 的回程出租，或在日落前赶上末班巴士",
+        "若天气恶劣，替代方案：Eastbourne 海滨+Beachy Head 观景，不翻山脊"
+      ],
+      "sources": ["https://sevensisters.co.uk/from-london", "https://www.eastsussex.gov.uk/roads-transport/public/flexibus/fares-and-tickets", "https://www.rome2rio.com/s/Birling-Gap-Sea/Eastbourne", "https://assets.nationalrail.co.uk/e8xgegruud3g/ebnOnwardTravelMap/d53cf0108b71ba988e0335379ff0b3dc/Eastbourne__EBN__OTI.pdf"]
+    },
+    "day7": {
+      "date": "2026-10-07 Wednesday",
+      "tickets": [
+        "Regent's Park 免费开放式公园",
+        "Fischer's 午餐建议提前订位"
+      ],
+      "transit_passes": [
+        "The BoTree→Heathrow：Bond Street Elizabeth line 直达 Heathrow T2&3，£15.50 contactless，约35-40分钟",
+        "建议起飞前至少3小时到机场"
+      ],
+      "hours": {
+        "Fischer's (50 Marylebone High St)": "维也纳咖啡馆，午市营业",
+        "Regent's Park": "全天开放"
+      },
+      "cash_notes": "全程刷卡；机场可保留少量现金应急。",
+      "decision_points": [
+        "先 Regent's Park 散步，再回 Marylebone 吃午餐，餐后回 The BoTree 取行李，留足时间去 Heathrow",
+        "Elizabeth line Bond St 站步行可达 Marylebone，比拖着行李换车方便"
+      ],
+      "sources": ["https://www.london.gov.uk/mayor-announces-plans-2026-tfl-fares-package-including-further-freeze-seventh-time-bus-and-tram", "https://thew1london.com/best-restaurants-marylebone"]
+    }
+  }
+}
