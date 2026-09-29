@@ -8,6 +8,41 @@
     "refactor_time": "2026-09-30",
     "note": "未执行任何 git commit / push"
   },
+  "v2_cover_refactor": {
+    "time": "2026-09-30",
+    "version_check": "本地75b8212 == origin/gh-pages == 线上108318字节，逐字节一致，无远端新功能需保留",
+    "pre_edit_backup": "/home/user/.doubao/agent_mode/workspace/.sessions/38444080322635778/agents/s_000c2b2EnrO/artifacts/uk-2026.before-refactor-20260930-022642.html",
+    "done_now": [
+      "移动端正文event p 13px→16px，.btn触控40/42px→44px",
+      "D1大本钟日落从'今日重点/已锁定'降级为可选（天气体力）",
+      "删除3张通用菜谱照 day1-ottolenghi/day3-abuelo/day5-alba 及其误导caption",
+      "保留四家主选 Abuelo/Rock&Sole/Bancone/ALBA；其余11家(Ottolenghi/Trullo/Goddards/Lamb Tavern/Eagle/Fitzbillies/Anchor/10Cases/Granger/Hart/Cuckmere Inn/Fischers)全部撤为中性'就近便餐休息'，同步改相邻交通卡起终点标签",
+      "Abuelo 早餐 08:30→09:00(周末才开)；ALBA改为70 Brompton正餐厅，不承诺只甜品walk-in",
+      "Day6默认Cuckmere河谷往返，Exceat同站乘12/12A回Eastbourne，不翻3-4h山脊；Birling Gap改为可选(12/12A不停该站，须先确认13X/出租)",
+      "修正12/12A不经Beachy Head/Birling Gap海岸硬错",
+      "概览加统一拍卡规则(每人同一张contactless、Tube进出都刷、巴士只上刷、船上下都刷不计地铁封顶、Brighton&Hove TapOnTapOff、国铁另购票按restriction code)",
+      "删除Trullo等名店预订项与订位提示；概览加'来源说明：目前仅官方核验，小红书原帖待登录后核验'可展开卡"
+    ],
+    "still_pending_audit": [
+      "各腿线路方向按V2完整重写(Bond Street无Piccadilly须经Green Park换、KX→Angel走Bank支线、Heathrow只乘T4/T5方向等)——等独立审计关键反馈后完稿",
+      "每日静态路线截图 day1-7 route.jpg 仍为旧图(含已删餐厅/BirlingGap点位偏海)，本环境无法重新生成Google地图截图，需用正确坐标重出",
+      "'打开今日路线'directions URL仍残留已删餐厅waypoint，待与新主线路一并清理",
+      "未git commit/push，未获用户验收"
+    ],
+    "shot_py": {
+      "mobile": {
+        "consoleErrors": [],
+        "horizontalOverflow": [],
+        "resourceErrors": []
+      },
+      "desktop": {
+        "consoleErrors": [],
+        "horizontalOverflow": [],
+        "resourceErrors": []
+      }
+    },
+    "verifier_hub": "rubric check-file-format passed (text size=103642)"
+  },
   "shot_py_self_check": {
     "script": "python3 <html-skill>/scripts/shot.py uk-2026.html",
     "desktop_1440x900": {
@@ -16,7 +51,10 @@
       "horizontalOverflow": [],
       "resourceErrors": [],
       "responsiveChartIssues": null,
-      "fullpage": {"w": 1440, "h": 2271},
+      "fullpage": {
+        "w": 1440,
+        "h": 2271
+      },
       "screenshot": "outputs/_shots/uk-2026_desktop.jpg"
     },
     "mobile_390x844": {
@@ -25,7 +63,10 @@
       "horizontalOverflow": [],
       "resourceErrors": [],
       "responsiveChartIssues": null,
-      "fullpage": {"w": 390, "h": 2449},
+      "fullpage": {
+        "w": 390,
+        "h": 2449
+      },
       "screenshot": "outputs/_shots/uk-2026_mobile.jpg",
       "note": "默认激活概览页；另以临时副本把『行程』页设为激活复跑 mobile，fullpage h=31782，horizontalOverflow=[]、resourceErrors=0、consoleErrors=0，确认日行程时间轴在 390px 无横向溢出、无坏图、无脚本错误。临时副本已删除。"
     },
@@ -37,8 +78,23 @@
   },
   "transport_cards": {
     "total": 49,
-    "per_day": {"day1": 6, "day2": 9, "day3": 6, "day4": 10, "day5": 6, "day6": 8, "day7": 4},
-    "fields_shown_each": ["从A到B", "方式", "线路/车站", "用时", "单人费用", "支付方式"],
+    "per_day": {
+      "day1": 6,
+      "day2": 9,
+      "day3": 6,
+      "day4": 10,
+      "day5": 6,
+      "day6": 8,
+      "day7": 4
+    },
+    "fields_shown_each": [
+      "从A到B",
+      "方式",
+      "线路/车站",
+      "用时",
+      "单人费用",
+      "支付方式"
+    ],
     "source_rule": "数据来自 research-execution.json；来源无准确处标注『现场确认』（如 Goddards→Greenwich Pier 步行、ALBA 门店位置、The Hart→BoTree 步行），未编造"
   },
   "day_summaries": {
@@ -52,34 +108,114 @@
   },
   "meals_main_and_conditional_backup": {
     "day1": [
-      {"meal": "早午餐", "main": "Ottolenghi Islington（奥托伦吉）", "backup": "Caravan Islington", "trigger": "柜台排队超20分钟或招牌沙拉售完"},
-      {"meal": "晚餐", "main": "Trullo", "backup": "The 10 Cases", "trigger": "Trullo订不到位或等位超40分钟"}
+      {
+        "meal": "早午餐",
+        "main": "Ottolenghi Islington（奥托伦吉）",
+        "backup": "Caravan Islington",
+        "trigger": "柜台排队超20分钟或招牌沙拉售完"
+      },
+      {
+        "meal": "晚餐",
+        "main": "Trullo",
+        "backup": "The 10 Cases",
+        "trigger": "Trullo订不到位或等位超40分钟"
+      }
     ],
     "day2": [
-      {"meal": "午餐", "main": "Goddards at Greenwich（派与土豆泥）", "backup": "Greenwich Market 小吃摊", "trigger": "Goddards满座排队超30分钟"},
-      {"meal": "轻晚餐", "main": "The Lamb Tavern（羔羊酒馆）", "backup": "Paxton & Whitfield 热烤奶酪三明治", "trigger": "Lamb Tavern排队超30分钟"}
+      {
+        "meal": "午餐",
+        "main": "Goddards at Greenwich（派与土豆泥）",
+        "backup": "Greenwich Market 小吃摊",
+        "trigger": "Goddards满座排队超30分钟"
+      },
+      {
+        "meal": "轻晚餐",
+        "main": "The Lamb Tavern（羔羊酒馆）",
+        "backup": "Paxton & Whitfield 热烤奶酪三明治",
+        "trigger": "Lamb Tavern排队超30分钟"
+      }
     ],
     "day3": [
-      {"meal": "早餐", "main": "Abuelo（已锁定）", "backup": "The Wolseley", "trigger": "Abuelo周六08:30不营业或订位改期"},
-      {"meal": "午餐", "main": "Rock & Sole Plaice（已锁定）", "backup": "Golden Chippy", "trigger": "排队超40分钟"},
-      {"meal": "晚餐", "main": "Bancone Golden Square（已锁定）", "backup": "Padella", "trigger": "订位变动或满座"}
+      {
+        "meal": "早餐",
+        "main": "Abuelo（已锁定）",
+        "backup": "The Wolseley",
+        "trigger": "Abuelo周六08:30不营业或订位改期"
+      },
+      {
+        "meal": "午餐",
+        "main": "Rock & Sole Plaice（已锁定）",
+        "backup": "Golden Chippy",
+        "trigger": "排队超40分钟"
+      },
+      {
+        "meal": "晚餐",
+        "main": "Bancone Golden Square（已锁定）",
+        "backup": "Padella",
+        "trigger": "订位变动或满座"
+      }
     ],
     "day4": [
-      {"meal": "午餐", "main": "The Eagle", "backup": "Pint Shop", "trigger": "The Eagle无座排队超30分钟"},
-      {"meal": "下午茶", "main": "Fitzbillies", "backup": "Fitzbillies 另一分店", "trigger": "本店门口排长队"},
-      {"meal": "河畔小食", "main": "The Anchor", "backup": "The Granta", "trigger": "露台满座或天气差"},
-      {"meal": "晚餐", "main": "The 10 Cases", "backup": "The Albion", "trigger": "The 10 Cases满座"}
+      {
+        "meal": "午餐",
+        "main": "The Eagle",
+        "backup": "Pint Shop",
+        "trigger": "The Eagle无座排队超30分钟"
+      },
+      {
+        "meal": "下午茶",
+        "main": "Fitzbillies",
+        "backup": "Fitzbillies 另一分店",
+        "trigger": "本店门口排长队"
+      },
+      {
+        "meal": "河畔小食",
+        "main": "The Anchor",
+        "backup": "The Granta",
+        "trigger": "露台满座或天气差"
+      },
+      {
+        "meal": "晚餐",
+        "main": "The 10 Cases",
+        "backup": "The Albion",
+        "trigger": "The 10 Cases满座"
+      }
     ],
     "day5": [
-      {"meal": "午餐", "main": "Granger & Co", "backup": "Fischer's（改早午餐）", "trigger": "Granger排队超30分钟"},
-      {"meal": "下午茶", "main": "ALBA 开心果提拉米苏（已锁定）", "backup": "Harrods自营甜品台", "trigger": "ALBA当天临时休息"},
-      {"meal": "晚餐", "main": "The Hart", "backup": "Fischer's（维也纳菜）", "trigger": "The Hart订不到位"}
+      {
+        "meal": "午餐",
+        "main": "Granger & Co",
+        "backup": "Fischer's（改早午餐）",
+        "trigger": "Granger排队超30分钟"
+      },
+      {
+        "meal": "下午茶",
+        "main": "ALBA 开心果提拉米苏（已锁定）",
+        "backup": "Harrods自营甜品台",
+        "trigger": "ALBA当天临时休息"
+      },
+      {
+        "meal": "晚餐",
+        "main": "The Hart",
+        "backup": "Fischer's（维也纳菜）",
+        "trigger": "The Hart订不到位"
+      }
     ],
     "day6": [
-      {"meal": "午餐", "main": "The Cuckmere Inn", "backup": "Seven Sisters游客中心咖啡馆", "trigger": "Cuckmere Inn客满无位"}
+      {
+        "meal": "午餐",
+        "main": "The Cuckmere Inn",
+        "backup": "Seven Sisters游客中心咖啡馆",
+        "trigger": "Cuckmere Inn客满无位"
+      }
     ],
     "day7": [
-      {"meal": "午餐", "main": "Fischer's 维也纳餐厅", "backup": "Granger & Co（午餐时段）", "trigger": "Fischer's满座"}
+      {
+        "meal": "午餐",
+        "main": "Fischer's 维也纳餐厅",
+        "backup": "Granger & Co（午餐时段）",
+        "trigger": "Fischer's满座"
+      }
     ]
   },
   "second_round_backup_dedup": {
@@ -93,17 +229,37 @@
     ],
     "verified": "全文16个条件备选均为单一明确店铺，无斜杠并列；每个备选保留触发条件",
     "reshot_results": {
-      "official_mobile": {"consoleErrors": [], "horizontalOverflow": [], "resourceErrors": []},
-      "official_desktop": {"consoleErrors": [], "horizontalOverflow": [], "resourceErrors": []},
-      "days_panel_mobile": {"consoleErrors": [], "horizontalOverflow": [], "resourceErrors": []}
+      "official_mobile": {
+        "consoleErrors": [],
+        "horizontalOverflow": [],
+        "resourceErrors": []
+      },
+      "official_desktop": {
+        "consoleErrors": [],
+        "horizontalOverflow": [],
+        "resourceErrors": []
+      },
+      "days_panel_mobile": {
+        "consoleErrors": [],
+        "horizontalOverflow": [],
+        "resourceErrors": []
+      }
     }
   },
   "third_round_weather_favicon": {
     "weather_card": "概览页删除『逐日天气（9/26 更新）』7天静态温度网格与『10/06白崖天气窗口最佳』断言，改为『出发前实时天气核验』卡；不写死任何温度预测，保留 Met Office Eastbourne/伦敦实时链接；明确 Day6 出发前一晚及当天早晨复核风速/阵风/降雨/能见度，沿用已核实阈值（持续风≥30mph、阵风≥40mph 或明显降雨/能见度<1km 则不走山脊，改 Cuckmere 河谷平地+海滩，远离崖边3米）。",
     "favicon": "已添加内联 SVG data URI favicon（navy #17324d 圆角底 + gold 山脊线 + wine 圆日），避免 favicon 缺失。",
     "reshot_results": {
-      "official_mobile": {"consoleErrors": [], "horizontalOverflow": [], "resourceErrors": []},
-      "official_desktop": {"consoleErrors": [], "horizontalOverflow": [], "resourceErrors": []}
+      "official_mobile": {
+        "consoleErrors": [],
+        "horizontalOverflow": [],
+        "resourceErrors": []
+      },
+      "official_desktop": {
+        "consoleErrors": [],
+        "horizontalOverflow": [],
+        "resourceErrors": []
+      }
     }
   },
   "cleanup_done": [
@@ -121,5 +277,146 @@
     "10/05": "Harrods后ALBA开心果提拉米苏",
     "10/06": "七姐妹白崖（工作日巴士12/12A/12X）",
     "10/07": "22:05希思罗T2 ZH888航班（约19:00到机场）"
+  },
+  "v3_prepublish_minimal_fixes": {
+    "timestamp": "2026-09-30 pre-departure",
+    "four_restaurants_only": [
+      "Abuelo Covent Garden",
+      "Rock & Sole Plaice",
+      "Bancone Golden Square",
+      "ALBA 70 Brompton Rd"
+    ],
+    "non_restaurant_defaults_removed": "Ottolenghi/Trullo/Fischer/Eagle/Hart/Granger/Cuckmere名店等全部改为就近便餐或删除，无默认名店",
+    "unified_payment": "每人同一张非接触银行卡/手机，二选一不混刷；Tube/DLR/Elizabeth进出站都刷；巴士上刷；Uber Boat上下都刷不计地铁封顶；Brighton&Hove TapOnTapOff独立封顶；国铁另买票按restriction code；不写统一9:30",
+    "correct_station_sequences_fixed": [
+      "KX→Angel 走 Northern 南向 Bank 支线",
+      "Bond Street 无 Piccadilly，去 Knightsbridge 经 Green Park 换 Piccadilly",
+      "Heathrow 只乘 T4/T5 方向，不上 Reading",
+      "Day6 12路合并、Exceat 对向站台返程"
+    ],
+    "day6_valley_default": "Cuckmere 河谷轻松往返 Exceat 同站；3h 山脊删除；Birling Gap 移出默认时间链，改为 details 折叠可选（12不停，需先确认13X/出租）",
+    "no_fake_route_maps": "9 个 route-img-link 路线截图块全部删除（含 BirlingGap 落海旧图），不再用错误旧图+免责声明；每日以顶部『打开今日路线』真实谷歌导航为准，可缩放",
+    "mobile_16px_44px": "正文16px、触控44px、底部4按钮概览/行程/预订/清单",
+    "day_switcher": "新增 sticky 日期选择器 D1-D7，点击直接 scrollIntoView 对应天，IntersectionObserver 联动高亮",
+    "dish_translation": "huevos divorciados 标注『双煎蛋配红绿双莎莎（非炒蛋）』；无花果吐司标『向店确认』",
+    "day7_airport": "保留 17:30 取行李出发 / 19:00 到希思罗T2，未压成18:20上车",
+    "shot_py": {
+      "overview_mobile": {
+        "consoleErrors": [],
+        "horizontalOverflow": [],
+        "resourceErrors": []
+      },
+      "days_mobile": {
+        "consoleErrors": [],
+        "horizontalOverflow": [],
+        "resourceErrors": []
+      },
+      "desktop": {
+        "consoleErrors": [],
+        "horizontalOverflow": [],
+        "resourceErrors": []
+      }
+    },
+    "real_browser_walkthrough": {
+      "engine": "computer_use_tool bu plane, file:// local page",
+      "page_load_title": "英国慢游｜伦敦·剑桥·七姐妹 2026",
+      "day_tab_click_10_06": "scrolled to day6 (rectTop=70), activeTab=day6, console=无报错",
+      "day6_dom_check": {
+        "对向站台": true,
+        "不翻山脊": true,
+        "折叠BirlingGap": true,
+        "无route图": true,
+        "TapOnTapOff": true,
+        "无NetworkSaver混票": true
+      },
+      "google_nav_link": "每日『打开今日路线』为真实 google.com/maps/dir/ 链接（target=_blank），非拼接图",
+      "blockers_not_done": [
+        "真实浏览器内点击外部Google Maps新标签页的地图缩放/导航未逐项手测（外链需登录/网络，仅确认href正确）",
+        "小红书原帖仍待登录后核验（前台只写待核验）",
+        "Google收藏夹35条保持、0写回"
+      ]
+    },
+    "verifier_hub": "rubric check-file-format passed (text size=101473)",
+    "git": "未 commit / 未 push，等待用户独立人核收尾"
+  },
+  "v3.1_w1_w5_and_maps": {
+    "timestamp": "2026-09-30 pre-departure",
+    "W1_D1_Westminster_to_dinner": "改为 Jubilee 东行 London Bridge 换 Northern Bank 支线北行经 Bank/Old Street 到 Angel，删 Circle/District→KX 错误走向",
+    "W2_D5_BondSt_to_Harrods": "改为 Bond St Jubilee 南向 Stratford→Green Park 换 Piccadilly 西向 Heathrow/Uxbridge→Knightsbridge；返程同站 Green Park 换",
+    "W3_D3_Bancone_to_Angel": "改为 Piccadilly Circus 上 Piccadilly 东北行 Cockfosters→KX 换 Northern 南向 Bank 支线→Angel，删 Leicester Square Northern 北行直达错误",
+    "W4_D6_bus_fare": "删 £5.25(伦敦bus误套)与 NetworkSaver £7.50/7.30，统一 TapOnTapOff PAYG、本运营商独立封顶以官网/车上为准",
+    "W5_D3_backups": "Wolseley/Padella 名店备选删除改沿途便餐；Golden Chippy 保留(用户此前唯一批准)",
+    "safety_wording": "删 离崖边3米/≥30mph 伪科学阈值，改 National Trust 官方：远离崖缘与崖脚、遵守现场封闭、风雨能见度差取消沿海暴露段；默认河谷往返不翻崖顶、不主动去崖脚/涉水",
+    "chinese_restaurant_titles": "Abuelo→阿布埃洛咖啡馆、Rock&Sole→洛克与索尔炸鱼薯条、Bancone→班科内手工意面、ALBA→阿尔巴开心果提拉米苏(英文次级)",
+    "official_site_buttons": "Abuelo abuelocafe.co.uk(且walk-in不订位)、Rock&Sole rockandsoleplaice.com、Bancone bancone.co.uk、ALBA alba-ldn.uk 均加官网按钮",
+    "maps_restored": "Leaflet+OSM 瓦片真实底图地点图：首页总览10点 + D1-D7各一图，仅标点可缩放、不画假路线折线；BirlingGap 不入 D6 默认图；天文台/国王学院坐标为可核经纬度",
+    "shot_py": {
+      "mobile": {
+        "consoleErrors": [],
+        "horizontalOverflow": [],
+        "resourceErrors_nontile": []
+      },
+      "desktop": {
+        "consoleErrors": [],
+        "horizontalOverflow": [],
+        "resourceErrors_nontile": []
+      }
+    },
+    "note": "resourceErrors 仅 headless 沙箱连不上 tile.openstreetmap.org CDN；真实浏览器 bu plane 实测 8 张地图初始化、总览10瓦片+10标记、D6跳转正常、console 无错",
+    "git": "仍未 commit/push，等独立人核"
+  },
+  "v3.2_final_transit_6fix": {
+    "timestamp": "2026-09-30",
+    "1_D1_airport": "Heathrow→Hilton 改唯一接驳：Farringdon 换 Circle/H&C 西行1站到KX，再Northern南向Bank支线(Morden)→Angel，步行5-8min；删 Farringdon出站步行12min/网约£7",
+    "2_D1_burberry_westminster": "改 Overground→H&I→Victoria线南到Green Park(不到Victoria)→Jubilee东行Stratford1站→Westminster；网约车门到门£15-20/车作单选预算备选",
+    "3_tcard_mobile_16px": "移动端 .tc-row/.tc-v 提至16px、.tc-kv15px、标签tc-k13px；交通内容正文≥16",
+    "4_walk_cards_merged": "24张 tc-walk 三行卡(£0/支付—)全部压缩为一行 .walk-note 内联说明；复杂交通改有序<ol>3-4动作，不用英文箭头串",
+    "5_prices_budget": "所有未核 £2.80 Tube/£9-12/£12-16 网约统一标『预算(当日封顶£8.90以屏价为准)』；整车价不塞单人字段；国铁£33.30/£33标预算以官网为准",
+    "6_D2_first_leg_45_55": "Angel→Bank→DLR→CuttySark 用时由25改45-55min；CuttySark改外观不购票不联票(prep/event/booking三处同步)，解决与10:30天文台冲突",
+    "shot_py": {
+      "mobile": {
+        "consoleErrors": [],
+        "horizontalOverflow": [],
+        "resourceErrors_nontile": []
+      },
+      "desktop": {
+        "consoleErrors": [],
+        "horizontalOverflow": [],
+        "resourceErrors_nontile": []
+      }
+    },
+    "git": "未push"
+  },
+  "v3.3_carto_css_coords": {
+    "F2_tile_provider": "OSM(真移动403)→Carto light_all https://basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png；真实浏览器bu实测10瓦片0损坏、src=carto，非403灰图",
+    "F1_css_16mobile": "移动端 .tc-row/.tc-v/.tc-kv 全16px!important、tc-fromto16、tc-k14、walk-note16!important（不再写15）",
+    "F3_official_buttons": "abuelocafe.co.uk / rockandsoleplaice.com / bancone.co.uk / alba-ldn.uk 各1次真实进4店卡",
+    "bancone_url": "day-route 地址 17-19 Golden Square → 8-10 Lower James St (W1F 9DL)",
+    "exceat_coords": "50.761,0.1470(近河口)→50.773,0.151(Seven Sisters Country Park/Exceat访客中心)",
+    "burberry_no_taxi": "Burberry→Westminster 删出租备选，只推荐地铁",
+    "walknote_bug": "修正则取错中文『从』致空起点+『约约』重复",
+    "shot_py_mobile": {
+      "consoleErrors": [],
+      "horizontalOverflow": [],
+      "resourceErrors_headless_sandbox_only": "cartocdn egress blocked in headless runner; real bu browser loaded 10 tiles"
+    },
+    "git": "未push"
+  },
+  "v3.4_esri_nokey": {
+    "tile_provider": "Carto(key水印)→Esri World_Street_Map server.arcgisonline.com 无key，attribution Sources: Esri, HERE, Garmin, USGS, NGA",
+    "real_browser_check": "真实浏览器概览图10瓦片0坏，目检真实伦敦街道/路号/泰晤士河/marker，无API KEY水印",
+    "rock_button": "rockandsoleplaice.com 仍在line231可点，未被后改删",
+    "note_text": "地图说明『OSM瓦片』改为『Esri World Street Map无密钥』",
+    "shot_py": {
+      "mobile": {
+        "consoleErrors": [],
+        "horizontalOverflow": []
+      },
+      "desktop": {
+        "consoleErrors": [],
+        "horizontalOverflow": []
+      }
+    },
+    "git": "未push"
   }
 }
