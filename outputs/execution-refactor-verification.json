@@ -1,0 +1,125 @@
+{
+  "meta": {
+    "trip": "UK 2026 — London · Cambridge · Seven Sisters",
+    "refactored_file": "/home/user/Doubao/chats/38444080322635778/repo/outputs/uk-2026.html",
+    "backup_file": "/home/user/Doubao/chats/38444080322635778/repo/outputs/_backup/uk-2026.20260930-011541.html",
+    "data_source": "outputs/research-execution.json",
+    "images_dir": "outputs/images/",
+    "refactor_time": "2026-09-30",
+    "note": "未执行任何 git commit / push"
+  },
+  "shot_py_self_check": {
+    "script": "python3 <html-skill>/scripts/shot.py uk-2026.html",
+    "desktop_1440x900": {
+      "consoleErrors": [],
+      "consoleWarnings": [],
+      "horizontalOverflow": [],
+      "resourceErrors": [],
+      "responsiveChartIssues": null,
+      "fullpage": {"w": 1440, "h": 2271},
+      "screenshot": "outputs/_shots/uk-2026_desktop.jpg"
+    },
+    "mobile_390x844": {
+      "consoleErrors": [],
+      "consoleWarnings": [],
+      "horizontalOverflow": [],
+      "resourceErrors": [],
+      "responsiveChartIssues": null,
+      "fullpage": {"w": 390, "h": 2449},
+      "screenshot": "outputs/_shots/uk-2026_mobile.jpg",
+      "note": "默认激活概览页；另以临时副本把『行程』页设为激活复跑 mobile，fullpage h=31782，horizontalOverflow=[]、resourceErrors=0、consoleErrors=0，确认日行程时间轴在 390px 无横向溢出、无坏图、无脚本错误。临时副本已删除。"
+    },
+    "images": {
+      "all_referenced_images_exist": true,
+      "localImageWarnings": "仅为 file:// 本地图片提示；resourceErrors=[] 证明图片全部加载成功"
+    },
+    "passed": true
+  },
+  "transport_cards": {
+    "total": 49,
+    "per_day": {"day1": 6, "day2": 9, "day3": 6, "day4": 10, "day5": 6, "day6": 8, "day7": 4},
+    "fields_shown_each": ["从A到B", "方式", "线路/车站", "用时", "单人费用", "支付方式"],
+    "source_rule": "数据来自 research-execution.json；来源无准确处标注『现场确认』（如 Goddards→Greenwich Pier 步行、ALBA 门店位置、The Hart→BoTree 步行），未编造"
+  },
+  "day_summaries": {
+    "day1_1001_Thu": "07:15 抵希思罗T2入境取行李 → 09:15 Elizabeth线到酒店寄存 → 10:50 Ottolenghi早午餐 → 网约车到Burberry Outlet购物 → 15:00 Hackney咖啡缓冲 → Overground/Victoria线到威斯敏斯特 → 18:15-19:10 大本钟日落(固定~18:40) → 地铁到Trullo晚餐 → 步行回酒店",
+    "day2_1002_Fri": "08:00起床 → 地铁DLR到格林尼治 → 卡蒂萨克外观/市场 → 上坡皇家天文台 → 下坡Goddards午餐 → 步行格林尼治码头 → Uber Boat游船到塔码头 → 步行塔桥 → 15:45到Sky Garden安检(固定) → 16:15 Sky Garden(固定) → 利德贺市场轻晚餐 → 地铁回酒店",
+    "day3_1003_Sat": "07:30起床 → 地铁到Covent Garden → 08:30 Abuelo早餐(固定) → 步行大英博物馆3h → 步行Rock&Sole午餐(固定13:15) → 步行Neal's Yard/Seven Dials缓冲 → 步行Bancone晚餐(固定17:30) → Northern线回酒店",
+    "day4_1004_Sun": "07:30起床 → 1站地铁到King's Cross → Great Northern火车到剑桥 → 步行国王学院区慢走 → The Eagle午餐 → Fitzbillies甜品 → 步行Scudamore's撑船 → The Anchor河畔 → 步行剑桥站 → 火车回King's Cross → 1站地铁回Angel → The 10 Cases晚餐",
+    "day5_1005_Mon": "09:30退房 → 地铁到The BoTree寄存 → 步行Granger&Co午餐 → 地铁到Harrods购物 → 步行/短途到ALBA(固定15:45开心果提拉米苏) → 地铁回Marylebone → The Hart晚餐 → 步行回酒店",
+    "day6_1006_Tue": "07:00起床 → 地铁到Victoria站早餐候车(09:30后off-peak) → Southern火车到Eastbourne → 巴士12/12A/12X到Exceat七姐妹郊野公园 → Cuckmere河谷观景 → 步行Cuckmere Inn午餐 → 山脊徒步到Birling Gap(天气差改河谷) → 巴士/出租回Eastbourne → 火车回Victoria → 地铁回酒店",
+    "day7_1007_Wed": "09:30退房寄存 → 步行摄政公园慢走 → 步行Fischer's午餐 → Marylebone High St最后采购 → 步行回BoTree取行李 → Bond St Elizabeth line到希思罗T2(约19:00到) → 值机安检候机 22:05 ZH888航班"
+  },
+  "meals_main_and_conditional_backup": {
+    "day1": [
+      {"meal": "早午餐", "main": "Ottolenghi Islington（奥托伦吉）", "backup": "Caravan Islington", "trigger": "柜台排队超20分钟或招牌沙拉售完"},
+      {"meal": "晚餐", "main": "Trullo", "backup": "The 10 Cases", "trigger": "Trullo订不到位或等位超40分钟"}
+    ],
+    "day2": [
+      {"meal": "午餐", "main": "Goddards at Greenwich（派与土豆泥）", "backup": "Greenwich Market 小吃摊", "trigger": "Goddards满座排队超30分钟"},
+      {"meal": "轻晚餐", "main": "The Lamb Tavern（羔羊酒馆）", "backup": "Paxton & Whitfield 热烤奶酪三明治", "trigger": "Lamb Tavern排队超30分钟"}
+    ],
+    "day3": [
+      {"meal": "早餐", "main": "Abuelo（已锁定）", "backup": "The Wolseley", "trigger": "Abuelo周六08:30不营业或订位改期"},
+      {"meal": "午餐", "main": "Rock & Sole Plaice（已锁定）", "backup": "Golden Chippy", "trigger": "排队超40分钟"},
+      {"meal": "晚餐", "main": "Bancone Golden Square（已锁定）", "backup": "Padella", "trigger": "订位变动或满座"}
+    ],
+    "day4": [
+      {"meal": "午餐", "main": "The Eagle", "backup": "Pint Shop", "trigger": "The Eagle无座排队超30分钟"},
+      {"meal": "下午茶", "main": "Fitzbillies", "backup": "Fitzbillies 另一分店", "trigger": "本店门口排长队"},
+      {"meal": "河畔小食", "main": "The Anchor", "backup": "The Granta", "trigger": "露台满座或天气差"},
+      {"meal": "晚餐", "main": "The 10 Cases", "backup": "The Albion", "trigger": "The 10 Cases满座"}
+    ],
+    "day5": [
+      {"meal": "午餐", "main": "Granger & Co", "backup": "Fischer's（改早午餐）", "trigger": "Granger排队超30分钟"},
+      {"meal": "下午茶", "main": "ALBA 开心果提拉米苏（已锁定）", "backup": "Harrods自营甜品台", "trigger": "ALBA当天临时休息"},
+      {"meal": "晚餐", "main": "The Hart", "backup": "Fischer's（维也纳菜）", "trigger": "The Hart订不到位"}
+    ],
+    "day6": [
+      {"meal": "午餐", "main": "The Cuckmere Inn", "backup": "Seven Sisters游客中心咖啡馆", "trigger": "Cuckmere Inn客满无位"}
+    ],
+    "day7": [
+      {"meal": "午餐", "main": "Fischer's 维也纳餐厅", "backup": "Granger & Co（午餐时段）", "trigger": "Fischer's满座"}
+    ]
+  },
+  "second_round_backup_dedup": {
+    "requirement": "每餐唯一主选，备选最多1家且写触发条件，不出现斜杠并列多家餐厅",
+    "changes": [
+      "Day1 Ottolenghi：备选 Caravan Islington（删除 The Good Egg）",
+      "Day3 Abuelo：备选 The Wolseley（删除 Monmouth Coffee）",
+      "Day3 Rock & Sole：备选 Golden Chippy（删除『其他Covent Garden炸鱼薯条』）",
+      "Day4 The Eagle：备选 Pint Shop（原 The Augsburg / Pint Shop 二选一，保留 Pint Shop）",
+      "Day5 ALBA：备选 Harrods自营甜品台（删除 Maitre Choux）"
+    ],
+    "verified": "全文16个条件备选均为单一明确店铺，无斜杠并列；每个备选保留触发条件",
+    "reshot_results": {
+      "official_mobile": {"consoleErrors": [], "horizontalOverflow": [], "resourceErrors": []},
+      "official_desktop": {"consoleErrors": [], "horizontalOverflow": [], "resourceErrors": []},
+      "days_panel_mobile": {"consoleErrors": [], "horizontalOverflow": [], "resourceErrors": []}
+    }
+  },
+  "third_round_weather_favicon": {
+    "weather_card": "概览页删除『逐日天气（9/26 更新）』7天静态温度网格与『10/06白崖天气窗口最佳』断言，改为『出发前实时天气核验』卡；不写死任何温度预测，保留 Met Office Eastbourne/伦敦实时链接；明确 Day6 出发前一晚及当天早晨复核风速/阵风/降雨/能见度，沿用已核实阈值（持续风≥30mph、阵风≥40mph 或明显降雨/能见度<1km 则不走山脊，改 Cuckmere 河谷平地+海滩，远离崖边3米）。",
+    "favicon": "已添加内联 SVG data URI favicon（navy #17324d 圆角底 + gold 山脊线 + wine 圆日），避免 favicon 缺失。",
+    "reshot_results": {
+      "official_mobile": {"consoleErrors": [], "horizontalOverflow": [], "resourceErrors": []},
+      "official_desktop": {"consoleErrors": [], "horizontalOverflow": [], "resourceErrors": []}
+    }
+  },
+  "cleanup_done": [
+    "修复旧串文案：Day6火车事件详情误串为Day5 The Hart；Day3 Abuelo详情误串为Day2 Lamb Tavern；Day2利德贺/餐饮截断；Day5 The Hart截断",
+    "删除不在 research-execution.json 的额外餐厅：The Cambridge Chop House、Jack's Gelato、Sunday Cafe",
+    "预订板块修正：Trullo『周日开门』改为周四；删除可选音乐剧条目；修正天文台/Sky Garden截断文案",
+    "所有来源链接按真实平台标注（官网/携程/抖音/搜索），无『小红书原帖』字样",
+    "未引入 today按钮 / currentDay / Leaflet",
+    "保留：每日顶部真实路线截图+『打开今日路线』链接、当天需提前完成卡、分类底色、每日2-4张核心图、首页精简、底部四按钮(概览/行程/预订/清单)"
+  ],
+  "fixed_items_respected": {
+    "10/01": "大本钟日落约18:40（机位18:15就位）",
+    "10/02": "Sky Garden 16:15票，15:45到安检",
+    "10/03": "Abuelo早餐 / Rock&Sole午餐 / Bancone晚餐 三餐锁定",
+    "10/05": "Harrods后ALBA开心果提拉米苏",
+    "10/06": "七姐妹白崖（工作日巴士12/12A/12X）",
+    "10/07": "22:05希思罗T2 ZH888航班（约19:00到机场）"
+  }
+}
