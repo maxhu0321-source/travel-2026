@@ -6,7 +6,7 @@
     "data_source": "outputs/research-execution.json",
     "images_dir": "outputs/images/",
     "refactor_time": "2026-09-30",
-    "note": "未执行任何 git commit / push"
+    "note": "v4 已购票/已预约合入并正式 push gh-pages（见 v4_fixed_tickets）"
   },
   "v2_cover_refactor": {
     "time": "2026-09-30",
@@ -418,5 +418,54 @@
       }
     },
     "git": "未push"
+  },
+  "v4_fixed_tickets": {
+    "release": "恢复彩色行程版并合入已购票与三人打车规则",
+    "based_on_commit": "12a83df",
+    "prepublish_backup": "artifacts/rebuild-d524445/artifacts/repo-html-backup-12a83df/uk-2026.html",
+    "structure_counts": {
+      "day_weather_lines": 7,
+      "compact_fixed_bars": 4,
+      "compact_fixed_days": [
+        "day2",
+        "day3",
+        "day4",
+        "day6"
+      ],
+      "day_notes": 7,
+      "prep_card_left": 0,
+      "taxi_primary_网约车": 11,
+      "airport_taxi_backup": 2,
+      "taxi_band_total": 13,
+      "transit_alt_folded": 11,
+      "rules_card": 1,
+      "weather_strip_cells": 7
+    },
+    "compact_order_check": "day2/3/4/6 均 weather→compact-fixed→route orderOK=true；首time距卡顶375/375/351/415px，均在844首屏",
+    "fixed_tickets": {
+      "D2": "Sky Garden 16:15入场，15:45前到安检（已购保持）",
+      "D3": "大英博物馆10:00入场，09:30前到正门安检（已预约）；Abuelo移出上午、移午后可选/可取消",
+      "D4": "去程KX 10:24锁定，09:30前到站；回程约19:40以电子票为准（精确出发/到达待确认）；到达剑桥/伦敦时刻不写死",
+      "D6": "去Victoria 09:46→Eastbourne 11:51(2h05·1换·首段Littlehampton)；回Eastbourne 19:33→Victoria 21:05(1h32直达)；换乘站以电子票View stops现场确认不猜；站台当日屏幕为准；Sep9-Oct12 Ore/Eastbourne时刻变更警告"
+    },
+    "images": {
+      "referenced": 14,
+      "all_present": true,
+      "all_md5_match_iso": true,
+      "copied_this_release": 0,
+      "note": "旧route/overview图未被新HTML引用，不重新接入；用户文件未删除"
+    },
+    "verifier": {
+      "format_check": "rubric check-file-format .html passed=true size=79419",
+      "must_contain_18": "15:45/16:15/10:00入场/09:30/10:24/19:40/09:46/11:51/19:33/21:05/Littlehampton/compact-fixed/View stops/Sep9/Abuelo/Rock&Sole/Bancone/ALBA 全部命中 18/18",
+      "no_embedded_map": "无 script src / esri / leaflet / mapbox / tile 请求",
+      "no_non_named_restaurants": "无 Ottolenghi/Trullo/Fitzbillies/Fischers"
+    },
+    "d6_scope": "仅 Cuckmere Visitor Centre/Exceat → Cuckmere Haven 河谷平地往返，不涉水/不上海崖边缘",
+    "still_unconfirmed": [
+      "D4 返程精确出发/到达电子票",
+      "ALBA 只点甜品是否接待"
+    ],
+    "git": "待 push origin gh-pages"
   }
 }
