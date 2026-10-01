@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8"/>
@@ -181,7 +182,25 @@
     .day-note-block b{display:block;font-size:12px;color:var(--navy2);margin-bottom:4px}
     .day-note-block ul,.day-note-block p{margin:0;padding-left:15px;font-size:13.5px;line-height:1.55}
 
-    @media(max-width:699px){body{padding-bottom:86px}.hero{padding:32px 16px 22px}.topnav{display:none}.panel{padding:12px 10px 6px}.card{border-radius:14px;padding:14px;margin-bottom:12px}.day-head{padding:13px 12px}.day-weather{padding:5px 12px}.compact-fixed{padding:6px 12px}.day-body{padding:6px 12px 14px}.bottomnav{bottom:0;width:100%;max-width:none;border-radius:16px 16px 0 0;padding:6px 8px calc(6px + env(safe-area-inset-bottom))}.bottomnav button{min-height:52px}.day-notes-grid{grid-template-columns:1fr}}
+    /* ===== 每日先读：主线优先，交通按需展开 ===== */
+    .day-glance{margin:10px 14px 8px;padding:12px;background:#fff;border:1px solid #dde4ea;border-radius:13px}
+    .day-glance-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;color:var(--navy);font-size:14px;font-weight:800}
+    .day-glance-title span{font-size:11px;color:var(--muted);font-weight:500}
+    .glance-flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(112px,1fr));gap:7px}
+    .glance-stop{position:relative;min-height:66px;padding:8px 9px 8px 12px;border-radius:9px;background:#f5f7f9;border-left:4px solid var(--blue)}
+    .glance-stop.food{background:#fff0f2;border-left-color:var(--wine)}.glance-stop.shop{background:#f3eafd;border-left-color:var(--purple)}.glance-stop.fixed{background:#eaf5ed;border-left-color:var(--green)}.glance-stop.travel{background:#edf5fb;border-left-color:var(--blue)}
+    .glance-stop time{display:block;font-size:12px;color:var(--muted);font-weight:700;line-height:1.2;margin-bottom:3px}
+    .glance-stop b{display:block;font-size:14px;color:var(--ink);line-height:1.3}
+    .glance-stop small{display:block;font-size:12px;color:#697680;line-height:1.3;margin-top:2px}
+    details.transport-more{margin-top:7px;border-top:1px dashed #c2d3e2}
+    details.transport-more>summary{cursor:pointer;list-style:none;min-height:44px;display:flex;align-items:center;color:#4f6374;font-size:13px;font-weight:750}
+    details.transport-more>summary::-webkit-details-marker{display:none}
+    details.transport-more>summary:before{content:"＋";width:20px;color:var(--blue);font-weight:900}
+    details.transport-more[open]>summary:before{content:"－"}
+    .transport-dual.is-collapsed{padding:7px 10px}.transport-dual.is-collapsed .td-head{margin-bottom:0}
+    .transport-dual.is-collapsed .td-mode{font-size:14px}.transport-dual.is-collapsed .td-fee{font-size:12px}
+
+    @media(max-width:699px){body{padding-bottom:86px}.hero{padding:32px 16px 22px}.topnav{display:none}.panel{padding:12px 10px 6px}.card{border-radius:14px;padding:14px;margin-bottom:12px}.day-head{padding:13px 12px}.day-weather{padding:5px 12px}.compact-fixed{padding:6px 12px}.day-body{padding:6px 12px 14px}.bottomnav{bottom:0;width:100%;max-width:none;border-radius:16px 16px 0 0;padding:6px 8px calc(6px + env(safe-area-inset-bottom))}.bottomnav button{min-height:52px}.day-notes-grid{grid-template-columns:1fr}.day-glance{margin:9px 10px 7px;padding:10px}.glance-flow{grid-template-columns:1fr 1fr}.glance-stop{min-height:62px}.event.travel{padding-top:9px;padding-bottom:9px}.event.travel h4{margin-top:3px}}
 </style>
 </head>
 <body>
@@ -197,63 +216,59 @@
 <button class="tab active" data-panel="overview">概览</button><button class="tab" data-panel="days">每日行程</button><button class="tab" data-panel="booking">预订</button><button class="tab" data-panel="checklist">清单</button>
 </nav>
 <main>
-
 <!-- ============ 概览：7日视觉日历 ============ -->
 <section class="panel active" id="overview">
 <div class="section-title"><h2>7天一眼扫完</h2><p>点卡片进当日详情</p></div>
-
 <div class="cat-legend">
 <span><i style="background:var(--blue)"></i>市区</span>
 <span><i style="background:var(--green)"></i>近郊</span>
 <span><i style="background:var(--purple)"></i>购物</span>
 <span><i style="background:var(--wine)"></i>返程</span>
 </div>
-
 <div class="cal-grid">
-<a class="cal-card cat-shop" href="#day1" data-go-day="day1">
-  <div class="cal-top"><span class="cal-date">10/01</span><span class="cal-dow">周四</span><span class="cal-intensity">轻松</span></div>
-  <div class="cal-mainline">希思罗T2 → 希尔顿酒店 → Burberry工厂折扣店 → 大本钟</div>
-  <div class="cal-meta"><span>🌤 21/12°</span><span>🚇+🚕</span><span class="cal-locked">18:40 日落</span></div>
-  <div class="cal-focus">★ 大本钟日落蓝调</div>
+<a class="cal-card cat-shop" data-go-day="day1" href="#day1">
+<div class="cal-top"><span class="cal-date">10/01</span><span class="cal-dow">周四</span><span class="cal-intensity">轻松</span></div>
+<div class="cal-mainline">希思罗T2 → 希尔顿酒店 → Burberry工厂折扣店 → 大本钟</div>
+<div class="cal-meta"><span>🌤 21/12°</span><span>🚇+🚕</span><span class="cal-locked">18:40 日落</span></div>
+<div class="cal-focus">★ 大本钟日落蓝调</div>
 </a>
-<a class="cal-card cat-suburb" href="#day2" data-go-day="day2">
-  <div class="cal-top"><span class="cal-date">10/02</span><span class="cal-dow">周五</span><span class="cal-intensity">6–8km</span></div>
-  <div class="cal-mainline">希尔顿酒店 → 皇家天文台 → 泰晤士河游船 → 塔桥 → 天空花园 <span class="en">Hilton · Royal Observatory · Uber Boat · Tower Bridge · Sky Garden</span></div>
-  <div class="cal-meta"><span>☀️ 22/12°</span><span>🚇+⛴</span><span class="cal-locked">16:15 天空花园</span></div>
-  <div class="cal-focus">★ 泰晤士河游船</div>
+<a class="cal-card cat-suburb" data-go-day="day2" href="#day2">
+<div class="cal-top"><span class="cal-date">10/02</span><span class="cal-dow">周五</span><span class="cal-intensity">6–8km</span></div>
+<div class="cal-mainline">希尔顿酒店 → 皇家天文台 → 泰晤士河游船 → 塔桥 → 天空花园 <span class="en">Hilton · Royal Observatory · Uber Boat · Tower Bridge · Sky Garden</span></div>
+<div class="cal-meta"><span>☀️ 22/12°</span><span>🚇+⛴</span><span class="cal-locked">16:15 天空花园</span></div>
+<div class="cal-focus">★ 泰晤士河游船</div>
 </a>
-<a class="cal-card cat-city" href="#day3" data-go-day="day3">
-  <div class="cal-top"><span class="cal-date">10/03</span><span class="cal-dow">周六</span><span class="cal-intensity">4–6km</span></div>
-  <div class="cal-mainline">希尔顿酒店（Angel区）→ 大英博物馆 → Rock &amp; Sole炸鱼薯条店 <span class="en">Rock&amp;Sole</span> → <span style="white-space:nowrap">尼尔庭院 <span class="en">Neal’s Yard</span></span> → 意面 <span class="en">Bancone</span></div>
-  <div class="cal-meta"><span>⛅ 22/11°</span><span>🚶 步行为主</span><span class="cal-locked">10:00 大英博物馆</span></div>
-  <div class="cal-focus">★ 西区三餐</div>
+<a class="cal-card cat-city" data-go-day="day3" href="#day3">
+<div class="cal-top"><span class="cal-date">10/03</span><span class="cal-dow">周六</span><span class="cal-intensity">4–6km</span></div>
+<div class="cal-mainline">希尔顿酒店（Angel区）→ 大英博物馆 → Rock &amp; Sole炸鱼薯条店 <span class="en">Rock&amp;Sole</span> → <span style="white-space:nowrap">尼尔庭院 <span class="en">Neal’s Yard</span></span> → 意面 <span class="en">Bancone</span></div>
+<div class="cal-meta"><span>⛅ 22/11°</span><span>🚶 步行为主</span><span class="cal-locked">10:00 大英博物馆</span></div>
+<div class="cal-focus">★ 西区三餐</div>
 </a>
-<a class="cal-card cat-suburb" href="#day4" data-go-day="day4">
-  <div class="cal-top"><span class="cal-date">10/04</span><span class="cal-dow">周日</span><span class="cal-intensity">6–8km</span></div>
-  <div class="cal-mainline">国王十字 <span class="en">King's Cross</span> → 剑桥学院区 → 康河撑船 → 返程</div>
-  <div class="cal-meta"><span>🌦 20/13°</span><span>🚆 火车</span><span class="cal-locked">10:24 国王十字发车</span></div>
-  <div class="cal-focus">★ 康河撑船</div>
+<a class="cal-card cat-suburb" data-go-day="day4" href="#day4">
+<div class="cal-top"><span class="cal-date">10/04</span><span class="cal-dow">周日</span><span class="cal-intensity">6–8km</span></div>
+<div class="cal-mainline">国王十字 <span class="en">King's Cross</span> → 剑桥学院区 → 康河撑船 → 返程</div>
+<div class="cal-meta"><span>🌦 20/13°</span><span>🚆 火车</span><span class="cal-locked">10:24 国王十字发车</span></div>
+<div class="cal-focus">★ 康河撑船</div>
 </a>
-<a class="cal-card cat-shop" href="#day5" data-go-day="day5">
-  <div class="cal-top"><span class="cal-date">10/05</span><span class="cal-dow">周一</span><span class="cal-intensity">轻松</span></div>
-  <div class="cal-mainline">退房 → The BoTree酒店寄存 <span class="en">BoTree</span> → Barbour服装店 <span class="en">Carnaby</span> → ALBA午餐 → 哈罗德百货 <span class="en">Harrods</span></div>
-  <div class="cal-meta"><span>🌤 21/13°</span><span>🚶+🚇</span><span class="cal-locked">12:30 ALBA午餐</span></div>
-  <div class="cal-focus">★ <span>Barbour经典夹克</span> + <span>ALBA工作日午市</span></div>
+<a class="cal-card cat-shop" data-go-day="day5" href="#day5">
+<div class="cal-top"><span class="cal-date">10/05</span><span class="cal-dow">周一</span><span class="cal-intensity">轻松</span></div>
+<div class="cal-mainline">退房 → The BoTree酒店寄存 <span class="en">BoTree</span> → Barbour服装店 <span class="en">Carnaby</span> → ALBA午餐 → 哈罗德百货 <span class="en">Harrods</span></div>
+<div class="cal-meta"><span>🌤 21/13°</span><span>🚶+🚇</span><span class="cal-locked">12:30 ALBA午餐</span></div>
+<div class="cal-focus">★ <span>Barbour经典夹克</span> + <span>ALBA工作日午市</span></div>
 </a>
-<a class="cal-card cat-suburb" href="#day6" data-go-day="day6">
-  <div class="cal-top"><span class="cal-date">10/06</span><span class="cal-dow">周二</span><span class="cal-intensity">全日河谷</span></div>
-  <div class="cal-mainline">维多利亚 <span class="en">Victoria</span> → 伊斯特本 <span class="en">Eastbourne</span> → 七姐妹公园河谷入口 → 返伊斯特本</div>
-  <div class="cal-meta"><span>🌦 17–20°</span><span>🚆+🚌</span><span class="cal-locked">09:46 / 19:33 火车</span></div>
-  <div class="cal-focus">★ 库克米尔河谷白崖</div>
+<a class="cal-card cat-suburb" data-go-day="day6" href="#day6">
+<div class="cal-top"><span class="cal-date">10/06</span><span class="cal-dow">周二</span><span class="cal-intensity">全日河谷</span></div>
+<div class="cal-mainline">维多利亚 <span class="en">Victoria</span> → 伊斯特本 <span class="en">Eastbourne</span> → 七姐妹公园河谷入口 → 返伊斯特本</div>
+<div class="cal-meta"><span>🌦 17–20°</span><span>🚆+🚌</span><span class="cal-locked">09:46 / 19:33 火车</span></div>
+<div class="cal-focus">★ 库克米尔河谷白崖</div>
 </a>
-<a class="cal-card cat-return" href="#day7" data-go-day="day7">
-  <div class="cal-top"><span class="cal-date">10/07</span><span class="cal-dow">周三</span><span class="cal-intensity">轻松</span></div>
-  <div class="cal-mainline">The BoTree酒店 <span class="en">BoTree</span> → 摄政公园 <span class="en">Regent's Park</span> → 取行李 → 希思罗T2</div>
-  <div class="cal-meta"><span>✈️ —</span><span>🚇 伊丽莎白线 <span class="en">Elizabeth</span></span><span class="cal-locked">22:05 ZH888</span></div>
-  <div class="cal-focus">★ 公园慢游后返程</div>
+<a class="cal-card cat-return" data-go-day="day7" href="#day7">
+<div class="cal-top"><span class="cal-date">10/07</span><span class="cal-dow">周三</span><span class="cal-intensity">轻松</span></div>
+<div class="cal-mainline">The BoTree酒店 <span class="en">BoTree</span> → 摄政公园 <span class="en">Regent's Park</span> → 取行李 → 希思罗T2</div>
+<div class="cal-meta"><span>✈️ —</span><span>🚇 伊丽莎白线 <span class="en">Elizabeth</span></span><span class="cal-locked">22:05 ZH888</span></div>
+<div class="cal-focus">★ 公园慢游后返程</div>
 </a>
 </div>
-
 <!-- 航班 / 酒店：折叠 -->
 <details class="fold" style="margin-top:14px">
 <summary>✈️ 往返航班（点开）</summary>
@@ -269,7 +284,6 @@
 <div class="fold-line"><b>后2晚</b><span>The BoTree酒店（马里波恩）｜The BoTree｜10/05入·10/07退</span></div>
 </div>
 </details>
-
 <div class="rules-card">
 <h4>🚕 3人交通与票务规则（唯一一处）</h4>
 <p>短步行（≤15分钟直接走）；其余按 9/30 预算与实时 App/ETA 决定，固定票/异常切公共；跨城/船例外。</p>
@@ -277,34 +291,30 @@
 <p><b>电子票离线：</b>Sky Garden / 大英博物馆 / 剑桥 / Eastbourne 火车票，出发前全部截图存相册+离线地图，三人手机各存一份。</p>
 <p><b>刷卡：</b>每人固定一种支付（全实体卡或全手机），同一程不要实体卡与 Apple Pay 混刷；市内 contactless in/out，长途火车用 e-ticket 扫码。</p>
 </div>
-
 <article class="card">
 <h3>逐日天气（9/30 核验）</h3>
 <details class="dnote" style="margin-top:8px"><summary>展开查看7日范围图与天气链接</summary>
 <div class="actions" style="margin-top:6px"><a class="btn" href="https://weather.metoffice.gov.uk/forecast/gcpvj0v07?nearestTo=Strand%20%28City%20of%20Westminster%29" rel="noopener" target="_blank">伦敦天气｜Met Office</a><a class="btn" href="https://weather.metoffice.gov.uk/forecast/u1214b469?nearestTo=Arbury%20%28Cambridgeshire%29" rel="noopener" target="_blank">剑桥天气｜Met Office</a><a class="btn" href="https://weather.metoffice.gov.uk/forecast/u100y9uwn" rel="noopener" target="_blank">伊斯特本天气｜Met Office</a></div>
 </details>
 </article>
-
-<article class="card"><h3>🗺️ 地图与导航</h3><div class="map-card" style="margin-top:8px"><a class="m-img" href="https://www.google.com/maps/@51.42,0.02,9z" rel="noopener" target="_blank"><img src="images/overview-uk-regions-v2.png" alt="7日范围图" loading="lazy"/></a><div class="map-cap"><b>7日范围｜伦敦·剑桥·伊斯特本/七姐妹 <span class="en">London · Cambridge · Eastbourne/Seven Sisters</span></b>仅示意三大区域，无连线路线<br><span class="map-att">©2026 Google · Google Maps</span></div></div><div class="actions" style="margin-top:10px"><a class="btn primary" href="https://maps.app.goo.gl/4FVJcnpe48x45byF7" rel="noopener" target="_blank">📌 打开地图收藏夹 <span class="en">Google Maps</span></a></div></article>
+<article class="card"><h3>🗺️ 地图与导航</h3><div class="map-card" style="margin-top:8px"><a class="m-img" href="https://www.google.com/maps/@51.42,0.02,9z" rel="noopener" target="_blank"><img alt="7日范围图" loading="lazy" src="images/overview-uk-regions-v2.png"/></a><div class="map-cap"><b>7日范围｜伦敦·剑桥·伊斯特本/七姐妹 <span class="en">London · Cambridge · Eastbourne/Seven Sisters</span></b>仅示意三大区域，无连线路线<br/><span class="map-att">©2026 Google · Google Maps</span></div></div><div class="actions" style="margin-top:10px"><a class="btn primary" href="https://maps.app.goo.gl/4FVJcnpe48x45byF7" rel="noopener" target="_blank">📌 打开地图收藏夹 <span class="en">Google Maps</span></a></div></article>
 </section>
-
 <!-- ============ 每日行程 ============ -->
 <section class="panel" id="days">
 <div class="section-title"><h2>每日行程</h2><p>时间是建议，不是军令</p></div>
-
 <!-- Day 1 -->
 <article class="card day-card" data-date="2026-10-01" id="day1">
 <div class="day-head"><div class="day-num"><b>01</b><span>OCT</span></div><div class="day-title"><h3>抵达伦敦，大本钟日落收尾</h3><p>希思罗T2 → 希尔顿酒店（Angel区）→ 哈克尼 <span class="en">Hackney</span> → 威斯敏斯特 <span class="en">Westminster</span></p></div><span class="tag easy">轻松</span></div>
 <div class="day-weather"><span class="dw-chip">🌤 21/12℃</span><span class="dw-chip">下午转晴</span><span class="dw-chip">🌇 18:40 日落</span></div>
+<div class="day-glance"><div class="day-glance-title">今天怎么过<span>先看主线，再看地图与细节</span></div><div class="glance-flow"><div class="glance-stop travel"><time>07:15</time><b>抵达伦敦</b><small>入境取行李，先去酒店</small></div><div class="glance-stop food"><time>11:30</time><b>轻早午餐</b><small>酒店附近，不排队</small></div><div class="glance-stop shop"><time>13:00</time><b>Burberry折扣店</b><small>约1.5小时，疲惫就取消</small></div><div class="glance-stop fixed"><time>18:40</time><b>大本钟日落</b><small>天气好就去，伦敦眼可选</small></div></div></div>
 <a class="day-route" href="https://www.google.com/maps/dir/Heathrow+Terminal+2/Hilton+London+Angel+Islington+53+Upper+Street+London+N1+0UY/Burberry+Outlet+29-53+Chatham+Place+London+E9+6LP/Big+Ben+Westminster+Bridge+London" rel="noopener" target="_blank"><span class="route-icon">🗺️</span><span class="route-text"><b>打开今日路线</b><span>希思罗T2 → 酒店寄存 → Burberry工厂折扣店 → 大本钟日落</span></span><span class="route-arrow">›</span></a>
-<div class="map-scroll"><div class="map-card"><a class="m-img" href="https://www.google.com/maps/dir/Hilton+London+Angel+Islington/Burberry+Outlet+29-53+Chatham+Place+London+E9" rel="noopener" target="_blank"><img src="images/day1a-drive-angel-chatham.png" alt="酒店 → Burberry Chatham Place" loading="lazy"/></a><div class="map-cap"><b>酒店 → Burberry工厂折扣店 <span class="en">Burberry Chatham Place</span></b>驾车/网约车 约31分钟 · Hilton London Angel Islington → Burberry Outlet 29-53 Chatham Place E9<br><span class="map-att">©2026 Google · Google Maps</span></div></div><div class="map-card"><a class="m-img" href="https://www.google.com/maps/dir/Burberry+Outlet+Chatham+Place+London+E9/Westminster+London" rel="noopener" target="_blank"><img src="images/day1b-transit-chatham-westminster.png" alt="Chatham Place → 威斯敏斯特" loading="lazy"/></a><div class="map-cap"><b>Burberry工厂折扣店 → 威斯敏斯特 <span class="en">Chatham Place → Westminster</span></b>公共交通 约56分钟 · Burberry Outlet → Westminster / 伦敦眼<br><span class="map-att">©2026 Google · Google Maps</span></div></div></div>
+<div class="map-scroll"><div class="map-card"><a class="m-img" href="https://www.google.com/maps/dir/Hilton+London+Angel+Islington/Burberry+Outlet+29-53+Chatham+Place+London+E9" rel="noopener" target="_blank"><img alt="酒店 → Burberry Chatham Place" loading="lazy" src="images/day1a-drive-angel-chatham.png"/></a><div class="map-cap"><b>酒店 → Burberry工厂折扣店 <span class="en">Burberry Chatham Place</span></b>驾车/网约车 约31分钟 · Hilton London Angel Islington → Burberry Outlet 29-53 Chatham Place E9<br/><span class="map-att">©2026 Google · Google Maps</span></div></div><div class="map-card"><a class="m-img" href="https://www.google.com/maps/dir/Burberry+Outlet+Chatham+Place+London+E9/Westminster+London" rel="noopener" target="_blank"><img alt="Chatham Place → 威斯敏斯特" loading="lazy" src="images/day1b-transit-chatham-westminster.png"/></a><div class="map-cap"><b>Burberry工厂折扣店 → 威斯敏斯特 <span class="en">Chatham Place → Westminster</span></b>公共交通 约56分钟 · Burberry Outlet → Westminster / 伦敦眼<br/><span class="map-att">©2026 Google · Google Maps</span></div></div></div>
 <div class="day-body"><div class="timeline" style="display:grid;gap:9px">
 <div class="event travel" data-kind="交通"><span class="time">07:15</span><h4>抵达希思罗 T2</h4><p>预留 1.5–2 小时入境取行李；红眼后别硬撑。</p>
-<div class="transport-dual" data-route-key="r1-t2-angel">
-<div class="td-head"><span class="td-badge">推荐</span><span class="td-mode">🚇 <span style="white-space:nowrap">伊丽莎白线｜Elizabeth line</span> → 步行到酒店</span><span class="td-fee">£46.50 / 3人</span></div>
+<div class="transport-dual is-collapsed" data-route-key="r1-t2-angel"><div class="td-head"><span class="td-badge">推荐</span><span class="td-mode">🚇 <span style="white-space:nowrap">伊丽莎白线｜Elizabeth line</span> → 步行到酒店</span><span class="td-fee">£46.50 / 3人</span></div><details class="transport-more"><summary>展开交通详情：站名、方向、站数、费用与备选</summary>
 <ol class="transit-steps">
-<li><span class="n">1</span><span class="sb">步行到 <b>到达层步行约3分钟到</b> <span class="en">Heathrow T2&3 站</span></span></li>
-<li><span class="n">2</span><span class="sb">乘 <b>希思罗T2/T3站 Heathrow Terminals 2&3</b></span></li><li><span class="n">3</span><span class="sb">伊丽莎白线｜伊丽莎白线东行约35分钟</span></li>
+<li><span class="n">1</span><span class="sb">步行到 <b>到达层步行约3分钟到</b> <span class="en">Heathrow T2&amp;3 站</span></span></li>
+<li><span class="n">2</span><span class="sb">乘 <b>希思罗T2/T3站 Heathrow Terminals 2&amp;3</b></span></li><li><span class="n">3</span><span class="sb">伊丽莎白线｜伊丽莎白线东行约35分钟</span></li>
 <li><span class="n">4</span><span class="sb">换乘：法灵顿站出站步行12分钟</span></li>
 <li><span class="n">5</span><span class="sb">出站步行：法灵顿站步行12分钟到酒店</span></li>
 <li><span class="n">6</span><span class="sb">总时长：50–60 分钟 door-to-hotel</span></li>
@@ -316,11 +326,10 @@
 <li><b>路况</b>　高（M4早高峰尾段+进城隧道）</li>
 </ul></details>
 <p class="fallback">仅实时整车≤£60 且 ETA≤15分钟 且 App 确认3人+3箱装得下（否则查XL）才网约车；否则 Elizabeth line。</p>
-</div><div class="event food" data-kind="餐饮"><span class="time">11:30</span><h4>酒店附近早餐 / 早午餐</h4><p>Upper Street 沿线就近咖啡简餐，不排队名店。</p></div>
+</details></div><div class="event food" data-kind="餐饮"><span class="time">11:30</span><h4>酒店附近早餐 / 早午餐</h4><p>Upper Street 沿线就近咖啡简餐，不排队名店。</p></div>
 <div class="event shopping" data-kind="购物"><span class="time">13:00</span><h4>Burberry工厂折扣店｜Burberry Outlet, Chatham Place</h4>
 <img alt="Burberry Chatham Place 门店" class="loc-img" loading="lazy" src="images/day1-burberry-store.jpg"/><p class="loc-cap">📷 Chatham Place 折扣门店</p>
-<div class="transport-dual" data-route-key="r1-angel-burberry">
-<div class="td-head"><span class="td-badge">推荐</span><span class="td-mode">🚕 网约车（门到门带购物袋）</span><span class="td-fee">实时App价</span></div>
+<div class="transport-dual is-collapsed" data-route-key="r1-angel-burberry"><div class="td-head"><span class="td-badge">推荐</span><span class="td-mode">🚕 网约车（门到门带购物袋）</span><span class="td-fee">实时App价</span></div><details class="transport-more"><summary>展开交通详情：站名、方向、站数、费用与备选</summary>
 <ul class="taxi-steps">
 <li><b>起终点</b>　酒店→Burberry工厂折扣店</li>
 <li><b>车型行李</b>　普通轿车，购物袋后座</li>
@@ -328,17 +337,16 @@
 <li><b>路况</b>　低–中（midday）</li>
 </ul>
 <details class="transport-other"><summary>🚇 公共交通（点开）</summary><ol class="transit-steps">
-<li><span class="n">1</span><span class="sb">步行到 <b>酒店步行约5分钟到</b> <span class="en">Highbury & Islington Overground</span></span></li>
-<li><span class="n">2</span><span class="sb">乘 <b>海布里及伊斯灵顿站</b> <span class="en">Highbury & Islington (Overground)</span></span></li><li><span class="n">3</span><span class="sb">北伦敦线东行2站</span></li>
+<li><span class="n">1</span><span class="sb">步行到 <b>酒店步行约5分钟到</b> <span class="en">Highbury &amp; Islington Overground</span></span></li>
+<li><span class="n">2</span><span class="sb">乘 <b>海布里及伊斯灵顿站</b> <span class="en">Highbury &amp; Islington (Overground)</span></span></li><li><span class="n">3</span><span class="sb">北伦敦线东行2站</span></li>
 <li><span class="n">4</span><span class="sb">出站步行：步行10–15分钟到工厂店</span></li>
 <li><span class="n">5</span><span class="sb">总时长：30–35 分钟</span></li>
 </ol>
 <p class="tap-note">£3.10/人 · £9.30/3人　刷卡：各自同一张contactless，in/out</p></details>
 <p class="fallback">实时报价&gt;£15 或 ETA&gt;12分钟 → Overground 到 Hackney Central + 步行。</p>
-</div><div class="event optional" data-kind="待确认"><span class="time">16:00</span><h4>伦敦眼（天气好且体力好 · 未购票待确认）</h4><p><b>条件主计划：</b>确认购票则优先 16:00–16:30 票段；仅当现场顺畅目标 17:00–17:30 乘完。16:45 仍未入队或预计 17:45 前无法结束则<b>不登舱</b>，直接南岸占位。</p><p class="small muted">平日约 11:00–18:00 营业；排队+安检+乘坐预留 1–2 小时，17:00 是排队入场时段、不保证即登舱。</p><div class="actions"><a class="btn" href="https://www.londoneye.com/" rel="noopener" target="_blank">伦敦眼官网查票</a><a class="btn" href="https://maps.google.com/?q=London+Eye+Westminster" rel="noopener" target="_blank">伦敦眼地图</a></div></div>
+</details></div><div class="event optional" data-kind="待确认"><span class="time">16:00</span><h4>伦敦眼（天气好且体力好 · 未购票待确认）</h4><p><b>条件主计划：</b>确认购票则优先 16:00–16:30 票段；仅当现场顺畅目标 17:00–17:30 乘完。16:45 仍未入队或预计 17:45 前无法结束则<b>不登舱</b>，直接南岸占位。</p><p class="small muted">平日约 11:00–18:00 营业；排队+安检+乘坐预留 1–2 小时，17:00 是排队入场时段、不保证即登舱。</p><div class="actions"><a class="btn" href="https://www.londoneye.com/" rel="noopener" target="_blank">伦敦眼官网查票</a><a class="btn" href="https://maps.google.com/?q=London+Eye+Westminster" rel="noopener" target="_blank">伦敦眼地图</a></div></div>
 <div class="event travel" data-kind="交通"><span class="time">17:20</span><h4>哈克尼购物区 → 威斯敏斯特（日落机位）</h4>
-<div class="transport-dual" data-route-key="r1-burberry-westminster">
-<div class="td-head"><span class="td-badge">推荐</span><span class="td-mode">🚇 Overground + 地铁（赶日落机位）</span><span class="td-fee">£10.80 / 3人</span></div>
+<div class="transport-dual is-collapsed" data-route-key="r1-burberry-westminster"><div class="td-head"><span class="td-badge">推荐</span><span class="td-mode">🚇 Overground + 地铁（赶日落机位）</span><span class="td-fee">£10.80 / 3人</span></div><details class="transport-more"><summary>展开交通详情：站名、方向、站数、费用与备选</summary>
 <ol class="transit-steps">
 <li><span class="n">1</span><span class="sb">步行到 <b>步行10分钟回哈克尼中央站</b></span></li>
 <li><span class="n">2</span><span class="sb">乘 <b>哈克尼中央站</b></span></li><li><span class="n">3</span><span class="sb">Overground东行到利物浦街站</span></li>
@@ -353,14 +361,13 @@
 <li><b>路况</b>　高（16:30进城方向）</li>
 </ul></details>
 <p class="fallback">仅实时 quote ≤£20 且 ETA ≤10分钟 → 网约车抢 17:45 南岸机位；否则 Overground+地铁。</p>
-</div><div class="event optional" data-kind="可选"><span class="time">18:40</span><h4>大本钟日落</h4>
+</details></div><div class="event optional" data-kind="可选"><span class="time">18:40</span><h4>大本钟日落</h4>
 <img alt="Big Ben / Westminster Bridge" class="loc-img" loading="lazy" src="images/day1-big-ben.jpg"/><p class="loc-cap">📷 Diliff via Wikimedia Commons · CC BY-SA 2.5</p>
 <div class="rec-tags"><span class="rec-tag">Westminster Bridge 西侧人行道做框架</span><span class="rec-tag">南岸 London Eye 一侧拍国会大厦剪影</span><span class="rec-tag">桥拱洞做框架构图</span><span class="rec-tag">蓝调约到 19:10</span></div>
 <p>河边风大带外套。</p>
 <div class="actions"><a class="btn" href="https://maps.google.com/?q=Big+Ben+Westminster" rel="noopener" target="_blank">大本钟机位</a></div></div>
 <div class="event travel" data-kind="交通"><span class="time">20:00</span><h4>威斯敏斯特 → 天使站附近晚餐</h4>
-<div class="transport-dual" data-route-key="r1-westminster-angel">
-<div class="td-head"><span class="td-badge">推荐</span><span class="td-mode">🚕 夜间网约车 <span class="en">Ride-hailing</span></span><span class="td-fee">实时App价</span></div>
+<div class="transport-dual is-collapsed" data-route-key="r1-westminster-angel"><div class="td-head"><span class="td-badge">推荐</span><span class="td-mode">🚕 夜间网约车 <span class="en">Ride-hailing</span></span><span class="td-fee">实时App价</span></div><details class="transport-more"><summary>展开交通详情：站名、方向、站数、费用与备选</summary>
 <ul class="taxi-steps">
 <li><b>起终点</b>　伦敦眼→希尔顿酒店</li>
 <li><b>车型行李</b>　普通轿车</li>
@@ -376,7 +383,7 @@
 </ol>
 <p class="tap-note">£3.00/人 · £9.00/3人（全Zone1 off-peak）　刷卡：同一张contactless连续in/out，换乘不出站</p></details>
 <p class="fallback">实时报价&gt;£20 → 换线回天使站。</p>
-</div><div class="focus-line"><b>今日重点：</b>大本钟日落为可选；Outlet、伦敦眼都精神好才走，疲惫直接补觉。</div>
+</details></div><div class="focus-line"><b>今日重点：</b>大本钟日落为可选；Outlet、伦敦眼都精神好才走，疲惫直接补觉。</div>
 <details class="day-notes"><summary>📋 当天准备（展开）</summary><div class="day-notes-grid">
 <details class="dnote"><summary>当天补充与备选（票/时间/购物提醒）</summary>
 <div class="day-note-block"><b>门票/订位</b><ul><li>大本钟外观免费</li><li>伦敦眼未购票、待确认，需自行在官网购买</li></ul></div>
@@ -385,18 +392,17 @@
 <div class="day-note-block"><b>支付/决策</b><p>红眼后疲惫就下午补觉，按上面 A/B 分支发车。Outlet 后或去南岸路上顺手夹馅/咖啡即可，不单列 event。</p></div>
 </details>
 </div></details>
-</div></article>
-
+</div></div></div></div></div></div></article>
 <article class="card day-card" data-date="2026-10-02" id="day2">
 <div class="day-head"><div class="day-num"><b>02</b><span>OCT</span></div><div class="day-title"><h3>格林尼治天文台 · 泰晤士河游船 · 天空花园</h3><p>希尔顿酒店 → 格林尼治皇家天文台 → 泰晤士河游船 → 伦敦塔桥 → 天空花园 <span class="en">Hilton · Royal Observatory · Uber Boat · Tower Bridge · Sky Garden</span></p></div><span class="tag medium">适中 · 6–8km</span></div>
 <div class="day-weather"><span class="dw-chip">☀️ 22/12℃</span><span class="dw-chip">晴好</span><span class="dw-chip">⛴ 甲板风大带防风层</span></div>
+<div class="day-glance"><div class="day-glance-title">今天怎么过<span>固定票优先</span></div><div class="glance-flow"><div class="glance-stop travel"><time>08:30</time><b>出发去格林尼治</b><small>地铁＋DLR</small></div><div class="glance-stop"><time>10:30</time><b>皇家天文台</b><small>子午线与山顶全景</small></div><div class="glance-stop food"><time>12:30</time><b>市集午餐</b><small>留45分钟赶船</small></div><div class="glance-stop travel"><time>13:30</time><b>泰晤士河游船</b><small>格林尼治→塔桥</small></div><div class="glance-stop"><time>14:10</time><b>塔桥散步</b><small>南岸机位</small></div><div class="glance-stop fixed"><time>16:15</time><b>天空花园</b><small>15:45前到安检</small></div></div></div>
 <div class="compact-fixed"><span class="cf-badge">🎫 已购票</span><span class="cf-main"><span style="white-space:nowrap">天空花园｜Sky Garden</span> <b>16:15 入场</b>｜<b>15:45 前到安检</b></span><span class="cf-sub">塔桥→天空花园步行 10–12 分钟保底，不打车。</span></div>
 <a class="day-route" href="https://www.google.com/maps/dir/Hilton+London+Angel+Islington/Cutty+Sark+Greenwich+SE10+9HT/Royal+Observatory+Greenwich+Blackheath+Avenue+SE10+8XJ/Tower+Bridge+London/Sky+Garden+1+Sky+Garden+Walk+London+EC3M+8AF" rel="noopener" target="_blank"><span class="route-icon">🗺️</span><span class="route-text"><b>打开今日路线</b><span>酒店 → 卡蒂萨克号 → 天文台 → 塔桥 → 天空花园 → 回酒店</span></span><span class="route-arrow">›</span></a>
-<div class="map-scroll"><div class="map-card"><a class="m-img" href="https://www.google.com/maps/dir/Angel+London+Islington/Cutty+Sark+Greenwich" rel="noopener" target="_blank"><img src="images/day2a-angel-cuttysark-transit.png" alt="Angel → 卡蒂萨克（Northern+DLR）" loading="lazy"/></a><div class="map-cap"><b>天使站 → 卡蒂萨克号帆船 <span class="en">Angel → Cutty Sark</span></b>地铁 约42分钟 · Angel → Cutty Sark Greenwich<br><span class="map-att">©2026 Google · Google Maps</span></div></div><div class="map-card"><a class="m-img" href="https://www.google.com/maps/dir/Cutty+Sark+Greenwich/Royal+Observatory+Greenwich/Greenwich+Pier" rel="noopener" target="_blank"><img src="images/day2a2-greenwich-local-walk.png" alt="格林尼治镇内步行" loading="lazy"/></a><div class="map-cap"><b>格林尼治镇内步行</b>步行 约31分钟 · Greenwich Pier → 卡蒂萨克 → 皇家天文台<br><span class="map-att">©2026 Google · Google Maps</span></div></div><div class="map-card"><a class="m-img" href="https://www.thamesclippers.com/plan-your-journey/route-map" rel="noopener" target="_blank"><img src="images/day2b-uberboat-official-v2.png" alt="Uber Boat 官方航线图" loading="lazy"/></a><div class="map-cap"><b>优步河船官方航线图 <span class="en">Uber Boat by Thames Clippers</span></b>河船 · Thames Clippers · Tower ↔ Greenwich/North Greenwich 全线<br><span class="map-att">Uber Boat by Thames Clippers 官方航线图 · thamesclippers.com</span></div></div><div class="map-card"><a class="m-img" href="https://www.google.com/maps/dir/Tower+Millennium+Pier+London/Tower+Bridge+London/Sky+Garden+London" rel="noopener" target="_blank"><img src="images/day2c-tower-city-walk-v2.png" alt="塔桥 → Sky Garden" loading="lazy"/></a><div class="map-cap"><b>伦敦塔桥 → 天空花园 <span class="en">Tower Bridge · Sky Garden</span></b>步行约24分钟 · Tower Pier → 塔桥 → Sky Garden；15:45前到安检。<br><span class="map-att">©2026 Google · Google Maps</span></div></div></div>
+<div class="map-scroll"><div class="map-card"><a class="m-img" href="https://www.google.com/maps/dir/Angel+London+Islington/Cutty+Sark+Greenwich" rel="noopener" target="_blank"><img alt="Angel → 卡蒂萨克（Northern+DLR）" loading="lazy" src="images/day2a-angel-cuttysark-transit.png"/></a><div class="map-cap"><b>天使站 → 卡蒂萨克号帆船 <span class="en">Angel → Cutty Sark</span></b>地铁 约42分钟 · Angel → Cutty Sark Greenwich<br/><span class="map-att">©2026 Google · Google Maps</span></div></div><div class="map-card"><a class="m-img" href="https://www.google.com/maps/dir/Cutty+Sark+Greenwich/Royal+Observatory+Greenwich/Greenwich+Pier" rel="noopener" target="_blank"><img alt="格林尼治镇内步行" loading="lazy" src="images/day2a2-greenwich-local-walk.png"/></a><div class="map-cap"><b>格林尼治镇内步行</b>步行 约31分钟 · Greenwich Pier → 卡蒂萨克 → 皇家天文台<br/><span class="map-att">©2026 Google · Google Maps</span></div></div><div class="map-card"><a class="m-img" href="https://www.thamesclippers.com/plan-your-journey/route-map" rel="noopener" target="_blank"><img alt="Uber Boat 官方航线图" loading="lazy" src="images/day2b-uberboat-official-v2.png"/></a><div class="map-cap"><b>优步河船官方航线图 <span class="en">Uber Boat by Thames Clippers</span></b>河船 · Thames Clippers · Tower ↔ Greenwich/North Greenwich 全线<br/><span class="map-att">Uber Boat by Thames Clippers 官方航线图 · thamesclippers.com</span></div></div><div class="map-card"><a class="m-img" href="https://www.google.com/maps/dir/Tower+Millennium+Pier+London/Tower+Bridge+London/Sky+Garden+London" rel="noopener" target="_blank"><img alt="塔桥 → Sky Garden" loading="lazy" src="images/day2c-tower-city-walk-v2.png"/></a><div class="map-cap"><b>伦敦塔桥 → 天空花园 <span class="en">Tower Bridge · Sky Garden</span></b>步行约24分钟 · Tower Pier → 塔桥 → Sky Garden；15:45前到安检。<br/><span class="map-att">©2026 Google · Google Maps</span></div></div></div>
 <div class="day-body"><div class="timeline" style="display:grid;gap:9px">
 <div class="event travel" data-kind="交通"><span class="time">08:30</span><h4>天使站至卡蒂萨克号帆船 <span class="en">Angel → Cutty Sark</span></h4>
-<div class="transport-dual" data-route-key="r2-angel-greenwich">
-<div class="td-head"><span class="td-badge">推荐</span><span class="td-mode">🚇 Northern City 支线 + DLR</span><span class="td-fee">£10.80 / 3人</span></div>
+<div class="transport-dual is-collapsed" data-route-key="r2-angel-greenwich"><div class="td-head"><span class="td-badge">推荐</span><span class="td-mode">🚇 Northern City 支线 + DLR</span><span class="td-fee">£10.80 / 3人</span></div><details class="transport-more"><summary>展开交通详情：站名、方向、站数、费用与备选</summary>
 <ol class="transit-steps">
 <li><span class="n">1</span><span class="sb">步行到 <b>酒店步行约2分钟到</b> <span class="en">Angel 地铁站</span></span></li>
 <li><span class="n">2</span><span class="sb">乘 <b>天使站</b> <span class="en">Angel (Northern City branch)</span></span></li><li><span class="n">3</span><span class="sb">Northern City 南行3站到Bank，换DLR到Cutty Sark</span></li>
@@ -411,17 +417,16 @@
 <li><b>路况</b>　高</li>
 </ul></details>
 <p class="fallback">Northern/DLR 严重延误、带行李或下雨 → 提前10分钟约网约车并确认实时报价。</p>
-</div></div></div>
-<details class="event-detail"><summary><span class="ev-time">09:30</span><span>卡蒂萨克外观 · 格林尼治市集</span><span class="ev-chip">参考</span></summary><p>逛 Greenwich Market、岸边看卡蒂萨克外观（不购票入内），步行上山赶 10:30 天文台。</p><div class="rec-tags"><span class="rec-tag">船首东侧河岸步道低角度仰拍整船轮廓</span></div></details>
-<details class="event-detail"><summary><span class="ev-time">10:30</span><span>格林尼治皇家天文台</span><span class="ev-chip">参考</span></summary>
+</details></div></div></div>
+<details class="event-detail" open=""><summary><span class="ev-time">09:30</span><span>卡蒂萨克外观 · 格林尼治市集</span><span class="ev-chip">参考</span></summary><p>逛 Greenwich Market、岸边看卡蒂萨克外观（不购票入内），步行上山赶 10:30 天文台。</p><div class="rec-tags"><span class="rec-tag">船首东侧河岸步道低角度仰拍整船轮廓</span></div></details>
+<details class="event-detail" open=""><summary><span class="ev-time">10:30</span><span>格林尼治皇家天文台</span><span class="ev-chip">参考</span></summary>
 <img alt="Royal Observatory Greenwich" class="loc-img" loading="lazy" src="images/day2-royal-observatory.jpg"/><p class="loc-cap">📷 天文台外观示意</p>
 <div class="rec-tags"><span class="rec-tag">本初子午线铜条：双脚横跨、一脚东半球一脚西半球</span><span class="rec-tag">山顶伦敦全景</span></div>
 <p class="small muted">成人约 £24（以官网为准）；冬季约 10:00–17:00、最后入场约 16:00–16:15。</p>
 <div class="actions"><a class="btn primary" href="https://www.rmg.co.uk/royal-observatory" rel="noopener" target="_blank">天文台官网</a><a class="btn" href="https://maps.google.com/?q=Royal+Observatory+Greenwich" rel="noopener" target="_blank">地图</a></div></details>
-<details class="event-detail"><summary><span class="ev-time">12:30</span><span>格林尼治市集午餐</span><span class="ev-chip">用餐</span></summary><p>下山在 Market 内就近简餐，留约 45 分钟赶船。</p></details>
+<details class="event-detail" open=""><summary><span class="ev-time">12:30</span><span>格林尼治市集午餐</span><span class="ev-chip">用餐</span></summary><p>下山在 Market 内就近简餐，留约 45 分钟赶船。</p></details>
 <div class="event travel" data-kind="交通"><span class="time">13:30</span><h4>优步河船到塔桥码头（体验主选）</h4>
-<div class="transport-dual" data-route-key="r2-greenwich-tower">
-<div class="td-head"><span class="td-badge">推荐</span><span class="td-mode">⛴ 优步河船｜Uber Boat（体验主选）</span><span class="td-fee">上下船各刷</span></div>
+<div class="transport-dual is-collapsed" data-route-key="r2-greenwich-tower"><div class="td-head"><span class="td-badge">推荐</span><span class="td-mode">⛴ 优步河船｜Uber Boat（体验主选）</span><span class="td-fee">上下船各刷</span></div><details class="transport-more"><summary>展开交通详情：站名、方向、站数、费用与备选</summary>
 <ol class="transit-steps">
 <li><span class="n">1</span><span class="sb">步行到格林尼治码头 <span class="en">Greenwich Pier</span></span></li>
 <li><span class="n">2</span><span class="sb">三人各自用本人同一张银行卡/手机刷入</span></li>
@@ -437,21 +442,20 @@
 <li><b>路况</b>　中–高（南岸陆路）</li>
 </ul></details>
 <p class="fallback">雨大不适船 → DLR/Central line 备选（day-notes 已记）。</p>
-</div></div></div>
-<details class="event-detail"><summary><span class="ev-time">14:10</span><span>伦敦塔外观 → 塔桥</span><span class="ev-chip">参考</span></summary>
+</details></div></div></div>
+<details class="event-detail" open=""><summary><span class="ev-time">14:10</span><span>伦敦塔外观 → 塔桥</span><span class="ev-chip">参考</span></summary>
 <img alt="Tower Bridge" class="loc-img" loading="lazy" src="images/day2-tower-bridge.jpg"/><p class="loc-cap">📷 Tower Bridge 示意</p>
 <p>下船沿河看伦敦塔外观，再过塔桥到南岸；不上塔桥展览。</p>
 <div class="rec-tags"><span class="rec-tag">南岸 Shad Thames 旧仓库砖墙间框取塔桥</span><span class="rec-tag">More London Place 拍塔桥</span></div>
 <div class="actions"><a class="btn" href="https://maps.google.com/?q=Tower+Bridge+London" rel="noopener" target="_blank">塔桥地图</a></div></details>
-<details class="event-detail"><summary><span class="ev-time">15:35</span><span>步行前往天空花园安检（固定票）</span><span class="ev-chip">参考</span></summary><p>从塔桥北侧步行 10–12 分钟；<b>15:45 前到、16:15 入场</b>，带证件与电子票。</p>
+<details class="event-detail" open=""><summary><span class="ev-time">15:35</span><span>步行前往天空花园安检（固定票）</span><span class="ev-chip">参考</span></summary><p>从塔桥北侧步行 10–12 分钟；<b>15:45 前到、16:15 入场</b>，带证件与电子票。</p>
 <div class="actions"><a class="btn primary" href="https://maps.google.com/?q=Sky+Garden+1+Sky+Garden+Walk+London" rel="noopener" target="_blank"><span style="white-space:nowrap">天空花园｜Sky Garden</span> 地图</a></div></details>
-<details class="event-detail"><summary><span class="ev-time">16:15</span><span>天空花园 Sky Garden</span><span class="ev-chip">参考</span></summary>
+<details class="event-detail" open=""><summary><span class="ev-time">16:15</span><span>天空花园 Sky Garden</span><span class="ev-chip">参考</span></summary>
 <img alt="Sky Garden" class="loc-img" loading="lazy" src="images/day2-sky-garden.jpg"/><p class="loc-cap">📷 Sky Garden 中庭示意</p>
 <div class="rec-tags"><span class="rec-tag">南向落地窗拍碎片大厦</span><span class="rec-tag">360° 看塔桥与泰晤士河</span></div>
 <p>参观约 1 小时。</p></details>
 <div class="event food" data-kind="餐饮"><span class="time">17:30</span><h4>天空花园附近晚餐 / 返酒店</h4><p>参观结束后在利德贺市场、Bank或Monument沿线就近简餐；Barbour已固定到10月5日，不在今天赶关门。</p>
-<div class="transport-dual" data-route-key="r2-bank-angel">
-<div class="td-head"><span class="td-badge">推荐</span><span class="td-mode">🚇 Northern City 支线直达 <span class="en">direct</span></span><span class="td-fee">£9.30 / 3人</span></div>
+<div class="transport-dual is-collapsed" data-route-key="r2-bank-angel"><div class="td-head"><span class="td-badge">推荐</span><span class="td-mode">🚇 Northern City 支线直达 <span class="en">direct</span></span><span class="td-fee">£9.30 / 3人</span></div><details class="transport-more"><summary>展开交通详情：站名、方向、站数、费用与备选</summary>
 <ol class="transit-steps">
 <li><span class="n">1</span><span class="sb">步行到 <b>利德贺市场步行约3分钟到银行站</b></span></li>
 <li><span class="n">2</span><span class="sb">乘 <b>银行站</b> <span class="en">Bank (Northern City branch)</span></span></li><li><span class="n">3</span><span class="sb">Northern City 支线北行，3 站直达 Angel</span></li>
@@ -465,7 +469,7 @@
 <li><b>路况</b>　中–高</li>
 </ul></details>
 <p class="fallback">Northern City 支线停运 → bus 43/141/21 或 black cab £12–15。</p>
-</div><div class="focus-line"><b>今日重点：</b>上午东南伦敦，坐船回塔桥接上16:15固定票；天空花园后就近晚餐返酒店，不再赶购物店。</div>
+</details></div><div class="focus-line"><b>今日重点：</b>上午东南伦敦，坐船回塔桥接上16:15固定票；天空花园后就近晚餐返酒店，不再赶购物店。</div>
 <details class="day-notes"><summary>📋 当天准备（展开）</summary><div class="day-notes-grid">
 <details class="dnote"><summary>当天补充与备选（票/时间/购物提醒）</summary>
 <div class="day-note-block"><b>门票/订位</b><ul><li><b>Sky Garden 16:15，15:45 前到安检</b></li><li>天文台建议官网定时票；卡蒂萨克仅外观</li></ul></div>
@@ -476,18 +480,17 @@
 </details>
 </div></details>
 </div></article>
-
 <article class="card day-card" data-date="2026-10-03" id="day3">
 <div class="day-head"><div class="day-num"><b>03</b><span>OCT</span></div><div class="day-title"><h3>大英博物馆与西区</h3><p>大英博物馆 → 西区 <span class="en">Bloomsbury · Covent Garden · Soho</span></p></div><span class="tag medium">适中 · 4–6km</span></div>
 <div class="day-weather"><span class="dw-chip">⛅ 22/11℃</span><span class="dw-chip">多云干燥</span><span class="dw-chip">🚶 西区步行日</span></div>
+<div class="day-glance"><div class="day-glance-title">今天怎么过<span>一馆三餐，全部顺路</span></div><div class="glance-flow"><div class="glance-stop fixed"><time>10:00</time><b>大英博物馆</b><small>09:30到，精选看2.5小时</small></div><div class="glance-stop food"><time>13:15</time><b>炸鱼薯条午餐</b><small>Rock &amp; Sole</small></div><div class="glance-stop"><time>14:30</time><b>尼尔庭院</b><small>彩色庭院拍照</small></div><div class="glance-stop food"><time>15:15</time><b>Abuelo小食</b><small>共享吐司，排队久就跳过</small></div><div class="glance-stop food"><time>17:30</time><b>Bancone晚餐</b><small>丝绸手帕面</small></div></div></div>
 <div class="compact-fixed"><span class="cf-badge">🎫 已预约</span><span class="cf-main">大英博物馆 <b>10:00 入场</b>｜<b>09:30 前到正门安检</b></span><span class="cf-sub">上午先到馆，Abuelo 移到午后或取消。</span></div>
-<a class="day-route" href="https://www.google.com/maps/dir/Hilton+London+Angel+Islington/British+Museum+Great+Russell+Street+London+WC1B+3DG/Rock+%26+Sole+Plaice+47+Endell+Street+London+WC2H+9AJ/Neal%27s+Yard+London/Bancone+8-10+Lower+James+Street+London+W1F+9DL" rel="noopener" target="_blank"><span class="route-icon">🗺️</span><span class="route-text"><b>打开今日路线</b><span>酒店 → 大英博物馆 → Rock & Sole炸鱼薯条店 → 尼尔庭院 → Bancone意面</span></span><span class="route-arrow">›</span></a>
-<div class="map-scroll"><div class="map-card"><a class="m-img" href="https://www.google.com/maps/dir/Angel+London+Islington/British+Museum+London" rel="noopener" target="_blank"><img src="images/day3a-bus38-angel-bm.png" alt="天使站 → 大英博物馆（38路）" loading="lazy"/></a><div class="map-cap"><b>天使站 → 大英博物馆（38路）<span class="en">Angel → British Museum</span></b>公交38路 约23分钟 · Angel → British Museum<br><span class="map-att">©2026 Google · Google Maps</span></div></div><div class="map-card"><a class="m-img" href="https://www.google.com/maps/dir/British+Museum+London/Rock+and+Sole+Plaice+London/Neals+Yard+London/Bancone+Golden+Square" rel="noopener" target="_blank"><img src="images/day3b-bm-bancone-walk.png" alt="大英博物馆 → 四店 → Bancone" loading="lazy"/></a><div class="map-cap"><b>大英博物馆 → 四店 → Bancone意面餐厅 <span class="en">Bancone</span></b>步行 约22分钟 · BM → Rock&Sole → Neal's Yard → Bancone<br><span class="map-att">©2026 Google · Google Maps</span></div></div></div>
+<a class="day-route" href="https://www.google.com/maps/dir/Hilton+London+Angel+Islington/British+Museum+Great+Russell+Street+London+WC1B+3DG/Rock+%26+Sole+Plaice+47+Endell+Street+London+WC2H+9AJ/Neal%27s+Yard+London/Bancone+8-10+Lower+James+Street+London+W1F+9DL" rel="noopener" target="_blank"><span class="route-icon">🗺️</span><span class="route-text"><b>打开今日路线</b><span>酒店 → 大英博物馆 → Rock &amp; Sole炸鱼薯条店 → 尼尔庭院 → Bancone意面</span></span><span class="route-arrow">›</span></a>
+<div class="map-scroll"><div class="map-card"><a class="m-img" href="https://www.google.com/maps/dir/Angel+London+Islington/British+Museum+London" rel="noopener" target="_blank"><img alt="天使站 → 大英博物馆（38路）" loading="lazy" src="images/day3a-bus38-angel-bm.png"/></a><div class="map-cap"><b>天使站 → 大英博物馆（38路）<span class="en">Angel → British Museum</span></b>公交38路 约23分钟 · Angel → British Museum<br/><span class="map-att">©2026 Google · Google Maps</span></div></div><div class="map-card"><a class="m-img" href="https://www.google.com/maps/dir/British+Museum+London/Rock+and+Sole+Plaice+London/Neals+Yard+London/Bancone+Golden+Square" rel="noopener" target="_blank"><img alt="大英博物馆 → 四店 → Bancone" loading="lazy" src="images/day3b-bm-bancone-walk.png"/></a><div class="map-cap"><b>大英博物馆 → 四店 → Bancone意面餐厅 <span class="en">Bancone</span></b>步行 约22分钟 · BM → Rock&amp;Sole → Neal's Yard → Bancone<br/><span class="map-att">©2026 Google · Google Maps</span></div></div></div>
 <div class="day-body"><div class="timeline" style="display:grid;gap:9px">
 <div class="event food" data-kind="餐饮"><span class="time">09:00</span><h4>酒店 / 沿途轻早餐</h4><p>Upper Street 沿线就近咖啡简餐；上午不固定 Abuelo。</p></div>
 <div class="event travel" data-kind="交通"><span class="time">09:15</span><h4>天使站 → 大英博物馆</h4>
-<div class="transport-dual" data-route-key="r3-angel-bm">
-<div class="td-head"><span class="td-badge">推荐</span><span class="td-mode">🚌 38 路公交直达</span><span class="td-fee">£5.25 / 3人</span></div>
+<div class="transport-dual is-collapsed" data-route-key="r3-angel-bm"><div class="td-head"><span class="td-badge">推荐</span><span class="td-mode">🚌 38 路公交直达</span><span class="td-fee">£5.25 / 3人</span></div><details class="transport-more"><summary>展开交通详情：站名、方向、站数、费用与备选</summary>
 <ol class="transit-steps">
 <li><span class="n">1</span><span class="sb">步行到 <b>酒店步行约1分钟到</b> <span class="en">Angel Station 公交站</span></span></li>
 <li><span class="n">2</span><span class="sb">乘 <b>天使站公交站</b> <span class="en">Angel Station bus stop</span></span></li><li><span class="n">3</span><span class="sb">38路往Victoria，到Museum Street车程</span></li>
@@ -501,7 +504,7 @@
 <li><b>路况</b>　中（高峰尾段）</li>
 </ul></details>
 <p class="fallback">09:00 时 38路 出发屏仍&gt;8分钟晚点 → Islington High St 打 black cab（£10–16，9–12分钟）保 09:30。</p>
-</div><div class="event fixed" data-kind="已预约"><span class="time">09:30</span><h4>到大英博物馆正门安检</h4><p><b>09:30 前到、10:00 入场</b>；带护照与电子预约码。</p></div>
+</details></div><div class="event fixed" data-kind="已预约"><span class="time">09:30</span><h4>到大英博物馆正门安检</h4><p><b>09:30 前到、10:00 入场</b>；带护照与电子预约码。</p></div>
 <div class="event sight" data-kind="游览"><span class="time">10:00</span><h4>大英博物馆精选</h4>
 <img alt="British Museum" class="loc-img" loading="lazy" src="images/day3-british-museum.jpg"/><p class="loc-cap">📷 Diliff via Wikimedia Commons · CC BY-SA 3.0</p>
 <div class="rec-tags"><span class="rec-tag">大中庭</span><span class="rec-tag">罗塞塔石碑与埃及展区</span><span class="rec-tag">亚述浮雕</span><span class="rec-tag">帕特农雕塑</span><span class="rec-tag">木乃伊</span><span class="rec-tag">白色阶梯人少好拍</span></div>
@@ -523,8 +526,7 @@
 <p>人均约 £32–38，可 walk-in 等位也可官网订桌，周六营业到 22:30，cashless。从 Seven Dials 步行约 10-15 分钟到 8-10 Lower James St。</p>
 <div class="actions"><a class="btn" href="https://www.bancone.co.uk/" rel="noopener" target="_blank">Bancone意面餐厅｜Bancone 官网</a><a class="btn" href="https://maps.google.com/?q=Bancone+8-10+Lower+James+Street+London" rel="noopener" target="_blank">地图</a></div></div>
 <div class="event travel" data-kind="交通"><span class="time">19:30</span><h4>回天使站酒店</h4>
-<div class="transport-dual" data-route-key="r3-soho-angel">
-<div class="td-head"><span class="td-badge">推荐</span><span class="td-mode">🚌 38 路公交直达</span><span class="td-fee">£5.25 / 3人</span></div>
+<div class="transport-dual is-collapsed" data-route-key="r3-soho-angel"><div class="td-head"><span class="td-badge">推荐</span><span class="td-mode">🚌 38 路公交直达</span><span class="td-fee">£5.25 / 3人</span></div><details class="transport-more"><summary>展开交通详情：站名、方向、站数、费用与备选</summary>
 <ol class="transit-steps">
 <li><span class="n">1</span><span class="sb">步行到 <b>步行5分钟到Piccadilly Circus站</b></span></li>
 <li><span class="n">2</span><span class="sb">乘 <b>皮卡迪利</b> <span class="en">Circus 站 Piccadilly Circus (Stop B)</span></span></li><li><span class="n">3</span><span class="sb">38路往Clapton Pond方向 Angel（站数按车内屏）</span></li>
@@ -538,29 +540,27 @@
 <li><b>路况</b>　高</li>
 </ul></details>
 <p class="fallback">38路 晚点/拥挤 → 步行8分钟到 Tottenham Court Rd 乘 Central→Bank 换 Northern City 回 Angel。</p>
-</div><div class="focus-line"><b>今日重点：</b>10:00 博物馆预约；西区景点间 ≤15 分钟步行全保留。</div>
+</details></div><div class="focus-line"><b>今日重点：</b>10:00 博物馆预约；西区景点间 ≤15 分钟步行全保留。</div>
 <details class="day-notes"><summary>📋 当天准备（展开）</summary><div class="day-notes-grid">
 <details class="dnote"><summary>当天补充与备选（票/时间/购物提醒）</summary>
 <div class="day-note-block"><b>门票/证件</b><ul><li><b>大英博物馆 10:00 入场，09:30 前到正门</b></li><li>带护照原件与电子预约码</li></ul></div>
 <div class="day-note-block"><b>交通票</b><p>38路公交统一票价；其余按全局规则卡。</p></div>
 <div class="day-note-block"><b>开放时间</b><ul><li>大英博物馆周六 10:00-17:00</li><li>Rock &amp; Sole 约 12:00 开门</li><li>Bancone cashless</li></ul></div>
 <div class="day-note-block"><b>支付/决策</b><p>Bancone cashless；午餐与博物馆离馆衔接，超时顺延。</p></div>
-
 </details>
 </div></details>
-</div></article>
-
+</div></div></div></div></article>
 <article class="card day-card" data-date="2026-10-04" id="day4">
 <div class="day-head"><div class="day-num"><b>04</b><span>OCT</span></div><div class="day-title"><h3>剑桥：学院与康河</h3><p>国王十字区当天往返 <span class="en">King's Cross round-trip</span></p></div><span class="tag medium">适中 · 6–8km</span></div>
 <div class="day-weather"><span class="dw-chip">🌦 20/13℃</span><span class="dw-chip">阵雨·阵风25mph</span><span class="dw-chip">🌂 带防风防水</span></div>
+<div class="day-glance"><div class="day-glance-title">今天怎么过<span>火车时间锁定</span></div><div class="glance-flow"><div class="glance-stop fixed"><time>10:24</time><b>火车去剑桥</b><small>国王十字发车</small></div><div class="glance-stop"><time>到后</time><b>学院区慢走</b><small>经典建筑与街景</small></div><div class="glance-stop food"><time>13:00</time><b>学院区便餐</b><small>不追网红店</small></div><div class="glance-stop"><time>14:30</time><b>国王学院</b><small>先查当天开放</small></div><div class="glance-stop"><time>15:45</time><b>康河撑船</b><small>风雨不适就取消</small></div><div class="glance-stop fixed"><time>约19:40</time><b>返伦敦</b><small>按电子票进站</small></div></div></div>
 <div class="compact-fixed"><span class="cf-badge">🚆 已购车票</span><span class="cf-main">去程 国王十字车站 <b>10:24 → Cambridge</b>｜回程约 <b>19:40</b>（以电子票为准）</span><span class="cf-sub">往返已购；09:30 前到国王十字车站候车。</span></div>
 <a class="day-route" href="https://www.google.com/maps/dir/King%27s+Cross+Station+London/Cambridge+Station/King%27s+College+Cambridge+King%27s+Parade+CB2+1ST/Scudamore%27s+Mill+Lane+Punting+Cambridge+CB2+1RS" rel="noopener" target="_blank"><span class="route-icon">🗺️</span><span class="route-text"><b>打开今日路线</b><span>国王十字车站 10:24 → 剑桥学院区午餐慢走 → 康河撑船 → 19:40 返程</span></span><span class="route-arrow">›</span></a>
-<div class="map-scroll"><div class="map-card"><a class="m-img" href="https://www.google.com/maps/dir/London+Kings+Cross+Station/Cambridge+Railway+Station" rel="noopener" target="_blank"><img src="images/day4a-london-cambridge-rail-v2.png" alt="伦敦国王十字 → 剑桥（火车）" loading="lazy"/></a><div class="map-cap"><b>伦敦国王十字 → 剑桥（火车）<span class="en">London King's Cross → Cambridge</span></b>Great Northern 约55分钟 · King's Cross → Cambridge<br><span class="map-att">©2026 Google · Google Maps</span></div></div><div class="map-card"><a class="m-img" href="https://www.google.com/maps/dir/Cambridge+Railway+Station/King%27s+College+Cambridge/Scudamore%27s+Mill+Lane+Punting+Station/Cambridge+Railway+Station" rel="noopener" target="_blank"><img src="images/day4b-cambridge-local-v2.png" alt="剑桥站 → 学院 → 撑船 → 站" loading="lazy"/></a><div class="map-cap"><b>剑桥站 → 学院 → 撑船 → 站</b>步行环线 约1小时5分 · Cambridge站 → King's College → Scudamore's Mill Lane → 站<br><span class="map-att">©2026 Google · Google Maps</span></div></div></div>
+<div class="map-scroll"><div class="map-card"><a class="m-img" href="https://www.google.com/maps/dir/London+Kings+Cross+Station/Cambridge+Railway+Station" rel="noopener" target="_blank"><img alt="伦敦国王十字 → 剑桥（火车）" loading="lazy" src="images/day4a-london-cambridge-rail-v2.png"/></a><div class="map-cap"><b>伦敦国王十字 → 剑桥（火车）<span class="en">London King's Cross → Cambridge</span></b>Great Northern 约55分钟 · King's Cross → Cambridge<br/><span class="map-att">©2026 Google · Google Maps</span></div></div><div class="map-card"><a class="m-img" href="https://www.google.com/maps/dir/Cambridge+Railway+Station/King%27s+College+Cambridge/Scudamore%27s+Mill+Lane+Punting+Station/Cambridge+Railway+Station" rel="noopener" target="_blank"><img alt="剑桥站 → 学院 → 撑船 → 站" loading="lazy" src="images/day4b-cambridge-local-v2.png"/></a><div class="map-cap"><b>剑桥站 → 学院 → 撑船 → 站</b>步行环线 约1小时5分 · Cambridge站 → King's College → Scudamore's Mill Lane → 站<br/><span class="map-att">©2026 Google · Google Maps</span></div></div></div>
 <div class="day-body"><div class="timeline" style="display:grid;gap:9px">
 <div class="event food" data-kind="餐饮"><span class="time">09:00</span><h4>酒店早餐（不必赶早）</h4><p>回程约 19:40、时间充裕；慢慢吃早餐。</p></div>
 <div class="event travel" data-kind="交通"><span class="time">09:15</span><h4>天使站 → 国王十字车站</h4>
-<div class="transport-dual" data-route-key="r4-angel-kx">
-<div class="td-head"><span class="td-badge">推荐</span><span class="td-mode">🚇 Northern City 支线 1 站</span><span class="td-fee">£9.30 / 3人</span></div>
+<div class="transport-dual is-collapsed" data-route-key="r4-angel-kx"><div class="td-head"><span class="td-badge">推荐</span><span class="td-mode">🚇 Northern City 支线 1 站</span><span class="td-fee">£9.30 / 3人</span></div><details class="transport-more"><summary>展开交通详情：站名、方向、站数、费用与备选</summary>
 <ol class="transit-steps">
 <li><span class="n">1</span><span class="sb">步行到 <b>酒店步行约2分钟到</b> <span class="en">Angel 站</span></span></li>
 <li><span class="n">2</span><span class="sb">乘 <b>天使站</b> <span class="en">Angel (Northern City branch)</span></span></li><li><span class="n">3</span><span class="sb">Northern City北行1站到国王十字车站</span></li>
@@ -574,7 +574,7 @@
 <li><b>上车点</b>　不适用</li>
 <li><b>路况</b>　低</li>
 </ul></details>
-</div><div class="event fixed" data-kind="已购票"><span class="time">10:24</span><h4>国王十字车站 → 剑桥（去程锁定）</h4><p>站台以当日屏幕/App 为准；到达时刻以电子票为准。</p>
+</details></div><div class="event fixed" data-kind="已购票"><span class="time">10:24</span><h4>国王十字车站 → 剑桥（去程锁定）</h4><p>站台以当日屏幕/App 为准；到达时刻以电子票为准。</p>
 <div class="actions"><a class="btn" href="https://www.nationalrail.co.uk/" rel="noopener" target="_blank">查火车</a></div></div>
 <div class="event sight" data-kind="游览"><span class="time">到后</span><h4>学院区慢走</h4>
 <img alt="King's College Cambridge" class="loc-img" loading="lazy" src="images/day4-kings-college.jpg"/><p class="loc-cap">📷 Martinvl via Wikimedia Commons · CC BY-SA 4.0</p>
@@ -600,18 +600,17 @@
 <div class="day-note-block"><b>支付/决策</b><p>阵雨+阵风 25mph：带防风防水；雨/风不适取消撑船。周日 Cambridge 线工程概率高，出发前一天按 checklist 核 National Rail 当日时刻。</p></div>
 </details>
 </div></details>
-</div></article>
-
+</div></div></article>
 <article class="card day-card" data-date="2026-10-05" id="day5">
 <div class="day-head"><div class="day-num"><b>05</b><span>OCT</span></div><div class="day-title"><h3>换酒店 · Barbour服装店 · ALBA午餐 · 哈罗德百货</h3><p>希尔顿酒店（Angel区）→ The BoTree酒店（马里波恩）→ 卡纳比街 <span class="en">Carnaby Street</span> → 骑士桥区 <span class="en">Knightsbridge</span></p></div><span class="tag easy">轻松 · 4–6km</span></div>
 <div class="day-weather"><span class="dw-chip">🌤 21/13℃</span><span class="dw-chip">干燥</span><span class="dw-chip">🧳 转场日</span></div>
+<div class="day-glance"><div class="day-glance-title">今天怎么过<span>购物＋午餐，不走回头路</span></div><div class="glance-flow"><div class="glance-stop travel"><time>10:00</time><b>换酒店寄存</b><small>The BoTree</small></div><div class="glance-stop shop"><time>10:45</time><b>Barbour独立店</b><small>试Bedale / Beaufort / Ashby</small></div><div class="glance-stop food"><time>12:30</time><b>ALBA午餐</b><small>午市＋开心果提拉米苏</small></div><div class="glance-stop shop"><time>14:00</time><b>Harrods</b><small>过街即到，逛2–3小时</small></div><div class="glance-stop travel"><time>17:15</time><b>返回酒店</b><small>公交或实时价打车</small></div></div></div>
 <a class="day-route" href="https://www.google.com/maps/dir/The+BoTree+London,+30+Marylebone+Ln,+London/Barbour+Heritage,+29+Carnaby+Street,+London/ALBA+London,+70+Brompton+Road,+London/Harrods,+87-135+Brompton+Road,+London" rel="noopener" target="_blank"><span class="route-icon">🗺️</span><span class="route-text"><b>打开今日路线</b><span>酒店寄存 → Barbour卡纳比街店 → ALBA午餐 → 哈罗德百货 → 回酒店</span></span><span class="route-arrow">›</span></a>
-<div class="map-scroll"><div class="map-card"><a class="m-img" href="https://www.google.com/maps/dir/The+BoTree+London,+30+Marylebone+Ln,+London/Barbour+Heritage,+29+Carnaby+Street,+London/data=!4m2!4m1!3e2" rel="noopener" target="_blank"><img src="images/day5a-walk-botree-barbour.png" alt="The BoTree酒店 → Barbour卡纳比街店步行路线" loading="lazy"/></a><div class="map-cap"><b>The BoTree酒店 → Barbour卡纳比街店 <span class="en">The BoTree → Barbour Carnaby</span></b>步行约13–15分钟，寄存行李后直接向东走到卡纳比街。<br><span class="map-att">©2026 Google · Google Maps</span></div></div><div class="map-card"><a class="m-img" href="https://www.google.com/maps/dir/Barbour+Heritage,+29+Carnaby+Street,+London/ALBA+London,+70+Brompton+Road,+London/data=!4m2!4m1!3e3" rel="noopener" target="_blank"><img src="images/day5b-transit-barbour-alba.png" alt="Barbour卡纳比街店 → ALBA地铁路线" loading="lazy"/></a><div class="map-cap"><b>Barbour卡纳比街店 → ALBA午餐 <span class="en">Carnaby → Knightsbridge</span></b>Piccadilly Circus乘Piccadilly line西行3站，约23分钟；ALBA与Harrods隔街相对。<br><span class="map-att">©2026 Google · Google Maps</span></div></div></div>
+<div class="map-scroll"><div class="map-card"><a class="m-img" href="https://www.google.com/maps/dir/The+BoTree+London,+30+Marylebone+Ln,+London/Barbour+Heritage,+29+Carnaby+Street,+London/data=!4m2!4m1!3e2" rel="noopener" target="_blank"><img alt="The BoTree酒店 → Barbour卡纳比街店步行路线" loading="lazy" src="images/day5a-walk-botree-barbour.png"/></a><div class="map-cap"><b>The BoTree酒店 → Barbour卡纳比街店 <span class="en">The BoTree → Barbour Carnaby</span></b>步行约13–15分钟，寄存行李后直接向东走到卡纳比街。<br/><span class="map-att">©2026 Google · Google Maps</span></div></div><div class="map-card"><a class="m-img" href="https://www.google.com/maps/dir/Barbour+Heritage,+29+Carnaby+Street,+London/ALBA+London,+70+Brompton+Road,+London/data=!4m2!4m1!3e3" rel="noopener" target="_blank"><img alt="Barbour卡纳比街店 → ALBA地铁路线" loading="lazy" src="images/day5b-transit-barbour-alba.png"/></a><div class="map-cap"><b>Barbour卡纳比街店 → ALBA午餐 <span class="en">Carnaby → Knightsbridge</span></b>Piccadilly Circus乘Piccadilly line西行3站，约23分钟；ALBA与Harrods隔街相对。<br/><span class="map-att">©2026 Google · Google Maps</span></div></div></div>
 <div class="day-body"><div class="timeline" style="display:grid;gap:9px">
 <div class="event travel" data-kind="交通"><span class="time">10:00</span><h4>退房 → The BoTree酒店（带行李）</h4>
 <img alt="The BoTree" class="loc-img" loading="lazy" src="images/day5-botree.jpg"/><p class="loc-cap">📷 The BoTree 外观 · Marylebone Lane 鹅卵石巷</p>
-<div class="transport-dual" data-route-key="r5-hilton-botree">
-<div class="td-head"><span class="td-badge">推荐</span><span class="td-mode">🚇 Northern City → Moorgate → Elizabeth line</span><span class="td-fee">£9.00 / 3人</span></div>
+<div class="transport-dual is-collapsed" data-route-key="r5-hilton-botree"><div class="td-head"><span class="td-badge">推荐</span><span class="td-mode">🚇 Northern City → Moorgate → Elizabeth line</span><span class="td-fee">£9.00 / 3人</span></div><details class="transport-more"><summary>展开交通详情：站名、方向、站数、费用与备选</summary>
 <ol class="transit-steps">
 <li><span class="n">1</span><span class="sb">酒店步行到天使站 <span class="en">Angel</span></span></li>
 <li><span class="n">2</span><span class="sb">Northern City支线南行2站到Moorgate（途经Old Street）</span></li>
@@ -627,13 +626,12 @@
 <li><b>路况</b>　低–中（10:00 off-peak）</li>
 </ul></details>
 <p class="fallback">仅实时整车≤£25 且 ETA≤10分钟 且 App 确认3人+行李装得下（否则查XL）→ 网约车；否则国王十字换Elizabeth line。</p>
-</div><div class="event shopping" data-kind="购物"><span class="time">10:45</span><h4>Barbour卡纳比街店｜Barbour Heritage, Carnaby Street</h4>
+</details></div><div class="event shopping" data-kind="购物"><span class="time">10:45</span><h4>Barbour卡纳比街店｜Barbour Heritage, Carnaby Street</h4>
 <div class="rec-tags"><span class="rec-tag">先试经典蜡衣：Bedale / Beaufort / Ashby</span><span class="rec-tag">记录款式、颜色、英码</span><span class="rec-tag">缺码请店员查询伦敦其他门店库存</span></div>
 <p>寄存行李后从 The BoTree 步行约15–20分钟到 29 Carnaby Street；独立店比百货专柜更适合集中试穿，周一约10:00–19:00营业，预留45–60分钟。</p>
 <div class="actions"><a class="btn" href="https://www.barbour.com/gb/wax-for-life-locations.html" rel="noopener" target="_blank">Barbour官方门店</a><a class="btn" href="https://maps.google.com/?q=Barbour+Heritage+29+Carnaby+Street+London+W1F+7DH" rel="noopener" target="_blank">Barbour卡纳比街店地图</a></div></div>
 <div class="event travel" data-kind="交通"><span class="time">11:45</span><h4>卡纳比街 → ALBA意大利餐厅</h4>
-<div class="transport-dual" data-route-key="r5-carnaby-alba">
-<div class="td-head"><span class="td-badge">推荐</span><span class="td-mode">🚇 Piccadilly line 直达</span><span class="td-fee">约£9 / 3人</span></div>
+<div class="transport-dual is-collapsed" data-route-key="r5-carnaby-alba"><div class="td-head"><span class="td-badge">推荐</span><span class="td-mode">🚇 Piccadilly line 直达</span><span class="td-fee">约£9 / 3人</span></div><details class="transport-more"><summary>展开交通详情：站名、方向、站数、费用与备选</summary>
 <ol class="transit-steps">
 <li><span class="n">1</span><span class="sb">Barbour步行约5分钟到皮卡迪利圆环站 <span class="en">Piccadilly Circus</span></span></li>
 <li><span class="n">2</span><span class="sb">乘Piccadilly line西行，方向看 <span class="en">Heathrow / Uxbridge</span></span></li>
@@ -644,7 +642,7 @@
 </ol>
 <p class="tap-note">每人使用自己的contactless，进站touch in、出站touch out；同一人全程不要换卡或手机。</p>
 <details class="transport-other"><summary>🚕 出租/网约车（点开）</summary><ul class="taxi-steps"><li><b>上车点</b>　Carnaby Street外围可停车路段</li><li><b>路况</b>　中，中心区绕行较多</li><li><b>选择</b>　App显示门到门明显快于地铁时再打车</li></ul></details>
-</div></div>
+</details></div></div>
 <div class="event food" data-kind="主选"><span class="time">12:30</span><h4>午餐 · ALBA工作日午市 + 开心果提拉米苏</h4>
 <div class="rec-tags"><span class="rec-tag">工作日午市：两道£32 / 三道£39</span><span class="rec-tag">开心果提拉米苏 pistachio tiramisu</span><span class="rec-tag">若套餐不含提拉米苏，甜品单点</span></div>
 <p>周一午市12:00–16:00；建议订12:30，留约75–90分钟。你要吃的开心果提拉米苏当天先向服务员确认，避免只点套餐却错过甜品。</p>
@@ -655,8 +653,7 @@
 <p>ALBA正对面，不需要再坐车。主线先逛Harrods特色楼层；若卡纳比街店缺尺码，再到Barbour专柜补看，但不要重复试相同款。</p>
 <div class="actions"><a class="btn" href="https://www.harrods.com/en-gb/designers/barbour/men-clothing" rel="noopener" target="_blank">Harrods Barbour款式</a><a class="btn" href="https://maps.google.com/?q=Harrods+87-135+Brompton+Road+London" rel="noopener" target="_blank">Harrods地图</a></div></div>
 <div class="event travel" data-kind="交通"><span class="time">17:15</span><h4>骑士桥区 → The BoTree酒店</h4>
-<div class="transport-dual" data-route-key="r5-knightsbridge-botree">
-<div class="td-head"><span class="td-badge">推荐</span><span class="td-mode">🚌 13 / 74 路公交返程</span><span class="td-fee">£5.25 / 3人</span></div>
+<div class="transport-dual is-collapsed" data-route-key="r5-knightsbridge-botree"><div class="td-head"><span class="td-badge">推荐</span><span class="td-mode">🚌 13 / 74 路公交返程</span><span class="td-fee">£5.25 / 3人</span></div><details class="transport-more"><summary>展开交通详情：站名、方向、站数、费用与备选</summary>
 <ol class="transit-steps">
 <li><span class="n">1</span><span class="sb">步行到 <b>步行3分钟到Knightsbridge站</b></span></li>
 <li><span class="n">2</span><span class="sb">乘 <b>骑士桥站</b> <span class="en">Knightsbridge bus stop</span></span></li><li><span class="n">3</span><span class="sb">公交13/74路到Old Bond St</span></li>
@@ -670,7 +667,7 @@
 <li><b>路况</b>　高</li>
 </ul></details>
 <p class="fallback">13/74 预计5分钟内到站 → 公交；久等/购物袋重且 App 报价≤£13 → 网约车；否则公交。</p>
-</div><div class="focus-line"><b>今日重点：</b>寄存行李后先到卡纳比街独立店试穿 Barbour；12:30 吃 ALBA 工作日午市与开心果提拉米苏，饭后过街逛 Harrods，购物结束再返酒店。</div>
+</details></div><div class="focus-line"><b>今日重点：</b>寄存行李后先到卡纳比街独立店试穿 Barbour；12:30 吃 ALBA 工作日午市与开心果提拉米苏，饭后过街逛 Harrods，购物结束再返酒店。</div>
 <details class="day-notes"><summary>📋 当天准备（展开）</summary><div class="day-notes-grid">
 <details class="dnote"><summary>当天补充与备选（票/时间/购物提醒）</summary>
 <div class="day-note-block"><b>门票/订位</b><ul><li>ALBA 建议预订 12:30 午餐</li><li>工作日午市 12:00–16:00：两道£32 / 三道£39，开心果提拉米苏是否包含以当天菜单为准</li></ul></div>
@@ -679,18 +676,17 @@
 <div class="day-note-block"><b>购物决策</b><p>卡纳比街店先试经典款和尺码；若缺货，Harrods男装Barbour专柜只补看缺失款，不重复逛。退房前先吃早餐。</p></div>
 </details>
 </div></details>
-</div></article>
-
+</div></div></div></div></article>
 <article class="card day-card" data-date="2026-10-06" id="day6">
 <div class="day-head"><div class="day-num"><b>06</b><span>OCT</span></div><div class="day-title"><h3>库克米尔河谷往返</h3><p>维多利亚 <span class="en">Victoria</span> → 伊斯特本 <span class="en">Eastbourne</span> → 七姐妹公园河谷入口</p></div><span class="tag full">全日 · 轻松河谷</span></div>
 <div class="day-weather"><span class="dw-chip">🌦 17–20℃</span><span class="dw-chip">雨10–20%</span><span class="dw-chip">🌊 沿海阵风晚再确认</span></div>
+<div class="day-glance"><div class="day-glance-title">今天怎么过<span>只走河谷平地，不登崖顶</span></div><div class="glance-flow"><div class="glance-stop travel"><time>08:30</time><b>去维多利亚站</b><small>赶09:46火车</small></div><div class="glance-stop fixed"><time>09:46</time><b>火车去Eastbourne</b><small>11:51到，换乘1次</small></div><div class="glance-stop travel"><time>12:45</time><b>12路公交</b><small>去七姐妹公园入口</small></div><div class="glance-stop"><time>13:30</time><b>库克米尔河谷</b><small>平地往返，白崖远景</small></div><div class="glance-stop travel"><time>16:45</time><b>公交返Eastbourne</b><small>留足晚餐与候车</small></div><div class="glance-stop fixed"><time>19:33</time><b>直达伦敦</b><small>21:05到Victoria</small></div></div></div>
 <div class="compact-fixed"><span class="cf-badge">🚆 已购车票</span><span class="cf-main">去 Victoria <b>09:46 → Eastbourne 11:51</b>（1 换）｜回 <b>19:33 → Victoria 21:05</b>（直达）</span><span class="cf-sub">换乘站打开电子票 View stops 现场确认；Sep 9–Oct 12 时刻变更，出发前再核。</span></div>
 <a class="day-route" href="https://www.google.com/maps/dir/The+BoTree+London+30+Marylebone+Lane+London+W1U+2DR/London+Victoria+Station/Eastbourne+Railway+Station/Seven+Sisters+Country+Park+Exceat+BN25+4AD" rel="noopener" target="_blank"><span class="route-icon">🗺️</span><span class="route-text"><b>打开今日路线</b><span>酒店 → 维多利亚车站 09:46 → 伊斯特本 → 七姐妹公园河谷入口 → 19:33 回</span></span><span class="route-arrow">›</span></a>
-<div class="map-scroll"><div class="map-card"><a class="m-img" href="https://www.google.com/maps/dir/London+Victoria+Station/Eastbourne+Railway+Station" rel="noopener" target="_blank"><img src="images/day6a-victoria-eastbourne-rail-v2.png" alt="Victoria → Eastbourne（火车）" loading="lazy"/></a><div class="map-cap"><b>维多利亚 → 伊斯特本（火车）<span class="en">Victoria → Eastbourne</span></b>Southern 约1小时43分 · London Victoria → Eastbourne<br><span class="map-att">©2026 Google · Google Maps</span></div></div><div class="map-card"><a class="m-img" href="https://www.google.com/maps/dir/Seven+Sisters+Country+Park+Visitor+Centre/Cuckmere+Haven+Beach" rel="noopener" target="_blank"><img src="images/day6c-exceat-cuckmere-walk.png" alt="Exceat → Cuckmere Haven 河谷平地" loading="lazy"/></a><div class="map-cap"><b>七姐妹公园河谷入口 → 库克米尔河口 <span class="en">Exceat → Cuckmere Haven</span></b>河谷步行 约32分钟（1.5mi） · 河谷入口 → 库克米尔河口<br><span class="map-att">©2026 Google · Google Maps</span></div></div><p class="map-note"><b>🚌 12路｜伊斯特本 ↔ 河谷入口</b><br>上车前打开 B&H 官网确认当天时刻；认准车头“12”和 七姐妹公园河谷入口站牌。<a href="https://www.buses.co.uk/services/route-12" rel="noopener" target="_blank">B&H 12路官网</a> · <a href="https://www.google.com/maps/dir/Eastbourne+Railway+Station/Seven+Sisters+Country+Park+Visitor+Centre" rel="noopener" target="_blank">Google 地点</a></p></div>
+<div class="map-scroll"><div class="map-card"><a class="m-img" href="https://www.google.com/maps/dir/London+Victoria+Station/Eastbourne+Railway+Station" rel="noopener" target="_blank"><img alt="Victoria → Eastbourne（火车）" loading="lazy" src="images/day6a-victoria-eastbourne-rail-v2.png"/></a><div class="map-cap"><b>维多利亚 → 伊斯特本（火车）<span class="en">Victoria → Eastbourne</span></b>Southern 约1小时43分 · London Victoria → Eastbourne<br/><span class="map-att">©2026 Google · Google Maps</span></div></div><div class="map-card"><a class="m-img" href="https://www.google.com/maps/dir/Seven+Sisters+Country+Park+Visitor+Centre/Cuckmere+Haven+Beach" rel="noopener" target="_blank"><img alt="Exceat → Cuckmere Haven 河谷平地" loading="lazy" src="images/day6c-exceat-cuckmere-walk.png"/></a><div class="map-cap"><b>七姐妹公园河谷入口 → 库克米尔河口 <span class="en">Exceat → Cuckmere Haven</span></b>河谷步行 约32分钟（1.5mi） · 河谷入口 → 库克米尔河口<br/><span class="map-att">©2026 Google · Google Maps</span></div></div><p class="map-note"><b>🚌 12路｜伊斯特本 ↔ 河谷入口</b><br/>上车前打开 B&amp;H 官网确认当天时刻；认准车头“12”和 七姐妹公园河谷入口站牌。<a href="https://www.buses.co.uk/services/route-12" rel="noopener" target="_blank">B&amp;H 12路官网</a> · <a href="https://www.google.com/maps/dir/Eastbourne+Railway+Station/Seven+Sisters+Country+Park+Visitor+Centre" rel="noopener" target="_blank">Google 地点</a></p></div>
 <div class="day-body"><div class="timeline" style="display:grid;gap:9px">
 <div class="event travel" data-kind="交通"><span class="time">08:30</span><h4>The BoTree酒店 → 维多利亚车站</h4>
-<div class="transport-dual" data-route-key="r6-botree-victoria">
-<div class="td-head"><span class="td-badge">推荐</span><span class="td-mode">🚕 网约车/黑色出租车（赶 09:46 火车）</span><span class="td-fee">TfL预算 £13–20</span></div>
+<div class="transport-dual is-collapsed" data-route-key="r6-botree-victoria"><div class="td-head"><span class="td-badge">推荐</span><span class="td-mode">🚕 网约车/黑色出租车（赶 09:46 火车）</span><span class="td-fee">TfL预算 £13–20</span></div><details class="transport-more"><summary>展开交通详情：站名、方向、站数、费用与备选</summary>
 <ul class="taxi-steps">
 <li><b>起终点</b>　酒店→维多利亚站</li>
 <li><b>车型行李</b>　带行李赶火车，App内查XL</li>
@@ -706,49 +702,46 @@
 </ol>
 <p class="tap-note">£3.10/人 · £9.30/3人（仅 fallback）　刷卡：市内段contactless in/out；长途火车用e-ticket扫码</p></details>
 <p class="fallback">08:30 App ETA 到站&gt;08:55、报价&gt;阈值 或 5分钟内无车 → Bond St Jubilee→Green Park→Victoria line；不追 surge 误火车。</p>
-</div><div class="event fixed" data-kind="已购票"><span class="time">09:46</span><h4>维多利亚车站 → 伊斯特本（去程）</h4><p>首段往 <b>Littlehampton</b> 方向，<b>1 次换乘</b>；换乘站现场核电子票 View stops。11:51 到 Eastbourne。</p>
+</details></div><div class="event fixed" data-kind="已购票"><span class="time">09:46</span><h4>维多利亚车站 → 伊斯特本（去程）</h4><p>首段往 <b>Littlehampton</b> 方向，<b>1 次换乘</b>；换乘站现场核电子票 View stops。11:51 到 Eastbourne。</p>
 <div class="actions"><a class="btn" href="https://www.nationalrail.co.uk/" rel="noopener" target="_blank">查火车</a></div></div>
 <div class="event travel" data-kind="交通"><span class="time">12:15</span><h4>Eastbourne 出站 → 12 路</h4><p>预留出站、找到 Brighton&amp;Hove <b>12 路</b>站台时间。</p></div>
 <div class="event travel" data-kind="交通"><span class="time">12:45</span><h4>12路 → 七姐妹公园河谷入口</h4>
-<div class="transport-dual" data-route-key="r6-eastbourne-exceat">
-<div class="td-head"><span class="td-badge">推荐</span><span class="td-mode">🚌 B&amp;H 12路 <span class="en">Brighton&amp;Hove</span></span><span class="td-fee">Tap On/Off 各刷</span></div>
+<div class="transport-dual is-collapsed" data-route-key="r6-eastbourne-exceat"><div class="td-head"><span class="td-badge">推荐</span><span class="td-mode">🚌 B&amp;H 12路 <span class="en">Brighton&amp;Hove</span></span><span class="td-fee">Tap On/Off 各刷</span></div><details class="transport-more"><summary>展开交通详情：站名、方向、站数、费用与备选</summary>
 <ol class="transit-steps">
 <li><span class="n">1</span><span class="sb">步行到 <b>Eastbourne Station 步行到站前公交站</b></span></li>
-<li><span class="n">2</span><span class="sb">乘 <b>伊斯特本站公交站</b> <span class="en">Eastbourne Station bus stop</span></span></li><li><span class="n">3</span><span class="sb">B&H 12路西行到河谷入口下车</span></li>
+<li><span class="n">2</span><span class="sb">乘 <b>伊斯特本站公交站</b> <span class="en">Eastbourne Station bus stop</span></span></li><li><span class="n">3</span><span class="sb">B&amp;H 12路西行到河谷入口下车</span></li>
 <li><span class="n">4</span><span class="sb">出站步行：走到库克米尔河谷</span></li>
 <li><span class="n">5</span><span class="sb">总时长：35–45 分钟</span></li>
 </ol>
-<p class="tap-note">B&H Tap On Tap Off，三人各自支付；可考虑 NetworkSaver 日票（约£7.50车上/£7.30 App）覆盖12路随上随下；总额以运营商当日封顶为准　刷卡：上车touch in、下车touch out；各自同一张卡，B&H 独立日封顶，不与 TfL 卡混算</p>
+<p class="tap-note">B&amp;H Tap On Tap Off，三人各自支付；可考虑 NetworkSaver 日票（约£7.50车上/£7.30 App）覆盖12路随上随下；总额以运营商当日封顶为准　刷卡：上车touch in、下车touch out；各自同一张卡，B&amp;H 独立日封顶，不与 TfL 卡混算</p>
 <details class="transport-other"><summary>🚕 出租/网约车（点开）</summary><ul class="taxi-steps">
 <li><b>车型行李</b>　不推荐</li>
 <li><b>上车点</b>　不适用</li>
 <li><b>路况</b>　中</li>
 </ul></details>
-</div><div class="event sight" data-kind="游览"><span class="time">13:30</span><h4>库克米尔河谷平地往返</h4>
+</details></div><div class="event sight" data-kind="游览"><span class="time">13:30</span><h4>库克米尔河谷平地往返</h4>
 <img alt="Seven Sisters White Cliffs" class="loc-img" loading="lazy" src="images/day6-seven-sisters.jpg"/><p class="loc-cap">📷 StephenDawson via Wikimedia Commons · CC BY-SA 2.0</p>
 <p>从 <b>七姐妹公园河谷入口沿库克米尔河口平地往返</b>，地势平缓、远拍白崖；<b>不涉水、不上海崖边缘</b>。防风防水防滑，服从现场封闭。</p>
 <p class="small muted">午餐：入口旁 Cuckmere Inn 河畔 pub 有热食、十月壁炉已生火（普通便餐，不指定名店）；Visitor Centre Cafe 只有三明治蛋糕。</p>
 <div class="actions"><a class="btn" href="https://www.southdowns.gov.uk/walks/seven-sisters-easy-access-trail/" rel="noopener" target="_blank">官方轻松路线</a></div></div>
 <div class="event travel" data-kind="交通"><span class="time">16:45</span><h4>12路返回伊斯特本</h4>
-<div class="transport-dual" data-route-key="r6-exceat-eastbourne">
-<div class="td-head"><span class="td-badge">推荐</span><span class="td-mode">🚌 12 路公交返程</span><span class="td-fee">Tap On/Off 各刷</span></div>
+<div class="transport-dual is-collapsed" data-route-key="r6-exceat-eastbourne"><div class="td-head"><span class="td-badge">推荐</span><span class="td-mode">🚌 12 路公交返程</span><span class="td-fee">Tap On/Off 各刷</span></div><details class="transport-more"><summary>展开交通详情：站名、方向、站数、费用与备选</summary>
 <ol class="transit-steps">
 <li><span class="n">1</span><span class="sb">步行到 <b>步行回七姐妹公园河谷入口公交站</b></span></li>
-<li><span class="n">2</span><span class="sb">乘 <b>七姐妹公园河谷入口公交站</b></span></li><li><span class="n">3</span><span class="sb">B&H 12路东行往伊斯特本</span></li>
+<li><span class="n">2</span><span class="sb">乘 <b>七姐妹公园河谷入口公交站</b></span></li><li><span class="n">3</span><span class="sb">B&amp;H 12路东行往伊斯特本</span></li>
 <li><span class="n">4</span><span class="sb">出站步行：走到火车站台</span></li>
 <li><span class="n">5</span><span class="sb">总时长：35–45分钟</span></li>
 </ol>
-<p class="tap-note">B&H Tap On Tap Off，三人各自支付；总额以运营商当日封顶为准　刷卡：上车touch in、下车touch out；到 Eastbourne 后乘火车用 e-ticket 扫码</p>
+<p class="tap-note">B&amp;H Tap On Tap Off，三人各自支付；总额以运营商当日封顶为准　刷卡：上车touch in、下车touch out；到 Eastbourne 后乘火车用 e-ticket 扫码</p>
 <details class="transport-other"><summary>🚕 出租/网约车（点开）</summary><ul class="taxi-steps">
 <li><b>车型行李</b>　不推荐</li>
 <li><b>上车点</b>　不适用</li>
 <li><b>路况</b>　中</li>
 </ul></details>
-</div><div class="event fixed" data-kind="已购票"><span class="time">19:33</span><h4>伊斯特本 → 维多利亚车站（直达）</h4><p>19:33 Eastbourne 发车直达 Victoria，21:05 到。</p>
+</details></div><div class="event fixed" data-kind="已购票"><span class="time">19:33</span><h4>伊斯特本 → 维多利亚车站（直达）</h4><p>19:33 Eastbourne 发车直达 Victoria，21:05 到。</p>
 <div class="actions"><a class="btn" href="https://www.nationalrail.co.uk/" rel="noopener" target="_blank">查火车</a></div></div>
 <div class="event travel" data-kind="交通"><span class="time">21:05</span><h4>维多利亚车站 → The BoTree酒店</h4>
-<div class="transport-dual" data-route-key="r6-victoria-botree">
-<div class="td-head"><span class="td-badge">推荐</span><span class="td-mode">🚕 网约车/黑色出租车（夜间门到酒店）</span><span class="td-fee">TfL预算 £13–20</span></div>
+<div class="transport-dual is-collapsed" data-route-key="r6-victoria-botree"><div class="td-head"><span class="td-badge">推荐</span><span class="td-mode">🚕 网约车/黑色出租车（夜间门到酒店）</span><span class="td-fee">TfL预算 £13–20</span></div><details class="transport-more"><summary>展开交通详情：站名、方向、站数、费用与备选</summary>
 <ul class="taxi-steps">
 <li><b>起终点</b>　维多利亚→酒店</li>
 <li><b>车型行李</b>　普通轿车</li>
@@ -763,7 +756,7 @@
 </ol>
 <p class="tap-note">£3.00/人 · £9.00/3人（Zone1 off-peak，2026新费率）　刷卡：同一张contactless in/out；末班约00:35</p></details>
 <p class="fallback">App surge&gt;1.5x 或 Victoria 5分钟内无车 → 有遮罩 black cab 排队；地铁备份至约00:20。</p>
-</div><div class="focus-line"><b>今日重点：</b>只走 Cuckmere 河谷平地往返，不涉水、远离崖缘；固定火车优先到站。</div>
+</details></div><div class="focus-line"><b>今日重点：</b>只走 Cuckmere 河谷平地往返，不涉水、远离崖缘；固定火车优先到站。</div>
 <details class="day-notes"><summary>📋 当天准备（展开）</summary><div class="day-notes-grid">
 <details class="dnote"><summary>当天补充与备选（票/时间/购物提醒）</summary>
 <div class="day-note-block"><b>车票/换乘</b><ul><li><b>去 09:46→11:51（1 换）/ 回 19:33→21:05（直达）</b></li><li>换乘站现场核 View stops，不猜</li></ul></div>
@@ -773,25 +766,24 @@
 <div class="day-note-block"><b>就餐节奏</b><p>BoTree/Victoria 站顺路解决早餐。约17:30 回 Eastbourne 后，站附近/滨海先吃普通便餐，18:30 前回站候车。</p></div>
 </details>
 </div></details>
-</div></article>
-
+</div></div></div></div></div></div></article>
 <article class="card day-card" data-date="2026-10-07" id="day7">
 <div class="day-head"><div class="day-num"><b>07</b><span>OCT</span></div><div class="day-title"><h3>公园慢游，晚上返程</h3><p>马里波恩区 <span class="en">Marylebone</span> → 摄政公园 <span class="en">Regent's Park</span> → 希思罗T2 <span class="en">Heathrow</span></p></div><span class="tag easy">轻松 · 3–5km</span></div>
 <div class="day-weather"><span class="dw-chip">✈️ 返程日</span><span class="dw-chip">Elizabeth line → T2</span><span class="dw-chip">机场空调长时备薄外套</span></div>
+<div class="day-glance"><div class="day-glance-title">今天怎么过<span>最后散步，17:30离店</span></div><div class="glance-flow"><div class="glance-stop travel"><time>10:30</time><b>退房寄存</b><small>行李不带去景点</small></div><div class="glance-stop"><time>11:00</time><b>摄政公园</b><small>轻松慢走</small></div><div class="glance-stop food"><time>13:30</time><b>马里波恩午餐</b><small>顺便最后采购</small></div><div class="glance-stop travel"><time>16:30</time><b>回酒店取行李</b><small>检查证件与充电</small></div><div class="glance-stop fixed"><time>17:30</time><b>前往希思罗T2</b><small>22:05航班，19:00前到</small></div></div></div>
 <a class="day-route" href="https://www.google.com/maps/dir/The+BoTree+London+30+Marylebone+Lane+London+W1U+2DR/Regent%27s+Park+London+NW1+4NR/Heathrow+Terminal+2" rel="noopener" target="_blank"><span class="route-icon">🗺️</span><span class="route-text"><b>打开今日路线</b><span>酒店 → 摄政公园 → 取行李 → 希思罗T2</span></span><span class="route-arrow">›</span></a>
-<div class="map-scroll"><div class="map-card"><a class="m-img" href="https://www.google.com/maps/dir/The+BoTree+London+Curio/Regents+Park+London/The+BoTree+London" rel="noopener" target="_blank"><img src="images/day7-route-v2.png" alt="BoTree → Regent's Park → BoTree" loading="lazy"/></a><div class="map-cap"><b>The BoTree酒店 → 摄政公园环线 <span class="en">BoTree → Regent's Park</span></b>步行环线（Baker St corridor） · The BoTree → Regent's Park → 回 BoTree<br><span class="map-att">©2026 Google · Google Maps</span></div></div><div class="map-card"><a class="m-img" href="https://www.google.com/maps/dir/The+BoTree+London+Curio/Heathrow+Airport" rel="noopener" target="_blank"><img src="images/day7-heathrow-rail-v2.png" alt="Bond St → 希思罗 T2（Elizabeth line）" loading="lazy"/></a><div class="map-cap"><b>邦德街 → 希思罗T2（伊丽莎白线）<span class="en">Bond St → Heathrow T2, Elizabeth line</span></b>Elizabeth line 约33分钟 · London → Heathrow Terminals 2 & 3（西行）<br><span class="map-att">©2026 Google · Google Maps</span></div></div></div>
+<div class="map-scroll"><div class="map-card"><a class="m-img" href="https://www.google.com/maps/dir/The+BoTree+London+Curio/Regents+Park+London/The+BoTree+London" rel="noopener" target="_blank"><img alt="BoTree → Regent's Park → BoTree" loading="lazy" src="images/day7-route-v2.png"/></a><div class="map-cap"><b>The BoTree酒店 → 摄政公园环线 <span class="en">BoTree → Regent's Park</span></b>步行环线（Baker St corridor） · The BoTree → Regent's Park → 回 BoTree<br/><span class="map-att">©2026 Google · Google Maps</span></div></div><div class="map-card"><a class="m-img" href="https://www.google.com/maps/dir/The+BoTree+London+Curio/Heathrow+Airport" rel="noopener" target="_blank"><img alt="Bond St → 希思罗 T2（Elizabeth line）" loading="lazy" src="images/day7-heathrow-rail-v2.png"/></a><div class="map-cap"><b>邦德街 → 希思罗T2（伊丽莎白线）<span class="en">Bond St → Heathrow T2, Elizabeth line</span></b>Elizabeth line 约33分钟 · London → Heathrow Terminals 2 &amp; 3（西行）<br/><span class="map-att">©2026 Google · Google Maps</span></div></div></div>
 <div class="day-body"><div class="timeline" style="display:grid;gap:9px">
 <div class="event travel" data-kind="交通"><span class="time">10:30</span><h4>退房寄存行李</h4><p>最后一天不把行李带去景点。</p></div>
-<details class="event-detail"><summary><span class="ev-time">11:00</span><span>摄政公园慢走</span><span class="ev-chip">参考</span></summary>
+<details class="event-detail" open=""><summary><span class="ev-time">11:00</span><span>摄政公园慢走</span><span class="ev-chip">参考</span></summary>
 <img alt="Regent's Park" class="loc-img" loading="lazy" src="images/day7-regents-park.jpg"/><p class="loc-cap">📷 pam fray via Geograph · Wikimedia Commons · CC BY-SA 2.0</p>
 <div class="rec-tags"><span class="rec-tag">Queen Mary's 玫瑰园白色长椅喷泉</span><span class="rec-tag">Broad Walk 林荫道</span></div>
 <p>Marylebone 步行约 12 分钟可达。</p>
 <div class="actions"><a class="btn" href="https://maps.google.com/?q=Regent%27s+Park+London" rel="noopener" target="_blank">地图</a></div></details>
-<details class="event-detail"><summary><span class="ev-time">13:30</span><span>马里波恩区午餐与最后采购</span><span class="ev-chip">用餐</span></summary><p>Marylebone High Street 有独立精品店、书店、花店、咖啡馆，适合最后散步扫货；沿线就近午餐。</p></details>
-<details class="event-detail"><summary><span class="ev-time">16:30</span><span>回酒店取行李</span><span class="ev-chip">交通</span></summary><p>检查护照、退税材料、充电设备。</p></details>
+<details class="event-detail" open=""><summary><span class="ev-time">13:30</span><span>马里波恩区午餐与最后采购</span><span class="ev-chip">用餐</span></summary><p>Marylebone High Street 有独立精品店、书店、花店、咖啡馆，适合最后散步扫货；沿线就近午餐。</p></details>
+<details class="event-detail" open=""><summary><span class="ev-time">16:30</span><span>回酒店取行李</span><span class="ev-chip">交通</span></summary><p>检查护照、退税材料、充电设备。</p></details>
 <div class="event fixed" data-kind="航班"><span class="time">17:30</span><h4>前往希思罗 T2</h4>
-<div class="transport-dual" data-route-key="r7-botree-heathrow">
-<div class="td-head"><span class="td-badge">推荐</span><span class="td-mode">🚇 <span style="white-space:nowrap">伊丽莎白线｜Elizabeth line</span> 直达 T2</span><span class="td-fee">£46.50 / 3人</span></div>
+<div class="transport-dual is-collapsed" data-route-key="r7-botree-heathrow"><div class="td-head"><span class="td-badge">推荐</span><span class="td-mode">🚇 <span style="white-space:nowrap">伊丽莎白线｜Elizabeth line</span> 直达 T2</span><span class="td-fee">£46.50 / 3人</span></div><details class="transport-more"><summary>展开交通详情：站名、方向、站数、费用与备选</summary>
 <ol class="transit-steps">
 <li><span class="n">1</span><span class="sb">步行到 <b>BoTree 步行约2分钟到 Bond Street Elizabeth line 站</b></span></li>
 <li><span class="n">2</span><span class="sb">乘 <b>邦德街站</b> <span class="en">Bond Street (Elizabeth line)</span></span></li><li><span class="n">3</span><span class="sb">Elizabeth line西行往Heathrow T2/3，约33分钟</span></li>
@@ -806,7 +798,7 @@
 <li><b>路况</b>　高</li>
 </ul></details>
 <p class="fallback">仅实时整车≤£70 且 ETA≤10分钟 且 App 确认3人+3箱装得下（否则查XL）→ 网约车；若航班&lt;90分钟，Elizabeth line 固定班次优于路面。</p>
-</div></div></div>
+</details></div></div></div>
 </div>
 <div class="focus-line"><b>今日重点：</b>西向动线不回头；机场以 Elizabeth line 为主选，为 22:05 航班留 3 小时。</div>
 <details class="day-notes"><summary>📋 当天准备（展开）</summary><div class="day-notes-grid">
@@ -817,9 +809,8 @@
 <div class="day-note-block"><b>提醒</b><p>检查护照、退税材料、充电设备。</p></div>
 </details>
 </div></details>
-</div></article>
+</article>
 </section>
-
 <!-- ============ 预订 ============ -->
 <section class="panel" id="booking">
 <div class="section-title"><h2>待办确认</h2><p>只列真正需要你本人处理的</p></div>
@@ -831,13 +822,11 @@
 <li class="book-item"><div class="book-icon">5</div><div class="book-copy"><b>七姐妹装备</b><p>防风防水外套、防滑鞋；10/05 晚再确认 10/06 沿海阵风。</p></div></li>
 </ul></article>
 </section>
-
 <!-- ============ 清单 ============ -->
 <section class="panel" id="checklist">
 <div class="section-title"><h2>出发清单</h2><p>勾选保存在本机</p></div>
-<article class="card"><ul class="check-list" style="list-style:none;padding:0;margin:0" data-group="final"><li class="check-item"><input id="c1" type="checkbox"/><label for="c1">护照、签证、机酒订单与旅行保险</label></li><li class="check-item"><input id="c2" type="checkbox"/><label for="c2">Sky Garden 电子票与照片证件</label></li><li class="check-item"><input id="c3" type="checkbox"/><label for="c3">同一张非接触卡/手机，eSIM 与离线地图</label></li><li class="check-item"><input id="c4" type="checkbox"/><label for="c4">转换插头、充电宝、防风防水外套</label></li><li class="check-item"><input id="c5" type="checkbox"/><label for="c5">防滑鞋、保温层、薄手套</label></li><li class="check-item"><input id="c6" type="checkbox"/><label for="c6">防风防水外套、防滑鞋（七姐妹河谷）</label></li><li class="check-item"><input id="c7" type="checkbox"/><label for="c7">出发前一天确认国铁工程与 12 路班次</label></li></ul></article></section>
+<article class="card"><ul class="check-list" data-group="final" style="list-style:none;padding:0;margin:0"><li class="check-item"><input id="c1" type="checkbox"/><label for="c1">护照、签证、机酒订单与旅行保险</label></li><li class="check-item"><input id="c2" type="checkbox"/><label for="c2">Sky Garden 电子票与照片证件</label></li><li class="check-item"><input id="c3" type="checkbox"/><label for="c3">同一张非接触卡/手机，eSIM 与离线地图</label></li><li class="check-item"><input id="c4" type="checkbox"/><label for="c4">转换插头、充电宝、防风防水外套</label></li><li class="check-item"><input id="c5" type="checkbox"/><label for="c5">防滑鞋、保温层、薄手套</label></li><li class="check-item"><input id="c6" type="checkbox"/><label for="c6">防风防水外套、防滑鞋（七姐妹河谷）</label></li><li class="check-item"><input id="c7" type="checkbox"/><label for="c7">出发前一天确认国铁工程与 12 路班次</label></li></ul></article></section>
 </main>
-
 <nav aria-label="快捷导航" class="bottomnav"><button class="quick active" data-panel="overview"><span>⌂</span>概览</button><button class="quick" data-panel="days"><span>◷</span>行程</button><button class="quick" data-panel="booking"><span>⌁</span>预订</button><button class="quick" data-panel="checklist"><span>✓</span>清单</button></nav>
 <div aria-live="polite" class="toast" role="status"></div>
 <script>
